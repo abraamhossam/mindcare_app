@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/view/drop_down_view.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
@@ -26,6 +27,10 @@ class MindCareApp extends StatelessWidget {
         GetPage(
           name: InitView.id,
           page: () => const InitView(),
+        ),
+        GetPage(
+          name: DropDownView.id,
+          page: () => const DropDownView(),
         ),
         GetPage(
           name: SignInView.id,

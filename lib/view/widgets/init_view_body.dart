@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
+import 'package:mindcare_app/view/drop_down_view.dart';
 import 'package:mindcare_app/view/widgets/custom_button_scroll.dart';
 import 'package:mindcare_app/view/widgets/custom_dots_indicator.dart';
 import 'package:mindcare_app/view/widgets/custom_page_view.dart';
@@ -58,7 +58,7 @@ class _InitViewBodyState extends State<InitViewBody> {
                     curve: Curves.easeIn);
               } else if (pageController.page == 2) {
                 Get.offAll(
-                  () => const SignInView(),
+                  () => const DropDownView(),
                   transition: Transition.rightToLeft,
                   duration: const Duration(milliseconds: 100),
                 );
