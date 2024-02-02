@@ -45,7 +45,12 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
 
   Container customDropDownButton() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 24,
+        top: 6,
+        bottom: 6,
+      ),
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.circular(8),
@@ -73,7 +78,7 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
                 child: Text(
                   e,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     color: Colors.white,
                   ),
                 ),
