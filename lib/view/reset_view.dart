@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/widgets/reset_view_body.dart';
 
 class ResetView extends StatelessWidget {
@@ -10,7 +11,7 @@ class ResetView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: kPrimaryColor,
           elevation: 0,
           leading: IconButton(
               onPressed: () {
