@@ -59,7 +59,6 @@ class _InitViewBodyState extends State<InitViewBody> {
               } else if (pageController.page == 2) {
                 Get.offAll(
                   () => const SignInView(),
-                  transition: Transition.rightToLeft,
                   duration: const Duration(milliseconds: 100),
                 );
               }
