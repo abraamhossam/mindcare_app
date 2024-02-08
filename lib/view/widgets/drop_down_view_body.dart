@@ -13,7 +13,7 @@ class DropDownViewBody extends StatefulWidget {
 
 class _DropDownViewBodyState extends State<DropDownViewBody> {
   String? selected;
-  List<String> listData = ["tharepist", "client"];
+  List<String> listData = ["tharepist", "client", "admin"];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

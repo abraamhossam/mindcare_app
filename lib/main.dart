@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
@@ -18,6 +19,9 @@ class MindCareApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        fontFamily: kFontFamily,
+      ),
       getPages: [
         GetPage(
           name: SplashView.id,

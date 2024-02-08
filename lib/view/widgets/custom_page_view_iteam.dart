@@ -32,7 +32,7 @@ class CustomPageViewIteam extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 40,
+            horizontal: 24,
           ),
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
