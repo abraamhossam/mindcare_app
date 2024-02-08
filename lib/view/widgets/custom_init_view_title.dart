@@ -8,10 +8,13 @@ class CustomInitViewTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        Spacer(
+          flex: 2,
+        ),
         Text(
           "Mind",
           style: TextStyle(
@@ -26,6 +29,18 @@ class CustomInitViewTitle extends StatelessWidget {
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 25,
+          ),
+        ),
+        Spacer(
+          flex: 1,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: MaterialButton(
+            onPressed: () {},
+            minWidth: 10,
+            color: Colors.white,
+            child: const Text("ع"),
           ),
         ),
       ],

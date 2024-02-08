@@ -86,7 +86,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Don't have an account? ",
+                        "Already has an account? ",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 17,
