@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
@@ -47,9 +48,13 @@ class MindCareApp extends StatelessWidget {
         ),
         GetPage(
           name: PayView.id,
-          page:()=> const PayView(),
+          page: () => const PayView(),
         ),
-          
+        // ............سكرينات السنوسي.. ............
+        GetPage(
+          name: '/home',
+          page: () => HomePage(),
+        ),
       ],
       initialRoute: SplashView.id,
     );
