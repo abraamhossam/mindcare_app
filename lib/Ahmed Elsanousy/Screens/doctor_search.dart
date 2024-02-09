@@ -28,7 +28,8 @@ class doctorSearch extends StatelessWidget {
         title: const Text(
           "Our doctors",
           style: TextStyle(
-            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
