@@ -34,7 +34,7 @@ List<Map<String, dynamic>> doctors = [
         'Saturday: - \nSunday: from 3:00 PM to 6:00 PM \nMonday :  from 6:00 PM to 9:00 PM \nTuesday :  - \nWednesday:  from 3:00 PM to 6:00 PM \nThursday :  from 3:00 PM to 6:00 PM \nFriday : - PM',
   },
   {
-    "name": "Amgad Khairy Kamel",
+    "name": "Amgad Khairy",
     "phone": '01001582686',
     "score": '4.5',
     "description":

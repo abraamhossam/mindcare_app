@@ -43,8 +43,8 @@ class CustomDoctorCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   child: Image(
-                      height: size.height * 0.123,
-                      width: size.width * 0.26,
+                      height: size.width * 0.24,
+                      width: size.width * 0.24,
                       image: MemoryImage(base64Decode(doctor['img']))),
                 ),
                 Column(
@@ -88,7 +88,8 @@ class CustomDoctorCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 15, top: 15, bottom: 15),
                   child: MaterialButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),

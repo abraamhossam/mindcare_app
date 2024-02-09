@@ -23,7 +23,8 @@ class mentalTests extends StatelessWidget {
         title: const Text(
           "Mental Tests",
           style: TextStyle(
-            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
