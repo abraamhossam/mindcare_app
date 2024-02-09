@@ -1,0 +1,112 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
+
+class CustomDoctorCard extends StatelessWidget {
+  CustomDoctorCard({
+    super.key,
+    required this.doctor,
+    required this.tap,
+    /* required this.name,
+    required this.phone,
+    required this.score,
+    required this.img, */
+  });
+
+  final Map<String, dynamic> doctor;
+  final Function tap;
+  /* final String name;
+  final String phone;
+  final String score;
+  final String img; */
+  Color buttonColor = const Color(0xff2296F3);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size.width * 0.09),
+        child: InkWell(
+          onTap: () {
+            Get.off(doctorProfile(doctor: doctor));
+          },
+          child: Card(
+            elevation: 3,
+            child: Row(
+              children: [
+                ClipRRect(
+                  child: Image(
+                      height: size.height * 0.123,
+                      width: size.width * 0.26,
+                      image: MemoryImage(base64Decode(doctor['img']))),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        doctor['name'],
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        doctor['phone'],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 101, 101, 101)),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 8, bottom: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            doctor['score'],
+                          ),
+                          Icon(
+                            Icons.star,
+                            size: size.width * 0.04,
+                            color: Color.fromARGB(255, 231, 215, 66),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    onPressed: () {
+                      tap();
+                    },
+                    color: buttonColor,
+                    child: const Text(
+                      'Book',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

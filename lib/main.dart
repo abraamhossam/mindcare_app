@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_search.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/test_page.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/init_view.dart';
@@ -59,6 +62,18 @@ class MindCareApp extends StatelessWidget {
         GetPage(
           name: '/mental_tests',
           page: () => const mentalTests(),
+        ),
+        GetPage(
+          name: '/doctor_search',
+          page: () => doctorSearch(),
+        ),
+        GetPage(
+          name: '/doctor_profile',
+          page: () => doctorProfile(),
+        ),
+        GetPage(
+          name: '/make_appointment',
+          page: () => MakeAppointment(),
         ),
       ],
       //initialRoute: SplashView.id,
