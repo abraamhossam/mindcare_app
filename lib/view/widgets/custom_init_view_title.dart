@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+
+import 'pay_view.dart';
 
 class CustomInitViewTitle extends StatelessWidget {
   const CustomInitViewTitle({
@@ -12,10 +15,10 @@ class CustomInitViewTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Spacer(
+        const Spacer(
           flex: 2,
         ),
-        Text(
+        const Text(
           "Mind",
           style: TextStyle(
             fontSize: 30,
@@ -23,7 +26,7 @@ class CustomInitViewTitle extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
+        const Text(
           "Care",
           style: TextStyle(
             color: Colors.black,
@@ -31,13 +34,16 @@ class CustomInitViewTitle extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        Spacer(
+        const Spacer(
           flex: 1,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              // to pay page
+              Get.toNamed(PayView.id);
+            },
             minWidth: 10,
             color: Colors.white,
             child: const Text("ع"),

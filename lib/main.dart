@@ -6,6 +6,7 @@ import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
+import 'view/widgets/pay_view.dart';
 
 void main() {
   runApp(
@@ -44,6 +45,11 @@ class MindCareApp extends StatelessWidget {
           name: ResetView.id,
           page: () => const ResetView(),
         ),
+        GetPage(
+          name: PayView.id,
+          page:()=> const PayView(),
+        ),
+          
       ],
       initialRoute: SplashView.id,
     );
