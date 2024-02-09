@@ -119,7 +119,7 @@ class doctorProfile extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            /* Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: Row(
                 children: [
@@ -145,7 +145,7 @@ class doctorProfile extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            ), */
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 20, bottom: 20),
               child: EasyDateTimeLine(
