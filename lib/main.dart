@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/test_page.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
@@ -53,10 +54,15 @@ class MindCareApp extends StatelessWidget {
         // ............سكرينات السنوسي.. ............
         GetPage(
           name: '/home',
-          page: () => HomePage(),
+          page: () => const HomePage(),
+        ),
+        GetPage(
+          name: '/mental_tests',
+          page: () => const mentalTests(),
         ),
       ],
-      initialRoute: SplashView.id,
+      //initialRoute: SplashView.id,
+      initialRoute: "/home",
     );
   }
 }
