@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
+
 import 'package:mindcare_app/utils/size_config.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';

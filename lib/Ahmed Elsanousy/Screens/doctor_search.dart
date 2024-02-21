@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_doctor_card.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Doctors%20data/listOfDoctors.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Doctors%20data/list_of_doctors.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
 
 class doctorSearch extends StatelessWidget {

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mindcare_app/utils/size_config.dart';
 
+// ignore: must_be_immutable
 class CustomPageViewIteam extends StatelessWidget {
-  const CustomPageViewIteam(
+  CustomPageViewIteam(
       {super.key,
       required this.image,
       required this.text,
       required this.subText});
   final String image;
-  final String text;
+  String? text;
   final String subText;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class CustomPageViewIteam extends StatelessWidget {
           height: SizeConfig.height! * 0.4,
         ),
         Text(
-          text,
+          text!,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,

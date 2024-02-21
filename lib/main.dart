@@ -5,15 +5,21 @@ import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_search.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/test_page.dart';
+import 'package:mindcare_app/Langauge/language.dart';
+import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'view/widgets/pay_view.dart';
 
-void main() {
+SharedPreferences? sharedPrefs;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPrefs = await SharedPreferences.getInstance();
   runApp(
     const MindCareApp(),
   );
@@ -24,11 +30,14 @@ class MindCareApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LanguageController language = Get.put(LanguageController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: kFontFamily,
       ),
+      locale: language.initLang,
+      translations: Language(),
       getPages: [
         GetPage(
           name: SplashView.id,

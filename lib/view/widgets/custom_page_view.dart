@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mindcare_app/view/widgets/custom_page_view_iteam.dart';
 
 class CustomPageView extends StatelessWidget {
@@ -8,12 +9,11 @@ class CustomPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       controller: pageController,
-      children: const [
+      children: [
         CustomPageViewIteam(
           image: "assets/images/1 (2).json",
-          text: "We help you help yourselves",
-          subText:
-              "Our dangnosis tool suggests test techniques to deal with mental distness",
+          text: "page1 text".tr,
+          subText: "page2 subText".tr,
         ),
         CustomPageViewIteam(
           image: "assets/images/1 (3).json",
