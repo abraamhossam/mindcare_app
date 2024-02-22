@@ -31,31 +31,31 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         child: Column(
           children: [
             SignImageBody(
-              text: "Welcome To Your Private Area",
+              text: "signUp title".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 children: [
-                  const CustomTextField(
-                    title: "Name",
-                    hinttext: "Enter Your Name",
+                  CustomTextField(
+                    title: "Name".tr,
+                    hinttext: "Name hint".tr,
                     preIcon: FontAwesomeIcons.userTie,
                   ),
                   SizedBox(
                     height: SizeConfig.height! * 0.01,
                   ),
-                  const CustomTextField(
-                    title: "Email",
-                    hinttext: "Enter Your Email",
+                  CustomTextField(
+                    title: "Email".tr,
+                    hinttext: "Email hint".tr,
                     preIcon: Icons.email,
                   ),
                   SizedBox(
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextField(
-                    title: "Password",
-                    hinttext: "Enter Your Password",
+                    title: "Password".tr,
+                    hinttext: "Password hint".tr,
                     preIcon: Icons.lock,
                     ispassword: ispassword,
                     ontapSufIcon: () {
@@ -70,7 +70,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "Sign Up",
+                    text: "signUp button".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
                         print("ebraam");
@@ -85,15 +85,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Already has an account? ",
-                        style: TextStyle(
+                      Text(
+                        "signUp bottom1".tr,
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 17,
                         ),
                       ),
                       CustomTextNavigator(
-                        text: "  Sign In",
+                        text: "signUp bottom2".tr,
                         ontap: () => Get.toNamed(SignInView.id),
                       ),
                     ],

@@ -14,6 +14,8 @@ class Language implements Translations {
               "Discover the perfect therapist to guide your mental health journey with our tailored selection",
           "initial page3 text": "Let us lend a hand",
           //............................................................
+          "Name": "Name",
+          "Name hint": "Enter Your Name",
           "Email": "Email",
           "Email hint": "Enter Your Email",
           "Password": "Password",
@@ -21,12 +23,17 @@ class Language implements Translations {
           //.......................Sign in page.........................
           "signIn title": "Welcome Back",
           "signIn forgot pass": "Forgot Password?",
-          "signIn button": "Login",
+          "signIn button": "Log In",
           "signIn bottom1": "Don't have an account? ",
           "signIn bottom2": "  Sign Up",
           //.......................Reset Password page.........................
           "reset title": "Reset Your Password",
           "reset button": "Reset Password",
+          //.......................Sign up page.........................
+          "signUp title": "Welcome To Your Private Area",
+          "signUp button": "Sign Up",
+          "signUp bottom1": "Already Have An Account?",
+          "signUp bottom2": "  Log In",
         },
         "ar": {
           //.......................initial pages.........................
@@ -38,6 +45,8 @@ class Language implements Translations {
               "اكتشف المعالج النفسي المثالي لتوجيه رحلتك في مجال الصحة النفسية من خلال مجموعتنا المخصصة",
           "initial page3 text": "دعنا نساعدك",
           //............................................................
+          "Name": "الاسم",
+          "Name hint": "ادخل الاسم",
           "Email": "البريد الإلكتروني",
           "Email hint": "ادخل بريدك الإلكتروني",
           "Password": "كلمة المرور",
@@ -50,7 +59,12 @@ class Language implements Translations {
           "signIn bottom2": "  إنشاء حساب جديد",
           //.......................Reset Password page.........................
           "reset title": "أعد تعيين كلمة المرور",
-          "reset button": "أعد التعيين"
+          "reset button": "أعد التعيين",
+          //.......................Sign up page.........................
+          "signUp title": "مرحبًا بك في مساحتك الخاصة",
+          "signUp button": "تسجيل",
+          "signUp bottom1": "لديك حساب بالفعل؟",
+          "signUp bottom2": "  تسجيل الدخول"
         },
       };
 }
