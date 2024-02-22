@@ -30,8 +30,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SignImageBody(
-              text: "Welcome Back",
+            SignImageBody(
+              text: "signIn title".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -62,7 +62,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextNavigator(
-                    text: "Forgot Password ?",
+                    text: "signIn forgot pass".tr,
                     ontap: () {
                       Get.toNamed(
                         ResetView.id,
@@ -73,7 +73,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "Login",
+                    text: "signIn button".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
                         Get.offNamed("/home");
@@ -88,15 +88,15 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Don't have an account? ",
-                        style: TextStyle(
+                      Text(
+                        "signIn bottom1".tr,
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 17,
                         ),
                       ),
                       CustomTextNavigator(
-                        text: "  Sign Up",
+                        text: "signIn bottom2".tr,
                         ontap: () => Get.toNamed(SignUpView.id),
                       ),
                     ],

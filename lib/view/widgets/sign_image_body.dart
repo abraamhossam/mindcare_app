@@ -1,10 +1,12 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/utils/size_config.dart';
 
 class SignImageBody extends StatelessWidget {
-  const SignImageBody({
+  SignImageBody({
     super.key,
     required this.text,
   });

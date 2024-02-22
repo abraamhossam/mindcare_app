@@ -18,7 +18,7 @@ class ResetViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SignImageBody(
+            SignImageBody(
               text: "Reset Your Password",
             ),
             Padding(

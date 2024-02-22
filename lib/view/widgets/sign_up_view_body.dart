@@ -30,7 +30,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SignImageBody(
+            SignImageBody(
               text: "Welcome To Your Private Area",
             ),
             Padding(
