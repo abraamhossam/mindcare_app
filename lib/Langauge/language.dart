@@ -34,6 +34,26 @@ class Language implements Translations {
           "signUp button": "Sign Up",
           "signUp bottom1": "Already Have An Account?",
           "signUp bottom2": "  Log In",
+          //.......................Drawer.........................
+          "Hello": "Hello",
+          "Profile": "Profile",
+          "History": "History",
+          "Mental Tests": "Mental Tests",
+          "Search for doctors": "Search for doctors",
+          "Talk with Ai Chatbot": "Talk with Ai Chatbot",
+          //.......................Home page.........................
+          "Home": "Home",
+          "Tests": "Tests",
+          "Meditation Sessions": "Meditation Sessions",
+          "Stay relaxed": "Stay relaxed",
+          "Common Tests": "Common Tests",
+          "Our Doctors": "Our Doctors",
+          //.......................Emotions.........................
+          "Depression": "Depression",
+          "Anxiety": "Anxiety",
+          "Anger": "Anger",
+          "Fear": "Fear",
+          "Stress": "Stress",
         },
         "ar": {
           //.......................initial pages.........................
@@ -64,7 +84,27 @@ class Language implements Translations {
           "signUp title": "مرحبًا بك في مساحتك الخاصة",
           "signUp button": "تسجيل",
           "signUp bottom1": "لديك حساب بالفعل؟",
-          "signUp bottom2": "  تسجيل الدخول"
+          "signUp bottom2": "  تسجيل الدخول",
+          //.......................Drawer.........................
+          "Hello": "مرحبا",
+          "Profile": "الملف الشخصي",
+          "History": "السجل",
+          "Mental Tests": "الاختبارات النفسية",
+          "Search for doctors": "البحث عن أطباء",
+          "Talk with Ai Chatbot": "التحدث مع روبوت الدردشة",
+          //.......................Home page.........................
+          "Home": "الصفحة الرئيسية",
+          "Tests": "الاختبارات",
+          "Meditation Sessions": "جلسات التأمل",
+          "Stay relaxed": "ابق مسترخياً",
+          "Common Tests": "الاختبارات الشائعة",
+          "Our Doctors": "أطباؤنا",
+          //.......................Emotions.........................
+          "Depression": "الاكتئاب",
+          "Anxiety": "القلق/الاضطراب",
+          "Anger": "الغضب",
+          "Fear": "الخوف",
+          "Stress": "الضغط/التوتر",
         },
       };
 }

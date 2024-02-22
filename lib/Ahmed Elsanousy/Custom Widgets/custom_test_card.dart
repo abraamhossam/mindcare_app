@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class CustomTestCard extends StatelessWidget {
@@ -28,7 +29,7 @@ class CustomTestCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: Text(
-                  name,
+                  name.tr,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -37,7 +38,9 @@ class CustomTestCard extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                //padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                 child: Lottie.asset(
                   'lib/Ahmed Elsanousy/assests/animation/$name.json',
                   height: size.height * 0.15,

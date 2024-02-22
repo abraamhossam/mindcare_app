@@ -42,24 +42,25 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-          NavigationDestination(icon: Icon(Icons.forum), label: "Test"),
+        destinations: [
+          NavigationDestination(icon: const Icon(Icons.home), label: "Home".tr),
+          NavigationDestination(
+              icon: const Icon(Icons.forum), label: "Tests".tr),
         ],
       ),
       drawer: Drawer(
         child: ListView(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 230,
               child: DrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xff607D8B),
                 ),
                 child: Center(
                   child: Text(
-                    'Hello User',
-                    style: TextStyle(
+                    '${'Hello'.tr} User',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
@@ -67,23 +68,23 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Tile(name: "Profile", icon: Icons.person),
-            Tile(name: "History", icon: Icons.history),
+            Tile(name: "Profile".tr, icon: Icons.person),
+            Tile(name: "History".tr, icon: Icons.history),
             Tile(
-              name: "Mental Tests",
+              name: "Mental Tests".tr,
               icon: Icons.forum_outlined,
               tap: () {
                 Get.toNamed('/mental_tests');
               },
             ),
             Tile(
-              name: "Search for doctors",
+              name: "Search for doctors".tr,
               icon: Icons.person_search,
               tap: () {
                 Get.toNamed('/doctor_search');
               },
             ),
-            Tile(name: "Talk with Ai Therapist", icon: Icons.chat),
+            Tile(name: "Talk with Ai Chatbot".tr, icon: Icons.chat),
           ],
         ),
       ),
@@ -96,8 +97,8 @@ class HomePage extends StatelessWidget {
                 backColor: const Color(0xff3EC5FF),
                 imageName: const AssetImage(
                     "lib/Ahmed Elsanousy/assests/images/meditation/7.png"),
-                title: "Meditation Sessions",
-                subTitle: "Stay relaxed",
+                title: "Meditation Sessions".tr,
+                subTitle: "Stay relaxed".tr,
                 textColor: Colors.white,
               ),
               CustomCard(
@@ -105,19 +106,20 @@ class HomePage extends StatelessWidget {
                 backColor: Colors.white,
                 imageName: const AssetImage(
                     "lib/Ahmed Elsanousy/assests/images/meditation/6.png"),
-                title: "Meditation Sessions",
-                subTitle: "Stay relaxed",
+                title: "Meditation Sessions".tr,
+                subTitle: "Stay relaxed".tr,
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(
+          Padding(
+            padding: const EdgeInsets.only(
               top: 20.0,
               left: 20,
+              right: 20,
             ),
             child: Text(
-              "Common Tests",
-              style: TextStyle(
+              "Common Tests".tr,
+              style: const TextStyle(
                 fontSize: 25,
                 color: Color(0xff737373),
                 fontWeight: FontWeight.bold,
@@ -143,14 +145,15 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(
+          Padding(
+            padding: const EdgeInsets.only(
               top: 20.0,
               left: 20,
+              right: 20,
             ),
             child: Text(
-              "Our Doctors",
-              style: TextStyle(
+              "Our Doctors".tr,
+              style: const TextStyle(
                 fontSize: 25,
                 color: Color(0xff737373),
                 fontWeight: FontWeight.bold,

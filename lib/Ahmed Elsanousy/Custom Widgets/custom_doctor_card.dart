@@ -79,7 +79,7 @@ class CustomDoctorCard extends StatelessWidget {
                           Icon(
                             Icons.star,
                             size: size.width * 0.04,
-                            color: Color.fromARGB(255, 231, 215, 66),
+                            color: const Color.fromARGB(255, 231, 215, 66),
                           ),
                         ],
                       ),

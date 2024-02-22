@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Button extends StatelessWidget {
   const Button({
@@ -22,7 +23,7 @@ class Button extends StatelessWidget {
         minWidth: 150,
         color: const Color(0xffECECEC),
         child: Text(
-          title,
+          title.tr,
           style: const TextStyle(
             fontSize: 23,
             color: Color(0xff737373),

@@ -85,8 +85,8 @@ class MindCareApp extends StatelessWidget {
           page: () => MakeAppointment(),
         ),
       ],
-      initialRoute: SplashView.id,
-      //initialRoute: SignUpView.id,
+      //initialRoute: SplashView.id,
+      initialRoute: '/home',
     );
   }
 }

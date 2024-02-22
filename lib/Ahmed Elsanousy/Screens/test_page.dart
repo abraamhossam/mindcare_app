@@ -20,9 +20,9 @@ class mentalTests extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "Mental Tests",
-          style: TextStyle(
+        title: Text(
+          "Mental Tests".tr,
+          style: const TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.w600,
           ),
