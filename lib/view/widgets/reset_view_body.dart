@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mindcare_app/utils/size_config.dart';
 
 import 'package:mindcare_app/view/widgets/custom_button.dart';
@@ -19,7 +20,7 @@ class ResetViewBody extends StatelessWidget {
         child: Column(
           children: [
             SignImageBody(
-              text: "Reset Your Password",
+              text: "reset title".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -28,8 +29,8 @@ class ResetViewBody extends StatelessWidget {
                   SizedBox(
                     height: SizeConfig.height! * 0.01,
                   ),
-                  const CustomTextField(
-                    title: "Email",
+                  CustomTextField(
+                    title: "Email".tr,
                     hinttext: "Enter Your Email",
                     preIcon: Icons.email,
                   ),
@@ -37,7 +38,7 @@ class ResetViewBody extends StatelessWidget {
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "Reset Password",
+                    text: "reset button".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
                         print("ebraam");

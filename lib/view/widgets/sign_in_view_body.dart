@@ -37,17 +37,17 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 children: [
-                  const CustomTextField(
-                    title: "Email",
-                    hinttext: "Enter Your Email",
+                  CustomTextField(
+                    title: "Email".tr,
+                    hinttext: "Email hint".tr,
                     preIcon: Icons.email,
                   ),
                   SizedBox(
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextField(
-                    title: "Password",
-                    hinttext: "Enter Your Password",
+                    title: "Password".tr,
+                    hinttext: "Password hint".tr,
                     preIcon: Icons.lock,
                     ispassword: ispassword,
                     ontapSufIcon: () {

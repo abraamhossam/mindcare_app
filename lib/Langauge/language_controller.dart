@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/main.dart';
 
 class LanguageController extends GetxController {
-  String langeCode = "en";
+  String langeCode = "ar";
   late Locale initLang = Locale(langeCode);
 /*  late Locale initLang = sharedPrefs!.getString("lang") == null
       ? Locale(langeCode)

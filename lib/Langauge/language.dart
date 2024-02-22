@@ -13,12 +13,20 @@ class Language implements Translations {
           "initial page2 subText":
               "Discover the perfect therapist to guide your mental health journey with our tailored selection",
           "initial page3 text": "Let us lend a hand",
-          //.......................Sign in / sign up pages.........................
+          //............................................................
+          "Email": "Email",
+          "Email hint": "Enter Your Email",
+          "Password": "Password",
+          "Password hint": "Enter Your Password",
+          //.......................Sign in page.........................
           "signIn title": "Welcome Back",
           "signIn forgot pass": "Forgot Password?",
           "signIn button": "Login",
           "signIn bottom1": "Don't have an account? ",
-          "signIn bottom2": "  Sign Up"
+          "signIn bottom2": "  Sign Up",
+          //.......................Reset Password page.........................
+          "reset title": "Reset Your Password",
+          "reset button": "Reset Password",
         },
         "ar": {
           //.......................initial pages.........................
@@ -29,12 +37,20 @@ class Language implements Translations {
           "initial page2 subText":
               "اكتشف المعالج النفسي المثالي لتوجيه رحلتك في مجال الصحة النفسية من خلال مجموعتنا المخصصة",
           "initial page3 text": "دعنا نساعدك",
-          //.......................Sign in / sign up pages.........................
+          //............................................................
+          "Email": "البريد الإلكتروني",
+          "Email hint": "ادخل بريدك الإلكتروني",
+          "Password": "كلمة المرور",
+          "Password hint": "ادخل كلمة المرور",
+          //.......................Sign in page.........................
           "signIn title": "مرحبا بعودتك",
           "signIn forgot pass": "هل نسيت كلمة المرور؟",
           "signIn button": "تسجيل الدخول",
           "signIn bottom1": "ليس لديك حساب؟",
-          "signIn bottom2": "  إنشاء حساب جديد"
+          "signIn bottom2": "  إنشاء حساب جديد",
+          //.......................Reset Password page.........................
+          "reset title": "أعد تعيين كلمة المرور",
+          "reset button": "أعد التعيين"
         },
       };
 }
