@@ -54,6 +54,26 @@ class Language implements Translations {
           "Anger": "Anger",
           "Fear": "Fear",
           "Stress": "Stress",
+          //.......................Doctors.........................
+          "Search": "Search",
+          "Book": "Book",
+          //.......................Make appointment.........................
+          "Choose The Hour": "Choose The Hour",
+          "AM": "AM",
+          "PM": "PM",
+          "Fee Details": "Fee Details",
+          "Messeging": "Messeging",
+          "Can messege with therapist.": "Can messege with therapist.",
+          "Voice Call": "Voice Call",
+          "Can make a voice call with therapist.":
+              "Can make a voice call with therapist.",
+          "Video Call": "Video Call",
+          "Can make a video call with therapist.":
+              "Can make a video call with therapist.",
+          //.......................Doctor profile.........................
+          "Make Appointment": "Make Appointment",
+          "About Therapist": "About Therapist",
+          "Working Time": "Working Time",
         },
         "ar": {
           //.......................initial pages.........................
@@ -105,6 +125,26 @@ class Language implements Translations {
           "Anger": "الغضب",
           "Fear": "الخوف",
           "Stress": "الضغط/التوتر",
+          //.......................Doctors.........................
+          "Search": "بحث",
+          "Book": "حجز",
+          //.......................Make appointment.........................
+          "Choose The Hour": "اختر الساعة",
+          "AM": "ص",
+          "PM": "م",
+          "Fee Details": "تفاصيل الرسوم",
+          "Messeging": "التراسل",
+          "Can messege with therapist.": " يمكنك المراسله مع المعالج النفسي.",
+          "Voice Call": "مكالمة صوتية",
+          "Can make a voice call with therapist.":
+              " يمكنك إجراء مكالمة صوتية مع المعالج النفسي.",
+          "Video Call": "مكالمة فيديو",
+          "Can make a video call with therapist.":
+              "يمكنك التحدث عبر الفيديو مع المعالج النفسي.",
+          //.......................Doctor profile.........................
+          "Make Appointment": "احجز موعد",
+          "About Therapist": "معلومات عن المعالج",
+          "Working Time": "مواعيد العمل",
         },
       };
 }

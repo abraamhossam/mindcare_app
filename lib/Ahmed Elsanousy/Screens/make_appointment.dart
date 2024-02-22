@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/fee_card.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/hour_button.dart';
 
@@ -24,8 +25,8 @@ class MakeAppointment extends StatelessWidget {
                 onPressed: () {
                   Get.back();
                 },
-                icon: const Icon(
-                  Icons.keyboard_arrow_left,
+                icon: Icon(
+                  back,
                   size: 30,
                 ),
               ),
@@ -41,11 +42,11 @@ class MakeAppointment extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 25.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25.0),
             child: Text(
-              'Choose The Hour',
-              style: TextStyle(
+              'Choose The Hour'.tr,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
@@ -57,15 +58,15 @@ class MakeAppointment extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 HourButton(
-                  hour: '8:00 AM',
+                  hour: '8:00 ${"AM".tr}',
                   size: size,
                 ),
                 HourButton(
-                  hour: '10:00 AM',
+                  hour: '10:00 ${"AM".tr}',
                   size: size,
                 ),
                 HourButton(
-                  hour: '1:00 PM',
+                  hour: '1:00 ${"PM".tr}',
                   size: size,
                 ),
               ],
@@ -75,24 +76,24 @@ class MakeAppointment extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HourButton(
-                hour: '3:00 PM',
+                hour: '3:00 ${"PM".tr}',
                 size: size,
               ),
               HourButton(
-                hour: '4:00 PM',
+                hour: '4:00 ${"PM".tr}',
                 size: size,
               ),
               HourButton(
-                hour: '6:00 PM',
+                hour: '6:00 ${"PM".tr}',
                 size: size,
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 25.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25.0),
             child: Text(
-              'Fee Information',
-              style: TextStyle(
+              "Fee Details".tr,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
@@ -100,22 +101,22 @@ class MakeAppointment extends StatelessWidget {
           ),
           FeeCard(
             size: size,
-            title: 'Messeging',
-            subTitle: 'Can messege with therapist.',
+            title: 'Messeging'.tr,
+            subTitle: "Can messege with therapist.".tr,
             icon: Icons.chat_bubble_outline,
             price: 3,
           ),
           FeeCard(
             size: size,
-            title: 'Voice Call',
-            subTitle: 'Can make a voice call with therapist.',
+            title: "Voice Call".tr,
+            subTitle: "Can make a voice call with therapist.".tr,
             icon: Icons.call_outlined,
             price: 3,
           ),
           FeeCard(
             size: size,
-            title: 'Video Call',
-            subTitle: 'Can make a voice call with therapist.',
+            title: "Video Call".tr,
+            subTitle: "Can make a video call with therapist.".tr,
             icon: Icons.video_call_outlined,
             price: 3,
           ),

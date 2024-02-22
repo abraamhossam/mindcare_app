@@ -60,7 +60,7 @@ class CustomDoctorCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 8, right: 15),
                       child: Text(
                         doctor['phone'],
                         style: const TextStyle(
@@ -69,8 +69,8 @@ class CustomDoctorCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          left: 15, right: 15, top: 8, bottom: 8),
                       child: Row(
                         children: [
                           Text(
@@ -97,9 +97,9 @@ class CustomDoctorCard extends StatelessWidget {
                       tap();
                     },
                     color: buttonColor,
-                    child: const Text(
-                      'Book',
-                      style: TextStyle(color: Colors.white),
+                    child: Text(
+                      'Book'.tr,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 )

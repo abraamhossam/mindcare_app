@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:table_calendar/table_calendar.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_doctor_card.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
+import 'package:mindcare_app/Langauge/language_controller.dart';
 
 // ignore: must_be_immutable
 class doctorProfile extends StatelessWidget {
@@ -15,6 +17,7 @@ class doctorProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    LanguageController language = Get.find();
     return Scaffold(
       /* appBar: AppBar(
         leading: IconButton(
@@ -47,18 +50,20 @@ class doctorProfile extends StatelessWidget {
                     onPressed: () {
                       Get.offNamed('/doctor_search');
                     },
-                    icon: const Icon(
-                      Icons.keyboard_arrow_left,
+                    icon: Icon(
+                      back,
                       size: 30,
                     ),
                   ),
                   SizedBox(
-                    width: size.width * 0.16,
+                    width: language.langeCode == "en"
+                        ? size.width * 0.16
+                        : size.width * 0.25,
                   ),
-                  const Text(
+                  Text(
                     //doctor!['name'],
-                    "Make Appointment",
-                    style: TextStyle(
+                    "Make Appointment".tr,
+                    style: const TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.w600,
                     ),
@@ -77,11 +82,11 @@ class doctorProfile extends StatelessWidget {
                 },
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(20.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
               child: Text(
-                'About Therapist',
-                style: TextStyle(
+                "About Therapist".tr,
+                style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w600,
                 ),
@@ -98,11 +103,11 @@ class doctorProfile extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: Text(
-                'Working Time',
-                style: TextStyle(
+                "Working Time".tr,
+                style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w600,
                 ),

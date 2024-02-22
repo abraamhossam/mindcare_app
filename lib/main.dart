@@ -31,6 +31,7 @@ class MindCareApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LanguageController language = Get.put(LanguageController());
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -86,7 +87,7 @@ class MindCareApp extends StatelessWidget {
         ),
       ],
       //initialRoute: SplashView.id,
-      initialRoute: '/home',
+      initialRoute: '/doctor_search',
     );
   }
 }

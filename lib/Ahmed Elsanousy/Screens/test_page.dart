@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_test_card.dart';
 
 class mentalTests extends StatelessWidget {
@@ -14,8 +15,8 @@ class mentalTests extends StatelessWidget {
           onPressed: () {
             Get.offNamed('/home');
           },
-          icon: const Icon(
-            Icons.keyboard_arrow_left,
+          icon: Icon(
+            back,
             size: 30,
           ),
         ),

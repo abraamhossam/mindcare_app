@@ -27,7 +27,7 @@ class CustomTestCard extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
                 child: Text(
                   name.tr,
                   style: const TextStyle(

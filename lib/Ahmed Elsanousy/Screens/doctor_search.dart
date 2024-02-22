@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_doctor_card.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Doctors%20data/list_of_doctors.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
@@ -19,15 +20,15 @@ class doctorSearch extends StatelessWidget {
           onPressed: () {
             Get.offNamed('/home');
           },
-          icon: const Icon(
-            Icons.keyboard_arrow_left,
+          icon: Icon(
+            back,
             size: 30,
           ),
         ),
         centerTitle: true,
-        title: const Text(
-          "Our doctors",
-          style: TextStyle(
+        title: Text(
+          "Our Doctors".tr,
+          style: const TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.w600,
           ),
@@ -52,7 +53,7 @@ class doctorSearch extends StatelessWidget {
                   borderSide: BorderSide(color: color),
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                 ),
-                hintText: 'Search',
+                hintText: 'Search'.tr,
               ),
             ),
           ),
