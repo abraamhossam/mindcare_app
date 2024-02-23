@@ -74,6 +74,21 @@ class Language implements Translations {
           "Make Appointment": "Make Appointment",
           "About Therapist": "About Therapist",
           "Working Time": "Working Time",
+          //.......................Doctor description.........................
+          "Shereen El dardery": //1
+              "Professor and behavioral science of autism for children and member of the Psychoanalytic Association, Master’s in Philosophy of Education, Ain Shams University",
+          "Mohamed Roshdy": //2
+              "Consultant Psychiatrist, Fellow of the American Psychiatric Association, Master of Psychiatry and Neurology, Director of Qasr Al-Maadi Mental Health Hospital, Head of the Department of Psychiatry and Neurology at the Police Hospital (formerly), specialist in cognitive-behavioural psychotherapy, specializing in treating personality defects in adolescents and adults.",
+          "Remon Qanas": //3
+              "At least 14 years of experience in treating psychological and neurological diseases and treating addiction. Treatment includes cognitive behavioural therapy and not just medications. ",
+          "Amgad Khairy": //4
+              "Professor of Behavioural Sciences at the American University and member of the American Psychiatric Association - Advisor to Caritas for Psychosocial Rehabilitation and Addiction Treatment, Psychological Guidance and Family Counselling Unit, and Member of the American Psychiatric Association",
+          "Hossam imara": //5
+              "He graduated from Ain Shams Medicine in 2002, and holds a Master’s degree in Psychiatry and Neurology from Ain Shams Medicine. He is registered with the Egyptian Fellowship of Psychiatry and specializes in treating all psychological disorders for adults and children and treating all types of addictions, as well as a distinguished clinic for marital and family counselling.",
+          "Gamel Sobhy": //6
+              "Consultation for psychological and neurological diseases, treatment of children’s psychological diseases, psychological, emotional and family counselling, treatment of addiction and childhood disease problems.",
+          "Naser El maghreby":
+              "A graduate of Ain Shams University, he holds a fellowship from the Royal College of Psychiatrists in England and a master’s degree in psychiatry and neurology from Ain Shams. He worked in the United Kingdom for 4 years as a former consultant in the therapeutic institution, health insurance, the railway authority, and Egypt Air. Long experience in treating all psychological disorders. Former Director of the Military Psychiatric Hospital"
         },
         "ar": {
           //.......................initial pages.........................
@@ -145,6 +160,21 @@ class Language implements Translations {
           "Make Appointment": "احجز موعد",
           "About Therapist": "معلومات عن المعالج",
           "Working Time": "مواعيد العمل",
+          //.......................Doctor description.........................
+          "Shereen El dardery": //1
+              "أستاذة في علم سلوكيات التوحد لدى الأطفال وعضوة بجمعية التحليل النفسي، ماجستير في فلسفة .التربية، جامعة عين شمس",
+          "Mohamed Roshdy": //2
+              "استشاري الطب النفسي، زميل بالجمعية الأمريكية للطب النفسي، ماجستير في الطب النفسي والأعصاب، مدير مستشفى قصر المعادي للصحة النفسية، رئيس قسم الطب النفسي والعصبي بمستشفى الشرطة (سابقا)، أخصائي العلاج النفسي المعرفي السلوكي، متخصص في علاج عيوب الشخصية لدى المراهقين والبالغين.",
+          "Remon Qanas": //3
+              "خبرة لا تقل عن 14 سنة في علاج الأمراض النفسية والعصبية وعلاج الإدمان. العلاج يشمل العلاج السلوكي المعرفي وليس الأدوية فقط.",
+          "Amgad Khairy": //4
+              "أستاذ العلوم السلوكية بالجامعة الأمريكية وعضو بالجمعية الأمريكية للطب النفسي - مستشار كاريتاس للتأهيل النفسي الاجتماعي وعلاج الإدمان ووحدة الإرشاد النفسي والإرشاد الأسري، وعضو بالجمعية الأمريكية للطب النفسي",
+          "Hossam imara": //5
+              "تخرج من طب عين شمس عام 2002 وحاصل على درجة الماجستير في الطب النفسي والأعصاب من طب عين شمس ومسجل بالزمالة المصرية للطب النفسي ويتخصص في علاج كافة الاضطرابات النفسية للكبار والصغار وعلاج جميع أنواع الإدمان بالإضافة إلى عيادة متميزة للإستشارات الزوجية والأسرية.",
+          "Gamel Sobhy": //6
+              "استشارات الأمراض النفسية والعصبية، علاج الأمراض النفسية للأطفال، استشارات نفسية وعاطفية وأسرية، علاج الإدمان ومشاكل أمراض الطفولة.",
+          "Naser El maghreby": //7
+              "خريج جامعة عين شمس وحاصل على زمالة الكلية الملكية للأطباء النفسيين بإنجلترا ودرجة الماجستير في الطب النفسي والأعصاب من عين شمس. عمل في المملكة المتحدة لمدة 4 سنوات كاستشاري سابق بالمؤسسة العلاجية، التأمين الصحي وهيئة السكك الحديدية ومصر للطيران. خبرة طويلة في علاج كافة الاضطرابات النفسية. مدير مستشفى الطب النفسي العسكري سابقا",
         },
       };
 }
