@@ -74,6 +74,7 @@ class Language implements Translations {
           "Make Appointment": "Make Appointment",
           "About Therapist": "About Therapist",
           "Working Time": "Working Time",
+
           //.......................Doctor description.........................
           "Shereen El dardery": //1
               "Professor and behavioral science of autism for children and member of the Psychoanalytic Association, Master’s in Philosophy of Education, Ain Shams University",
@@ -87,8 +88,18 @@ class Language implements Translations {
               "He graduated from Ain Shams Medicine in 2002, and holds a Master’s degree in Psychiatry and Neurology from Ain Shams Medicine. He is registered with the Egyptian Fellowship of Psychiatry and specializes in treating all psychological disorders for adults and children and treating all types of addictions, as well as a distinguished clinic for marital and family counselling.",
           "Gamel Sobhy": //6
               "Consultation for psychological and neurological diseases, treatment of children’s psychological diseases, psychological, emotional and family counselling, treatment of addiction and childhood disease problems.",
-          "Naser El maghreby":
-              "A graduate of Ain Shams University, he holds a fellowship from the Royal College of Psychiatrists in England and a master’s degree in psychiatry and neurology from Ain Shams. He worked in the United Kingdom for 4 years as a former consultant in the therapeutic institution, health insurance, the railway authority, and Egypt Air. Long experience in treating all psychological disorders. Former Director of the Military Psychiatric Hospital"
+          "Naser El maghreby": //7
+              "A graduate of Ain Shams University, he holds a fellowship from the Royal College of Psychiatrists in England and a master’s degree in psychiatry and neurology from Ain Shams. He worked in the United Kingdom for 4 years as a former consultant in the therapeutic institution, health insurance, the railway authority, and Egypt Air. Long experience in treating all psychological disorders. Former Director of the Military Psychiatric Hospital",
+          //.......................Work hours.........................
+          "from": "from",
+          "to": "to",
+          "Sat": "Saturday",
+          "Sun": "Sunday",
+          "Mon": "Monday",
+          "Tue": "Tuesday",
+          "Wed": "Wednesday",
+          "Thu": "Thursday",
+          "Fri": "Friday",
         },
         "ar": {
           //.......................initial pages.........................
@@ -175,6 +186,16 @@ class Language implements Translations {
               "استشارات الأمراض النفسية والعصبية، علاج الأمراض النفسية للأطفال، استشارات نفسية وعاطفية وأسرية، علاج الإدمان ومشاكل أمراض الطفولة.",
           "Naser El maghreby": //7
               "خريج جامعة عين شمس وحاصل على زمالة الكلية الملكية للأطباء النفسيين بإنجلترا ودرجة الماجستير في الطب النفسي والأعصاب من عين شمس. عمل في المملكة المتحدة لمدة 4 سنوات كاستشاري سابق بالمؤسسة العلاجية، التأمين الصحي وهيئة السكك الحديدية ومصر للطيران. خبرة طويلة في علاج كافة الاضطرابات النفسية. مدير مستشفى الطب النفسي العسكري سابقا",
+          //.......................Work hours.........................
+          "from": "من",
+          "to": "إلى",
+          "Sat": "السبت",
+          "Sun": "الأحد",
+          "Mon": "الإثنين",
+          "Tue": "الثلاثاء",
+          "Wed": "الأربعاء",
+          "Thu": "الخميس",
+          "Fri": "الجمعة",
         },
       };
 }
