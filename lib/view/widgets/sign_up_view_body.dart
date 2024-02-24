@@ -31,7 +31,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         child: Column(
           children: [
             SignImageBody(
-              text: "signUp title".tr,
+              text: "Welcome To Your Private Area".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -70,7 +70,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "signUp button".tr,
+                    text: "Sign Up".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
                         print("ebraam");
@@ -86,14 +86,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "signUp bottom1".tr,
+                        "Already Have An Account?".tr,
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 17,
                         ),
                       ),
                       CustomTextNavigator(
-                        text: "signUp bottom2".tr,
+                        text: "  ${"Log In".tr}".tr,
                         ontap: () => Get.toNamed(SignInView.id),
                       ),
                     ],

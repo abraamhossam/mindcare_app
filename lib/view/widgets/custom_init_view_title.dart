@@ -42,7 +42,7 @@ class CustomInitViewTitle extends StatelessWidget {
             },
             minWidth: 10,
             color: Colors.white,
-            child: const Text("ع"),
+            child: Text(language.langeCode == "en" ? "ع" : "en"),
           ),
         ),
       ],

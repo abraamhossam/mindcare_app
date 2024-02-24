@@ -31,7 +31,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
         child: Column(
           children: [
             SignImageBody(
-              text: "signIn title".tr,
+              text: "Welcome Back".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -62,7 +62,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextNavigator(
-                    text: "signIn forgot pass".tr,
+                    text: "Forgot Password?".tr,
                     ontap: () {
                       Get.toNamed(
                         ResetView.id,
@@ -73,7 +73,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "signIn button".tr,
+                    text: "Log In".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
                         Get.offNamed("/home");
@@ -89,7 +89,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "signIn bottom1".tr,
+                        "Don't have an account? ".tr,
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 17,

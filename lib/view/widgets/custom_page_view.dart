@@ -12,17 +12,21 @@ class CustomPageView extends StatelessWidget {
       children: [
         CustomPageViewIteam(
           image: "assets/images/1 (2).json",
-          text: "initial page1 text".tr,
-          subText: "initial page1 subText".tr,
+          text: "We help you help yourselves".tr,
+          subText:
+              "Our diaggnosis tool suggests test techniques to deal with mental distness"
+                  .tr,
         ),
         CustomPageViewIteam(
           image: "assets/images/1 (3).json",
-          text: "initial page2 text".tr,
-          subText: "initial page2 subText".tr,
+          text: "Find the right therapist for you".tr,
+          subText:
+              "Discover the perfect therapist to guide your mental health journey with our tailored selection"
+                  .tr,
         ),
         CustomPageViewIteam(
           image: "assets/images/cartoon.json",
-          text: "initial page3 text".tr,
+          text: "Let us lend a hand".tr,
           subText: "",
         ),
       ],

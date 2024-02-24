@@ -6,14 +6,17 @@ class Language implements Translations {
   Map<String, Map<String, String>> get keys => {
         "en": {
           //.......................initial pages.........................
-          "initial page1 text": "We help you help yourselves",
-          "initial page1 subText":
+          "We help you help yourselves": "We help you help yourselves",
+          "Our diaggnosis tool suggests test techniques to deal with mental distness":
               "Our diaggnosis tool suggests test techniques to deal with mental distness",
-          "initial page2 text": "Find the right therapist for you",
-          "initial page2 subText":
+          "Find the right therapist for you":
+              "Find the right therapist for you",
+          "Discover the perfect therapist to guide your mental health journey with our tailored selection":
               "Discover the perfect therapist to guide your mental health journey with our tailored selection",
-          "initial page3 text": "Let us lend a hand",
+          "Let us lend a hand": "Let us lend a hand",
           //............................................................
+          "Log In": "Log In",
+          "Sign Up": "Sign Up",
           "Name": "Name",
           "Name hint": "Enter Your Name",
           "Email": "Email",
@@ -21,19 +24,17 @@ class Language implements Translations {
           "Password": "Password",
           "Password hint": "Enter Your Password",
           //.......................Sign in page.........................
-          "signIn title": "Welcome Back",
-          "signIn forgot pass": "Forgot Password?",
-          "signIn button": "Log In",
-          "signIn bottom1": "Don't have an account? ",
+          "Welcome Back": "Welcome Back",
+          "Forgot Password?": "Forgot Password?",
+          "Don't have an account? ": "Don't have an account? ",
           "signIn bottom2": "  Sign Up",
+
           //.......................Reset Password page.........................
           "reset title": "Reset Your Password",
           "reset button": "Reset Password",
           //.......................Sign up page.........................
-          "signUp title": "Welcome To Your Private Area",
-          "signUp button": "Sign Up",
-          "signUp bottom1": "Already Have An Account?",
-          "signUp bottom2": "  Log In",
+          "Welcome To Your Private Area": "Welcome To Your Private Area",
+          "Already Have An Account?": "Already Have An Account?",
           //.......................Drawer.........................
           "Hello": "Hello",
           "Profile": "Profile",
@@ -103,14 +104,17 @@ class Language implements Translations {
         },
         "ar": {
           //.......................initial pages.........................
-          "initial page1 text": "نحن نساعدك في مساعدة نفسك",
-          "initial page1 subText":
+          "We help you help yourselves": "نحن نساعدك في مساعدة نفسك",
+          "Our diaggnosis tool suggests test techniques to deal with mental distness":
               "تقترح أداة التشخيص الخاصة بنا تقنيات اختبار للتعامل مع التشتت الذهني",
-          "initial page2 text": "اعثر على المعالج النفسي المناسب لك",
-          "initial page2 subText":
+          "Find the right therapist for you":
+              "اعثر على المعالج النفسي المناسب لك",
+          "Discover the perfect therapist to guide your mental health journey with our tailored selection":
               "اكتشف المعالج النفسي المثالي لتوجيه رحلتك في مجال الصحة النفسية من خلال مجموعتنا المخصصة",
-          "initial page3 text": "دعنا نساعدك",
+          "Let us lend a hand": "دعنا نساعدك",
           //............................................................
+          "Log In": "تسجيل الدخول",
+          "Sign Up": "تسجيل",
           "Name": "الاسم",
           "Name hint": "ادخل الاسم",
           "Email": "البريد الإلكتروني",
@@ -118,19 +122,16 @@ class Language implements Translations {
           "Password": "كلمة المرور",
           "Password hint": "ادخل كلمة المرور",
           //.......................Sign in page.........................
-          "signIn title": "مرحبا بعودتك",
-          "signIn forgot pass": "هل نسيت كلمة المرور؟",
-          "signIn button": "تسجيل الدخول",
-          "signIn bottom1": "ليس لديك حساب؟",
+          "Welcome Back": "مرحبا بعودتك",
+          "Forgot Password?": "هل نسيت كلمة المرور؟",
+          "Don't have an account? ": "ليس لديك حساب؟",
           "signIn bottom2": "  إنشاء حساب جديد",
           //.......................Reset Password page.........................
           "reset title": "أعد تعيين كلمة المرور",
           "reset button": "أعد التعيين",
           //.......................Sign up page.........................
-          "signUp title": "مرحبًا بك في مساحتك الخاصة",
-          "signUp button": "تسجيل",
-          "signUp bottom1": "لديك حساب بالفعل؟",
-          "signUp bottom2": "  تسجيل الدخول",
+          "Welcome To Your Private Area": "مرحبًا بك في مساحتك الخاصة",
+          "Already Have An Account?": "لديك حساب بالفعل؟",
           //.......................Drawer.........................
           "Hello": "مرحبا",
           "Profile": "الملف الشخصي",
