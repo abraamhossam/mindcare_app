@@ -1,24 +1,22 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
 
-import 'package:mindcare_app/view/widgets/custom_button.dart';
-import 'package:mindcare_app/view/widgets/sign_image_body.dart';
-import 'package:mindcare_app/view/widgets/custom_text_field.dart';
-import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
+import '../../utils/size_config.dart';
+import '../../view/widgets/custom_button.dart';
+import '../../view/widgets/custom_text_field.dart';
+import '../../view/widgets/custom_text_navigator.dart';
+import '../../view/widgets/sign_image_body.dart';
+import 'sign_in_view_doctors.dart';
 
-class SignUpViewBody extends StatefulWidget {
-  const SignUpViewBody({
-    super.key,
-  });
+class SignUpViewBodyDoctors extends StatefulWidget {
+  const SignUpViewBodyDoctors({super.key});
 
   @override
-  State<SignUpViewBody> createState() => _SignUpViewBodyState();
+  State<SignUpViewBodyDoctors> createState() => _SignUpViewBodyDoctorsState();
 }
 
-class _SignUpViewBodyState extends State<SignUpViewBody> {
+class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
   bool ispassword = true;
 
   GlobalKey<FormState> formKey = GlobalKey();
@@ -46,7 +44,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextField(
-                    
                     title: "Email".tr,
                     hinttext: "Email hint".tr,
                     preIcon: Icons.email,
@@ -95,7 +92,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       ),
                       CustomTextNavigator(
                         text: "  ${"Log In".tr}".tr,
-                        ontap: () => Get.toNamed(SignInView.id),
+                        ontap: () => Get.toNamed(SignInViewDoctors.id),
                       ),
                     ],
                   ),

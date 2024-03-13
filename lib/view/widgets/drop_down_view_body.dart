@@ -4,6 +4,8 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/utils/size_config.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
 
+import '../Doctors/sign_in_view_doctors.dart';
+
 class DropDownViewBody extends StatefulWidget {
   const DropDownViewBody({super.key});
 
@@ -88,7 +90,15 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
         onChanged: (data) {
           setState(() {
             selected = data!;
-            Get.toNamed(SignInView.id);
+            if (selected.toString() == "tharepist") {
+              Get.toNamed(SignInViewDoctors.id);
+            }
+            else if (selected.toString() == "client") {
+              Get.toNamed(SignInView.id);
+            }
+            
+
+            // Get.toNamed(SignInView.id);
           });
         },
         value: selected,

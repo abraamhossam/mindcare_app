@@ -1,26 +1,23 @@
-import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
 
-import 'package:mindcare_app/view/widgets/custom_button.dart';
-import 'package:mindcare_app/view/widgets/sign_image_body.dart';
-import 'package:mindcare_app/view/widgets/custom_text_field.dart';
-import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
+import '../../utils/size_config.dart';
+import '../../view/reset_view.dart';
+import '../../view/widgets/custom_button.dart';
+import '../../view/widgets/custom_text_field.dart';
+import '../../view/widgets/custom_text_navigator.dart';
+import '../../view/widgets/sign_image_body.dart';
+import 'sign_up_view_doctor.dart';
 
-class SignUpViewBody extends StatefulWidget {
-  const SignUpViewBody({
-    super.key,
-  });
+class SignInViewBodyDoctors extends StatefulWidget {
+  const SignInViewBodyDoctors({super.key});
 
   @override
-  State<SignUpViewBody> createState() => _SignUpViewBodyState();
+  State<SignInViewBodyDoctors> createState() => _SignInViewBodyDoctorsState();
 }
 
-class _SignUpViewBodyState extends State<SignUpViewBody> {
+class _SignInViewBodyDoctorsState extends State<SignInViewBodyDoctors> {
   bool ispassword = true;
-
   GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -31,22 +28,13 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         child: Column(
           children: [
             SignImageBody(
-              text: "Welcome To Your Private Area".tr,
+              text: "Welcome Back".tr,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 children: [
                   CustomTextField(
-                    title: "Name".tr,
-                    hinttext: "Name hint".tr,
-                    preIcon: FontAwesomeIcons.userTie,
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height! * 0.01,
-                  ),
-                  CustomTextField(
-                    
                     title: "Email".tr,
                     hinttext: "Email hint".tr,
                     preIcon: Icons.email,
@@ -68,15 +56,27 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                         ispassword ? Icons.visibility_off : Icons.visibility,
                   ),
                   SizedBox(
+                    height: SizeConfig.height! * 0.01,
+                  ),
+                  CustomTextNavigator(
+                    text: "Forgot Password?".tr,
+                    ontap: () {
+                      Get.toNamed(
+                        ResetView.id,
+                      );
+                    },
+                  ),
+                  SizedBox(
                     height: SizeConfig.height! * 0.02,
                   ),
                   CustomButton(
-                    text: "Sign Up".tr,
+                    text: "Log In".tr,
                     ontap: () {
                       if (formKey.currentState!.validate()) {
-                        print("ebraam");
+                        print("Doctor");
+                        Get.offNamed("/home");
                       } else {
-                        print("hossam");
+                        print("hossamD");
                       }
                     },
                   ),
@@ -87,15 +87,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already Have An Account?".tr,
+                        "Don't have an account? ".tr,
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 17,
                         ),
                       ),
                       CustomTextNavigator(
-                        text: "  ${"Log In".tr}".tr,
-                        ontap: () => Get.toNamed(SignInView.id),
+                        text: "signIn bottom2".tr,
+                        ontap: () => Get.toNamed(SignUpViewDoctors.id),
                       ),
                     ],
                   ),

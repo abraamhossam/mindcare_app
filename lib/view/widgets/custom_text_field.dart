@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
           return "field is required";
         }
       },
+      
       obscureText: ispassword ?? false,
       decoration: InputDecoration(
         label: Text(

@@ -14,6 +14,8 @@ import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'view/Doctors/sign_in_view_doctors.dart';
+import 'view/Doctors/sign_up_view_doctor.dart';
 import 'view/widgets/pay_view.dart';
 
 SharedPreferences? sharedPrefs;
@@ -52,9 +54,19 @@ class MindCareApp extends StatelessWidget {
           name: SignInView.id,
           page: () => const SignInView(),
         ),
+        // doctor
+        GetPage(
+          name:  SignInViewDoctors.id ,
+          page: () => const SignInViewDoctors(),
+        ),
         GetPage(
           name: SignUpView.id,
           page: () => const SignUpView(),
+        ),
+        //
+        GetPage(
+          name: SignUpViewDoctors.id,
+          page: () => const SignUpViewDoctors(),
         ),
         GetPage(
           name: ResetView.id,

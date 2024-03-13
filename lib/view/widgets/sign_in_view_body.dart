@@ -46,6 +46,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     height: SizeConfig.height! * 0.01,
                   ),
                   CustomTextField(
+                    
                     title: "Password".tr,
                     hinttext: "Password hint".tr,
                     preIcon: Icons.lock,
