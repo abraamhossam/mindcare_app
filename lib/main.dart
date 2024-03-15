@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
@@ -14,12 +15,18 @@ import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'firebase_options.dart';
+import 'view/Doctors/rester_view_doctor.dart';
 import 'view/Doctors/sign_in_view_doctors.dart';
 import 'view/Doctors/sign_up_view_doctor.dart';
 import 'view/widgets/pay_view.dart';
 
 SharedPreferences? sharedPrefs;
 void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
   sharedPrefs = await SharedPreferences.getInstance();
   runApp(
@@ -71,6 +78,10 @@ class MindCareApp extends StatelessWidget {
         GetPage(
           name: ResetView.id,
           page: () => const ResetView(),
+        ),
+        GetPage(
+          name: ResterViewDoctor.id,
+          page: () => const ResterViewDoctor(),
         ),
         GetPage(
           name: PayView.id,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+  CustomTextField({
     super.key,
     required this.preIcon,
     required this.title,
@@ -9,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     this.sufIcon,
     this.ispassword,
     this.ontapSufIcon,
+    this.onChanged
   });
   final String hinttext;
   final String title;
@@ -16,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final IconData? sufIcon;
   final VoidCallback? ontapSufIcon;
   final bool? ispassword;
+  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class CustomTextField extends StatelessWidget {
           return "field is required";
         }
       },
-      
+      onChanged:onChanged ,
       obscureText: ispassword ?? false,
       decoration: InputDecoration(
         label: Text(

@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_button.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_card.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_tile.dart';
 import 'package:mindcare_app/constants.dart';
+
+import '../../view/sign_in_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -85,6 +88,58 @@ class HomePage extends StatelessWidget {
               },
             ),
             Tile(name: "Talk with Ai Chatbot".tr, icon: Icons.chat),
+            Tile(
+              name: "Logout",
+              icon: Icons.logout,
+              tap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        contentTextStyle: const TextStyle(
+                            height: 1.5,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                        backgroundColor: const Color(0xff607D8B),
+                        content: const Text(
+                          "Are you sure to logout ? ",
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                            child: const Text(
+                              "Ok",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              Get.offAllNamed(SignInView.id);
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      );
+                    });
+              },
+            ),
           ],
         ),
       ),
