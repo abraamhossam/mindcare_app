@@ -2,33 +2,34 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
-    super.key,
-    required this.preIcon,
-    required this.title,
-    required this.hinttext,
-    this.sufIcon,
-    this.ispassword,
-    this.ontapSufIcon,
-    this.onChanged
-  });
+  CustomTextField(
+      {super.key,
+      required this.preIcon,
+      required this.title,
+      required this.hinttext,
+      this.sufIcon,
+      this.ispassword,
+      this.ontapSufIcon,
+      // this.onChanged,
+     required this.mycontroller});
   final String hinttext;
   final String title;
   final IconData preIcon;
   final IconData? sufIcon;
   final VoidCallback? ontapSufIcon;
   final bool? ispassword;
-  Function(String)? onChanged;
-
+  // Function(String)? onChanged;
+  final TextEditingController  mycontroller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: mycontroller,
       validator: (data) {
         if (data!.isEmpty) {
           return "field is required";
         }
       },
-      onChanged:onChanged ,
+      // onChanged: onChanged,
       obscureText: ispassword ?? false,
       decoration: InputDecoration(
         label: Text(

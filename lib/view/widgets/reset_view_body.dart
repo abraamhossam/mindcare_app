@@ -21,8 +21,9 @@ class ResetViewBody extends StatefulWidget {
 
 class _ResetViewBodyState extends State<ResetViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
+   TextEditingController emailcontroller = TextEditingController();
 
-  String? email;
+  // String? email;
 
   bool isLoading = false;
 
@@ -47,9 +48,10 @@ class _ResetViewBodyState extends State<ResetViewBody> {
                       height: SizeConfig.height! * 0.01,
                     ),
                     CustomTextField(
-                      onChanged: (data) {
-                        email = data;
-                      },
+                      mycontroller: emailcontroller,
+                      // onChanged: (data) {
+                      //   email = data;
+                      // },
                       title: "Email".tr,
                       hinttext: "Enter Your Email",
                       preIcon: Icons.email,
@@ -65,10 +67,8 @@ class _ResetViewBodyState extends State<ResetViewBody> {
                           setState(() {});
                           try {
                             await FirebaseAuth.instance
-                                .sendPasswordResetEmail(email: email!);
-
-                           
-                            snackbar(context, "Successfully sent reset password link to $email" );
+                                .sendPasswordResetEmail(email: emailcontroller.text.trim());
+                            snackbar(context, "Successfully sent reset password link to $emailcontroller" );
                             //
                             Get.offAllNamed(SignInView.id);
                           } catch (e) {

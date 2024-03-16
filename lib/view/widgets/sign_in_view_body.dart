@@ -26,8 +26,10 @@ class SignInViewBody extends StatefulWidget {
 class _SignInViewBodyState extends State<SignInViewBody> {
   bool ispassword = true;
   GlobalKey<FormState> formKey = GlobalKey();
-  String? emailAdrees;
-  String? passwordd;
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  // String? emailAdrees;
+  // String? passwordd;
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -47,9 +49,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 child: Column(
                   children: [
                     CustomTextField(
-                      onChanged: (data) {
-                        emailAdrees = data;
-                      },
+                      mycontroller: emailcontroller,
+                      // onChanged: (data) {
+                      //   emailAdrees = data;
+                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -58,9 +61,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       height: SizeConfig.height! * 0.01,
                     ),
                     CustomTextField(
-                      onChanged: (data) {
-                        passwordd = data;
-                      },
+                      mycontroller:passwordcontroller ,
+                      // onChanged: (data) {
+                      //   passwordd = data;
+                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -96,7 +100,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                           try {
                             final credential = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
-                                    email: emailAdrees!, password: passwordd!);
+                                    email: emailcontroller.text.trim(), password: passwordcontroller.text.trim());
                             snackbar(context, 'Success');
                             Get.offNamed("/home");
                           } on FirebaseAuthException catch (e) {

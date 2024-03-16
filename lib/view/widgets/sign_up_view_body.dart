@@ -25,9 +25,13 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   bool ispassword = true;
 
   GlobalKey<FormState> formKey = GlobalKey();
-  String? email;
-  String? password;
-  String? name;
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
+  
+  // String? email;
+  // String? password;
+  // String? name;
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 child: Column(
                   children: [
                     CustomTextField(
-                      onChanged: (data) {
-                        name = data;
-                      },
+                      mycontroller: namecontroller,
+                      // onChanged: (data) {
+                      //   name = data;
+                      // },
                       title: "Name".tr,
                       hinttext: "Name hint".tr,
                       preIcon: FontAwesomeIcons.userTie,
@@ -58,9 +63,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       height: SizeConfig.height! * 0.01,
                     ),
                     CustomTextField(
-                      onChanged: (data) {
-                        email = data;
-                      },
+                      mycontroller: emailcontroller,
+                      // onChanged: (data) {
+                      //   email = data;
+                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -69,9 +75,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       height: SizeConfig.height! * 0.01,
                     ),
                     CustomTextField(
-                      onChanged: (data) {
-                        password = data;
-                      },
+                      mycontroller: passwordcontroller,
+                      // onChanged: (data) {
+                      //   password = data;
+                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -96,8 +103,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                           try {
                             final credential = await FirebaseAuth.instance
                                 .createUserWithEmailAndPassword(
-                              email: email!,
-                              password: password!,
+                              email: emailcontroller.text.trim(),
+                              password: passwordcontroller.text.trim(),
                             );
                             // snackbar('Success');
                             snackbar(context, 'Success');

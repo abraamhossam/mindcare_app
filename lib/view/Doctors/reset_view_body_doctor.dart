@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,6 @@ import 'package:mindcare_app/view/Doctors/sign_in_view_doctors.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../utils/size_config.dart';
-import '../sign_in_view.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/sign_image_body.dart';
@@ -21,7 +22,9 @@ class ResetViewBodyDoctor extends StatefulWidget {
 class _ResetViewBodyDoctorState extends State<ResetViewBodyDoctor> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
-  String? email;
+  // String? email;
+
+  TextEditingController emailcontroller = TextEditingController();
 
   bool isLoading = false;
   @override
@@ -45,9 +48,10 @@ class _ResetViewBodyDoctorState extends State<ResetViewBodyDoctor> {
                       height: SizeConfig.height! * 0.01,
                     ),
                     CustomTextField(
-                      onChanged: (data) {
-                        email = data;
-                      },
+                      mycontroller: emailcontroller,
+                      // onChanged: (data) {
+                      //   email = data;
+                      // },
                       title: "Email".tr,
                       hinttext: "Enter Your Email",
                       preIcon: Icons.email,
@@ -63,12 +67,12 @@ class _ResetViewBodyDoctorState extends State<ResetViewBodyDoctor> {
                           setState(() {});
                           try {
                             await FirebaseAuth.instance
-                                .sendPasswordResetEmail(email: email!);
+                                .sendPasswordResetEmail(email: emailcontroller.text.trim());
 
                             // snackbar(
                             //     "Successfully sent reset password link to $email");
                             snackbar(context,
-                                "Successfully sent reset password link to $email");
+                                "Successfully sent reset password link to $emailcontroller");
                             //
                             Get.offAllNamed(SignInViewDoctors.id);
                           } catch (e) {
