@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:awesome_icons/awesome_icons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,10 +31,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
-  
-  // String? email;
-  // String? password;
-  // String? name;
+
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   children: [
                     CustomTextField(
                       mycontroller: namecontroller,
-                      // onChanged: (data) {
-                      //   name = data;
-                      // },
                       title: "Name".tr,
                       hinttext: "Name hint".tr,
                       preIcon: FontAwesomeIcons.userTie,
@@ -64,9 +61,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                     CustomTextField(
                       mycontroller: emailcontroller,
-                      // onChanged: (data) {
-                      //   email = data;
-                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -76,9 +70,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                     CustomTextField(
                       mycontroller: passwordcontroller,
-                      // onChanged: (data) {
-                      //   password = data;
-                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -106,15 +97,28 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                               email: emailcontroller.text.trim(),
                               password: passwordcontroller.text.trim(),
                             );
-                            // snackbar('Success');
+                            CollectionReference users =
+                                FirebaseFirestore.instance.collection('users');
+                            String uid = credential.user!.uid;
+                            await users
+                                .doc(uid)
+                                .set({
+                                  'full_name': namecontroller.text,
+                                  'email': emailcontroller.text,
+                                  'Id': uid,
+                                  "password": passwordcontroller.text,
+                                  'pic': ""
+                                })
+                                .then((value) => print("User Added"))
+                                .catchError((error) =>
+                                    print("Failed to add user: $error"));
+
                             snackbar(context, 'Success');
                             Get.offAllNamed(SignInView.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
-                              // snackbar('password is weak');
                               snackbar(context, 'password is weak');
                             } else if (e.code == 'email-already-in-use') {
-                              // snackbar('The account already exists');
                               snackbar(context, 'The account already exists');
                             }
                           } catch (e) {
