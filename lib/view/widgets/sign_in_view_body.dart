@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -95,22 +97,17 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                             final credential = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: emailAdrees!, password: passwordd!);
-
-                            // ignore: use_build_context_synchronously
                             snackbar(context, 'Success');
                             Get.offNamed("/home");
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
-                              
-                              snackbar(context, 'No user found for that email');
+                              snackbar(context, 'user not found');
                             } else if (e.code == 'wrong-password') {
-                              // ignore: use_build_context_synchronously
-                              snackbar(context,
-                                  'Wrong password provided for that user');
+                              snackbar(context, 'password is Wrong');
                               print("m******************");
                             }
                           } catch (e) {
-                            print(e);
+                            snackbar(context, 'Something went Wrong ');
                           }
                           isloading = false;
                           setState(() {});

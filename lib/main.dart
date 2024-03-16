@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
 import 'view/Doctors/rester_view_doctor.dart';
 import 'view/Doctors/sign_in_view_doctors.dart';
@@ -23,7 +25,7 @@ import 'view/widgets/pay_view.dart';
 
 SharedPreferences? sharedPrefs;
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -63,7 +65,7 @@ class MindCareApp extends StatelessWidget {
         ),
         // doctor
         GetPage(
-          name:  SignInViewDoctors.id ,
+          name: SignInViewDoctors.id,
           page: () => const SignInViewDoctors(),
         ),
         GetPage(
@@ -109,7 +111,8 @@ class MindCareApp extends StatelessWidget {
           page: () => MakeAppointment(),
         ),
       ],
-      initialRoute: SplashView.id,
+      initialRoute:
+          FirebaseAuth.instance.currentUser == null ? SplashView.id : '/home',
       //initialRoute: SignInView.id,
     );
   }
