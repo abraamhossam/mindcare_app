@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_button.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_card.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_tile.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/profile_page.dart';
 import 'package:mindcare_app/constants.dart';
 
 import '../../view/sign_in_view.dart';
@@ -71,7 +72,12 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Tile(name: "Profile".tr, icon: Icons.person),
+            Tile(
+                name: "Profile".tr,
+                icon: Icons.person,
+                tap: () {
+                  Get.toNamed(ProfilePage.id);
+                }),
             Tile(name: "History".tr, icon: Icons.history),
             Tile(
               name: "Mental Tests".tr,

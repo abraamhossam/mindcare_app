@@ -1,37 +1,31 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:get/get.dart';
 
-// class  AuthViewModel extends GetxController {
-// final String email="", password="", name="";
-
-// void signInWithEmailAndPassword()async{
-// try {
-//       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-//     email: email,
-//     password: password,
-//   );
-//     } on FirebaseAuthException catch (e) {
-//       if (e.code == 'weak-password') {
-//         print('The password provided is too weak.');
-//       } else if (e.code == 'email-already-in-use') {
-//         print('The account already exists for that email.');
+// class UserDataBase extends GetxController {
+ 
+//   final User? user = FirebaseAuth.instance.currentUser;
+//   String name = "";
+//   String email = "";
+//   // final uid = user!.uid;
+//   void getdata() async {
+    
+//     try {
+//       final DocumentSnapshot userdata =
+//           await FirebaseFirestore.instance.collection("users").doc(user!.uid).get();
+//       if (userdata == null) {
+//         return;
+//         print("***********error");
+//       } else {
+//         email = userdata.get("email");
+//         name = userdata.get("full_name");
+//         print("**********done***");
 //       }
 //     } catch (e) {
-//       print(e);
+//       print("Error in Getting Data $e");
 //     }
+//     update();
 //   }
-//   void createAccountWithEmailAndPassword() async {
-//     try {
-//       final credential = await FirebaseAuth.instance
-//           .signInWithEmailAndPassword(email: email, password: password);
-//     } on FirebaseAuthException catch (e) {
-//       if (e.code == 'user-not-found') {
-//         print('No user found for that email.');
-//       } else if (e.code == 'wrong-password') {
-//         print('Wrong password provided for that user.');
-//       }
-//     }
-
-//   }
+  
+  
 // }
-

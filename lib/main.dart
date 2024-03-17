@@ -6,6 +6,7 @@ import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_search.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
+import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/profile_page.dart';
 import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/test_page.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
@@ -88,6 +89,10 @@ class MindCareApp extends StatelessWidget {
         GetPage(
           name: PayView.id,
           page: () => const PayView(),
+        ),
+        GetPage(
+          name: ProfilePage.id,
+          page: () => const ProfilePage(),
         ),
         // ............سكرينات السنوسي.. ............
         GetPage(
