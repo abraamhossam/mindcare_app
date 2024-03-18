@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare_app/view/Doctors/sign_in_view_body_doctors.dart';
+import 'package:mindcare_app/view/Doctors/widgets/sign_in_view_body_doctors.dart';
 
 class SignInViewDoctors extends StatelessWidget {
   const SignInViewDoctors({super.key});

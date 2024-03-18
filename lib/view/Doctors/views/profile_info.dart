@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../widgets/appbar_widget.dart';
+import 'package:mindcare_app/constants.dart';
 import '../widgets/container_info_save_data.dart';
 import '../widgets/text_button_data.dart';
 import '../widgets/text_filed_data.dart';
 import 'edication_data.dart';
-
 
 class ProfileInfo extends StatelessWidget {
   const ProfileInfo({super.key});
@@ -17,7 +15,28 @@ class ProfileInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const AppBarWidget(titel: "Profile"),
+        appBar: AppBar(
+          elevation: 0.2,
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: kPrimaryColor,
+            ),
+          ),
+          title: const Center(
+            child: Text(
+              "Profile Info",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          backgroundColor: Colors.white,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(
@@ -25,10 +44,11 @@ class ProfileInfo extends StatelessWidget {
               SizedBox(
                 height: 3.h,
               ),
-              const ContainerInfo(
-                indexpages: "2/5",
+              ContainerInfo(
+                indexpages: 2 / 5,
                 title: "Profile",
                 desc: 'Write About Yourself',
+                height: MediaQuery.of(context).size.height * 0.12,
               ),
               SizedBox(
                 height: 10.h,
@@ -58,8 +78,8 @@ class ProfileInfo extends StatelessWidget {
                     child: TextButtonSaveData(
                       text: "Do it later ",
                       onPressed: () {},
-                      decorationcolor: Colors.grey,
-                      textcolor: Colors.black,
+                      decorationcolor: Colors.white,
+                      textcolor: kPrimaryColor,
                     ),
                   ),
                   Expanded(

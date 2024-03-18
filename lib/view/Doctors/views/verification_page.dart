@@ -6,7 +6,7 @@ import '../widgets/container_info_save_data.dart';
 
 class VerificationPage extends StatelessWidget {
   const VerificationPage({super.key});
-static String id = "/verificatio";
+  static String id = "/verificatio";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,10 +18,11 @@ static String id = "/verificatio";
               SizedBox(
                 height: MediaQuery.of(context).size.height / 25,
               ),
-              const ContainerInfo(
-                indexpages: "",
+              ContainerInfo(
+                indexpages: 0,
                 title: "Verification in  progress...",
                 desc: "You will get information when it will be done ",
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 10,

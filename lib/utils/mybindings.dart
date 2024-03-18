@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mindcare_app/controller/doctor_controller/doctor_bottom_navigation_bar_controller.dart';
 import 'package:mindcare_app/controller/test_controller/adhd_test_controller.dart';
 import 'package:mindcare_app/controller/test_controller/aniexty_test_controller.dart';
 import 'package:mindcare_app/controller/test_controller/dass_test_controller.dart';
@@ -19,5 +20,6 @@ class MyBindings implements Bindings {
     Get.put(PostTraumaticStressTestController());
     Get.put(SchizophreniaTestController());
     Get.put(SocialAnxietyTestController());
+    Get.put(DoctorBottomNavigationBarController());
   }
 }

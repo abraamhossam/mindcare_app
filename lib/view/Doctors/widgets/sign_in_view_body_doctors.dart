@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/utils/shoe_toast-message.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/Doctors/rester_view_doctor.dart';
+import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
+
 import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
 import 'package:mindcare_app/view/widgets/custom_text_field.dart';

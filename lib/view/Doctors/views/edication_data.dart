@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/view/Doctors/widgets/appbar_widget.dart';
 
 import '../../../controller/add_work.dart';
 import '../widgets/add_new_task.dart';
-import '../widgets/appbar_widget.dart';
+
 import '../widgets/container_info_save_data.dart';
 import '../widgets/dropdown_button_year.dart';
 import '../widgets/text_button_data.dart';
 import '../widgets/text_filed_data.dart';
 import 'work_experience.dart';
-
-
 
 class EdicationDataView extends StatelessWidget {
   const EdicationDataView({super.key});
@@ -29,10 +29,11 @@ class EdicationDataView extends StatelessWidget {
               init: AddWork(),
               builder: (controller) => ListView(
                 children: [
-                  const ContainerInfo(
-                    indexpages: "5/5",
+                  ContainerInfo(
+                    indexpages: 3 / 5,
                     title: "Education",
                     desc: "Add your education info",
+                    height: MediaQuery.of(context).size.height * 0.12,
                   ),
                   SizedBox(
                     height: 8.h,
@@ -111,8 +112,8 @@ class EdicationDataView extends StatelessWidget {
                         child: TextButtonSaveData(
                           text: "Do it later ",
                           onPressed: () {},
-                          decorationcolor: Colors.grey,
-                          textcolor: Colors.black,
+                          decorationcolor: Colors.white,
+                          textcolor: kPrimaryColor,
                         ),
                       ),
                       Expanded(

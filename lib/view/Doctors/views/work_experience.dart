@@ -2,16 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/Doctors/views/medical_info.dart';
 
 import '../../../controller/add_work.dart';
 import '../widgets/add_new_task.dart';
-import '../widgets/appbar_widget.dart';
 import '../widgets/container_info_save_data.dart';
 import '../widgets/dropdown_button_year.dart';
 import '../widgets/text_button_data.dart';
 import '../widgets/text_filed_data.dart';
-
 
 class WorkExperienceView extends StatelessWidget {
   const WorkExperienceView({super.key});
@@ -21,8 +20,27 @@ class WorkExperienceView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const AppBarWidget(
-          titel: "Work Experience",
+        appBar: AppBar(
+          elevation: 0.2,
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: kPrimaryColor,
+            ),
+          ),
+          title: const Center(
+            child: Text(
+              "Work Experience",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          backgroundColor: Colors.white,
         ),
         body: GetBuilder<AddWork>(
           init: AddWork(),
@@ -33,10 +51,11 @@ class WorkExperienceView extends StatelessWidget {
                 SizedBox(
                   height: 3.h,
                 ),
-                const ContainerInfo(
-                  indexpages: "4/5",
+                ContainerInfo(
+                  indexpages: 4 / 5,
                   title: "Work Experience",
                   desc: "Add your past and current work info",
+                  height: MediaQuery.of(context).size.height * 0.14,
                 ),
                 SizedBox(
                   height: 8.h,
@@ -107,8 +126,8 @@ class WorkExperienceView extends StatelessWidget {
                       child: TextButtonSaveData(
                         text: "Do it later ",
                         onPressed: () {},
-                        decorationcolor: Colors.grey,
-                        textcolor: Colors.black,
+                        decorationcolor: Colors.white,
+                        textcolor: kPrimaryColor,
                       ),
                     ),
                     Expanded(

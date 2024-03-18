@@ -35,6 +35,7 @@ class TextButtonSaveData extends StatelessWidget {
               fontSize: 15.sp,
               // color: Colors.white,
               color: textcolor,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

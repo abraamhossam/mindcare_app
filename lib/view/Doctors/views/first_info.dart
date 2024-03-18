@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../widgets/appbar_widget.dart';
+import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/view/Doctors/widgets/appbar_widget.dart';
 import '../widgets/container_info_save_data.dart';
 import '../widgets/dropdown_button.dart';
 import '../widgets/image_peofile.dart';
 import '../widgets/text_button_data.dart';
 import '../widgets/text_filed_data.dart';
 import 'profile_info.dart';
-
 
 class BasicInfo extends StatelessWidget {
   const BasicInfo({super.key});
@@ -26,10 +25,11 @@ class BasicInfo extends StatelessWidget {
             const SizedBox(
               height: 2,
             ),
-            const ContainerInfo(
-              indexpages: "1/5",
+            ContainerInfo(
+              indexpages: 1 / 5,
               title: "Basic Info",
-              desc: " Introduce Yourself More ",
+              desc: "Introduce Yourself More ",
+              height: MediaQuery.of(context).size.height * 0.12,
             ),
             const SizedBox(
               height: 12,
@@ -78,8 +78,8 @@ class BasicInfo extends StatelessWidget {
                   child: TextButtonSaveData(
                     text: "Do it later ",
                     onPressed: () {},
-                    decorationcolor: Colors.grey,
-                    textcolor: Colors.black,
+                    decorationcolor: Colors.white,
+                    textcolor: kPrimaryColor,
                   ),
                 ),
                 Expanded(

@@ -13,6 +13,14 @@ import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/utils/mybindings.dart';
+import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
+import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
+import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
+import 'package:mindcare_app/view/Doctors/views/notifications_view.dart';
+import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
+import 'package:mindcare_app/view/Doctors/views/test_view.dart';
 import 'package:mindcare_app/view/init_view.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
@@ -45,9 +53,6 @@ import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-import 'view/Doctors/rester_view_doctor.dart';
-import 'view/Doctors/sign_in_view_doctors.dart';
-import 'view/Doctors/sign_up_view_doctor.dart';
 import 'view/Doctors/views/edication_data.dart';
 import 'view/Doctors/views/first_info.dart';
 import 'view/Doctors/views/medical_info.dart';
@@ -108,6 +113,31 @@ class MindCareApp extends StatelessWidget {
           GetPage(
             name: SignUpView.id,
             page: () => const SignUpView(),
+          ),
+          GetPage(
+            name: DoctorHomeView.id,
+            page: () => DoctorHomeView(),
+            binding: MyBindings(),
+          ),
+          GetPage(
+            name: EnquiryDetailsView.id,
+            page: () => EnquiryDetailsView(),
+            binding: MyBindings(),
+          ),
+          GetPage(
+            name: AppointmentsView.id,
+            page: () => const AppointmentsView(),
+            binding: MyBindings(),
+          ),
+          GetPage(
+            name: NotificationsView.id,
+            page: () => const NotificationsView(),
+            binding: MyBindings(),
+          ),
+          GetPage(
+            name: TestView.id,
+            page: () => const TestView(),
+            binding: MyBindings(),
           ),
           //
           GetPage(
@@ -305,6 +335,7 @@ class MindCareApp extends StatelessWidget {
         initialRoute:
             FirebaseAuth.instance.currentUser == null ? SplashView.id : '/home',
         //initialRoute: SignInView.id,
+        // initialRoute: BasicInfo.id,
       ),
     );
   }
