@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/fee_card.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/hour_button.dart';
+
+import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
+import 'package:mindcare_app/view/widgets/fee_card.dart';
+import 'package:mindcare_app/view/widgets/hour_button.dart';
 
 // ignore: must_be_immutable
 class MakeAppointment extends StatelessWidget {
@@ -10,6 +11,7 @@ class MakeAppointment extends StatelessWidget {
     super.key,
     this.doctor,
   });
+  static String id = "/make_appointment";
 
   Map<String, dynamic>? doctor;
 

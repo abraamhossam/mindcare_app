@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
+import 'package:mindcare_app/view/doctor_profile.dart';
 
 class CustomDoctorCard extends StatelessWidget {
   CustomDoctorCard({

@@ -42,7 +42,7 @@ class CustomTestCard extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                 child: Lottie.asset(
-                  'lib/Ahmed Elsanousy/assests/animation/$name.json',
+                  'assets/animation/$name.json',
                   height: size.height * 0.15,
                   width: size.width * 0.35,
                 ),

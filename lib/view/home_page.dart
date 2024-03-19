@@ -3,16 +3,18 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_button.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_card.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_tile.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/profile_page.dart';
-import 'package:mindcare_app/constants.dart';
 
-import '../../view/sign_in_view.dart';
+import 'package:mindcare_app/view/profile_page.dart';
+import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/view/widgets/custom_button%20copy.dart';
+import 'package:mindcare_app/view/widgets/custom_card.dart';
+import 'package:mindcare_app/view/widgets/custom_tile.dart';
+
+import 'sign_in_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+  static String id = "/home";
 
   @override
   Widget build(BuildContext context) {
@@ -156,8 +158,7 @@ class HomePage extends StatelessWidget {
               CustomCard(
                 size: size,
                 backColor: const Color(0xff3EC5FF),
-                imageName: const AssetImage(
-                    "lib/Ahmed Elsanousy/assests/images/meditation/7.png"),
+                imageName: const AssetImage("assets/images/meditation/7.png"),
                 title: "Meditation Sessions".tr,
                 subTitle: "Stay relaxed".tr,
                 textColor: Colors.white,
@@ -165,8 +166,7 @@ class HomePage extends StatelessWidget {
               CustomCard(
                 size: size,
                 backColor: Colors.white,
-                imageName: const AssetImage(
-                    "lib/Ahmed Elsanousy/assests/images/meditation/6.png"),
+                imageName: const AssetImage("assets/images/meditation/6.png"),
                 title: "Meditation Sessions".tr,
                 subTitle: "Stay relaxed".tr,
               ),

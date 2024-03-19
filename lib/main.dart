@@ -3,12 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_profile.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/doctor_search.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/home_page.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/profile_page.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/test_page.dart';
+import 'package:mindcare_app/view/doctor_profile.dart';
+import 'package:mindcare_app/view/doctor_search.dart';
+import 'package:mindcare_app/view/home_page.dart';
+import 'package:mindcare_app/view/make_appointment.dart';
+import 'package:mindcare_app/view/profile_page.dart';
+import 'package:mindcare_app/view/test_page.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/constants.dart';
@@ -162,23 +162,23 @@ class MindCareApp extends StatelessWidget {
           ),
           // ............سكرينات السنوسي.. ............
           GetPage(
-            name: '/home',
+            name: HomePage.id,
             page: () => const HomePage(),
           ),
           GetPage(
-            name: '/mental_tests',
+            name: mentalTests.id,
             page: () => const mentalTests(),
           ),
           GetPage(
-            name: '/doctor_search',
+            name: doctorSearch.id,
             page: () => doctorSearch(),
           ),
           GetPage(
-            name: '/doctor_profile',
+            name: doctorProfile.id,
             page: () => doctorProfile(),
           ),
           GetPage(
-            name: '/make_appointment',
+            name: MakeAppointment.id,
             page: () => MakeAppointment(),
           ),
           //test
@@ -332,8 +332,9 @@ class MindCareApp extends StatelessWidget {
             page: () => const VerificationPage(),
           ),
         ],
-        initialRoute:
-            FirebaseAuth.instance.currentUser == null ? SplashView.id : '/home',
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? SplashView.id
+            : HomePage.id,
         //initialRoute: SignInView.id,
         // initialRoute: BasicInfo.id,
       ),

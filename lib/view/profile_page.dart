@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../view/widgets/image_profile.dart';
-import '../../view/widgets/title_text.dart';
+import 'widgets/image_profile.dart';
+import 'widgets/title_text.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -17,12 +17,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  
-
   final User? user = FirebaseAuth.instance.currentUser;
   String name = "";
   String email = "";
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +40,6 @@ class _ProfilePageState extends State<ProfilePage> {
         setState(() {
           email = userdata.get("email");
           name = userdata.get("full_name");
-
-          
         });
         // print("**********done***");
       }
@@ -72,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(
                 height: 30,
               ),
-                ImageProfile(),
+              ImageProfile(),
               const SizedBox(
                 height: 30,
               ),
@@ -97,7 +93,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 title: "Email",
                 subtitle: " $email",
               ),
-              
             ],
           )),
     );

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_test_card.dart';
+
+import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
+import 'package:mindcare_app/view/widgets/custom_test_card.dart';
 
 class mentalTests extends StatelessWidget {
   const mentalTests({super.key});
+  static String id = "/mental_tests";
 
   @override
   Widget build(BuildContext context) {

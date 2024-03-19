@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_doctor_card.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Doctors%20data/list_of_doctors.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
+
+import 'package:mindcare_app/view/Doctors/list_of_doctors.dart';
+import 'package:mindcare_app/view/make_appointment.dart';
+import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
+import 'package:mindcare_app/view/widgets/custom_doctor_card.dart';
 
 class doctorSearch extends StatelessWidget {
   doctorSearch({super.key});
+  static String id = "/doctor_search";
 
   Color color = const Color(0xff2296F3);
 

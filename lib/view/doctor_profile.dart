@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:table_calendar/table_calendar.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_back_icon.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Custom%20Widgets/custom_doctor_card.dart';
-import 'package:mindcare_app/Ahmed%20Elsanousy/Screens/make_appointment.dart';
+
+import 'package:mindcare_app/view/make_appointment.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
+import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
+import 'package:mindcare_app/view/widgets/custom_doctor_card.dart';
 
 // ignore: must_be_immutable
 class doctorProfile extends StatelessWidget {
   doctorProfile({super.key, this.doctor});
+  static String id = "/doctor_profile";
 
   Map<String, dynamic>? doctor;
 
