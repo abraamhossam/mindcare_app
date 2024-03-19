@@ -12,4 +12,7 @@ class KConstants {
   static String secretKeypaypal ="EOXmom8tWSUzDhM_lKgauGNl0nboPdkKbH-Gr5NVPI39NCQnKZkYYEoYuJ5vNjhcUGJ-6d7ThFj25DWO";
   static String imagePaypal = "assets/images/paypal.png";
   static String imagePaymob = "assets/images/paymob.png";
+  static String imagenotification = "assets/images/notifications.png";
+  static String imagesocial = "assets/images/social.png";
+  static String imagesocialn = "assets/images/notifications-monochromatic.png";
 }
