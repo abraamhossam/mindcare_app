@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
-class DepressionTestController extends GetxController {
+class TestController extends GetxController {
   int index = 0;
   int points = 0;
+  int data = 0;
   void nextQuestion() {
     index++;
     update();
@@ -16,6 +17,7 @@ class DepressionTestController extends GetxController {
 
   void pointsScore({required int point}) {
     points += point;
+    data += point;
     update();
   }
 }

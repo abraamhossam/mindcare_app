@@ -10,6 +10,7 @@ class TestResultCustom extends StatelessWidget {
     required this.totalPoints,
   });
   final int points, totalPoints;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +37,7 @@ class TestResultCustom extends StatelessWidget {
           height: SizeConfig.height! * 0.06,
         ),
         Text(
-          "$points Points",
+          "${points + 1} Points",
           style: const TextStyle(
             fontSize: 30,
             color: kPrimaryColor,

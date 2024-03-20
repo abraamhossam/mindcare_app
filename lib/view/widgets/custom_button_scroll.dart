@@ -23,6 +23,7 @@ class CustomButtonScroll extends StatelessWidget {
         "Skip",
         style: TextStyle(
           color: Colors.white,
+          fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
       ),

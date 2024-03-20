@@ -30,24 +30,10 @@ import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
 import 'package:mindcare_app/view/tests/views/depression_test_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_1_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_2_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_3_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_4_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_5_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_6_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_7_view.dart';
-import 'package:mindcare_app/view/tests/views/final_test_8_view.dart';
+import 'package:mindcare_app/view/tests/views/final_test_view.dart';
 import 'package:mindcare_app/view/tests/views/mental_illness_test_view.dart';
 import 'package:mindcare_app/view/tests/views/post_traumatic_stress_test_view.dart';
 import 'package:mindcare_app/view/tests/views/result_adhd_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_aniexty_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_dass_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_depression_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_mental_illness_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_post_traumatic_stress_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_schizophrenia_test_view.dart';
-import 'package:mindcare_app/view/tests/views/result_social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
@@ -185,122 +171,55 @@ class MindCareApp extends StatelessWidget {
           GetPage(
             name: TestHomeView.id,
             page: () => const TestHomeView(),
-          ),
-          GetPage(
-            name: FinalTest1View.id,
-            page: () => FinalTest1View(),
             binding: MyBindings(),
           ),
           GetPage(
-            name: FinalTest2View.id,
-            page: () => FinalTest2View(),
+            name: FinalTestView.id,
+            page: () => FinalTestView(),
             binding: MyBindings(),
           ),
-          GetPage(
-            name: FinalTest3View.id,
-            page: () => FinalTest3View(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: FinalTest4View.id,
-            page: () => FinalTest4View(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: FinalTest5View.id,
-            page: () => FinalTest5View(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: FinalTest6View.id,
-            page: () => FinalTest6View(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: FinalTest7View.id,
-            page: () => FinalTest7View(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: FinalTest8View.id,
-            page: () => FinalTest8View(),
-            binding: MyBindings(),
-          ),
+
           GetPage(
             name: AniextyTestView.id,
-            page: () => const AniextyTestView(),
+            page: () => AniextyTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: DASSTestView.id,
-            page: () => const DASSTestView(),
+            page: () => DASSTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: ADHDTestView.id,
-            page: () => const ADHDTestView(),
+            page: () => ADHDTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: DepressionTestView.id,
-            page: () => const DepressionTestView(),
+            page: () => DepressionTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: MentalIllnessTestView.id,
-            page: () => const MentalIllnessTestView(),
+            page: () => MentalIllnessTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: PostTraumaticStressTestView.id,
-            page: () => const PostTraumaticStressTestView(),
+            page: () => PostTraumaticStressTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: SchizophreniaTestView.id,
-            page: () => const SchizophreniaTestView(),
+            page: () => SchizophreniaTestView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: SocialAnxietyTestView.id,
-            page: () => const SocialAnxietyTestView(),
+            page: () => SocialAnxietyTestView(),
             binding: MyBindings(),
           ),
-          GetPage(
-            name: ResultSchizophreniaTestView.id,
-            page: () => const ResultSchizophreniaTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultDepressionTestView.id,
-            page: () => const ResultDepressionTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultSocialAnxietyTestView.id,
-            page: () => const ResultSocialAnxietyTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultPostTraumaticStressTestView.id,
-            page: () => const ResultPostTraumaticStressTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultMentalIllnessTestView.id,
-            page: () => const ResultMentalIllnessTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultDASSTestView.id,
-            page: () => const ResultDASSTestView(),
-            binding: MyBindings(),
-          ),
-          GetPage(
-            name: ResultAniextyTestView.id,
-            page: () => const ResultAniextyTestView(),
-            binding: MyBindings(),
-          ),
+
           GetPage(
             name: ResultADHDTestView.id,
             page: () => const ResultADHDTestView(),
@@ -332,6 +251,7 @@ class MindCareApp extends StatelessWidget {
             page: () => const VerificationPage(),
           ),
         ],
+        // initialRoute: TestHomeView.id,
         initialRoute: FirebaseAuth.instance.currentUser == null
             ? SplashView.id
             : HomePage.id,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/controller/test_controller/test_controller.dart';
 import 'package:mindcare_app/utils/size_config.dart';
 import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
@@ -47,10 +48,11 @@ class TestHomeViewBody extends StatelessWidget {
       "view": PostTraumaticStressTestView.id,
     },
   ];
-
+  final TestController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    controller.back();
     return Column(
       children: [
         SizedBox(
@@ -82,6 +84,7 @@ class TestHomeViewBody extends StatelessWidget {
                   return TestTypeIteam(
                     ontap: () {
                       Get.toNamed(listData[index]["view"]!);
+                      controller.back();
                     },
                     text: listData[index]["testname"]!,
                   );
