@@ -45,10 +45,12 @@ class FinalTestViewBody extends StatelessWidget {
             ),
             onPressed: () {
               //code add data to
+                controller.addResult();
               Get.offNamed(
                 ResultADHDTestView.id,
                 arguments: Get.arguments[1],
               );
+            
             },
             child: const Text(
               'Save The Test',

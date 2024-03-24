@@ -1,14 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/view/doctor_profile.dart';
-import 'package:mindcare_app/view/doctor_search.dart';
-import 'package:mindcare_app/view/home_page.dart';
-import 'package:mindcare_app/view/make_appointment.dart';
-import 'package:mindcare_app/view/profile_page.dart';
-import 'package:mindcare_app/view/test_page.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/constants.dart';
@@ -21,11 +14,17 @@ import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
+import 'package:mindcare_app/view/doctor_profile.dart';
+import 'package:mindcare_app/view/doctor_search.dart';
+import 'package:mindcare_app/view/home_page.dart';
 import 'package:mindcare_app/view/init_view.dart';
+import 'package:mindcare_app/view/make_appointment.dart';
+import 'package:mindcare_app/view/profile_page.dart';
 import 'package:mindcare_app/view/reset_view.dart';
 import 'package:mindcare_app/view/sign_in_view.dart';
 import 'package:mindcare_app/view/sign_up_view.dart';
 import 'package:mindcare_app/view/splash_view.dart';
+import 'package:mindcare_app/view/test_page.dart';
 import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
@@ -38,6 +37,7 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
 import 'view/Doctors/views/edication_data.dart';
 import 'view/Doctors/views/first_info.dart';
@@ -45,6 +45,7 @@ import 'view/Doctors/views/medical_info.dart';
 import 'view/Doctors/views/profile_info.dart';
 import 'view/Doctors/views/verification_page.dart';
 import 'view/Doctors/views/work_experience.dart';
+import 'view/mental_illness_history.dart';
 import 'view/widgets/pay_view.dart';
 
 SharedPreferences? sharedPrefs;
@@ -250,11 +251,16 @@ class MindCareApp extends StatelessWidget {
             name: VerificationPage.id,
             page: () => const VerificationPage(),
           ),
+          GetPage(
+              name: MentalIllnessHistoryPage.id,
+              page: () =>MentalIllnessHistoryPage(),
+              binding: MyBindings(),
+              )
         ],
-        // initialRoute: TestHomeView.id,
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? SplashView.id
-            : HomePage.id,
+        initialRoute: SplashView.id,
+        // initialRoute: FirebaseAuth.instance.currentUser == null
+        //     ? SplashView.id
+        //     : HomePage.id,
         //initialRoute: SignInView.id,
         // initialRoute: BasicInfo.id,
       ),

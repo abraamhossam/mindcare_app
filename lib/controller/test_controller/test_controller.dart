@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class TestController extends GetxController {
@@ -19,5 +21,19 @@ class TestController extends GetxController {
     points += point;
     data += point;
     update();
+  }
+
+  CollectionReference result = FirebaseFirestore.instance.collection('Result');
+
+  Future<void> addResult() async {
+    return await result
+        .add({
+          'User_id': FirebaseAuth.instance.currentUser!.uid,
+          'Result': ((points / index) * 100).toInt(),
+          'time':
+              (" ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}"),
+        })
+        .then((value) => print("Result Added"))
+        .catchError((error) => print("Failed to add  Result: $error"));
   }
 }

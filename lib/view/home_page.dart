@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:mindcare_app/view/profile_page.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/view/profile_page.dart';
 import 'package:mindcare_app/view/widgets/custom_button%20copy.dart';
 import 'package:mindcare_app/view/widgets/custom_card.dart';
 import 'package:mindcare_app/view/widgets/custom_tile.dart';
 
+import 'mental_illness_history.dart';
 import 'sign_in_view.dart';
+import 'tests/views/test_home_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -80,12 +81,18 @@ class HomePage extends StatelessWidget {
                 tap: () {
                   Get.toNamed(ProfilePage.id);
                 }),
-            Tile(name: "History".tr, icon: Icons.history),
+            Tile(
+              name: "History".tr,
+              icon: Icons.history,
+              tap: () {
+                Get.toNamed(MentalIllnessHistoryPage.id);
+              },
+            ),
             Tile(
               name: "Mental Tests".tr,
               icon: Icons.forum_outlined,
               tap: () {
-                Get.toNamed('/mental_tests');
+                Get.toNamed(TestHomeView.id);
               },
             ),
             Tile(
