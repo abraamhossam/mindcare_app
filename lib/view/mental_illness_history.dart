@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/test_controller/test_controller.dart';
+import 'home_page.dart';
 import 'widgets/mental_illness_history_body.dart';
 
-class MentalIllnessHistoryPage extends StatefulWidget {
+class MentalIllnessHistoryPage extends StatelessWidget {
   const MentalIllnessHistoryPage({super.key});
   static String id = "/mentalillnesshistorypage";
-
-  @override
-  State<MentalIllnessHistoryPage> createState() => _MentalIllnessHistoryPageState();
-}
-
-class _MentalIllnessHistoryPageState extends State<MentalIllnessHistoryPage> {
-  final TestController controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,6 +18,15 @@ class _MentalIllnessHistoryPageState extends State<MentalIllnessHistoryPage> {
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Get.toNamed(HomePage.id);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
             ),
           ),
         ),

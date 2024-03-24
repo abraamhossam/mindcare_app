@@ -217,7 +217,8 @@ class SocialAnxietyTestView extends StatelessWidget {
               icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
-              )),
+              ),
+              ),
         ),
         body: TestViewBody(
           page: id,

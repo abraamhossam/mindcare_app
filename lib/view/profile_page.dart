@@ -30,7 +30,6 @@ class _ProfilePageState extends State<ProfilePage> {
           .doc(user!.uid)
           .get();
       if (userdata == null) {
-        // print("***********error");
         return;
       } else {
         setState(() {

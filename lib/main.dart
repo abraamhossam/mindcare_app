@@ -253,7 +253,7 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
               name: MentalIllnessHistoryPage.id,
-              page: () =>MentalIllnessHistoryPage(),
+              page: () =>const MentalIllnessHistoryPage(),
               binding: MyBindings(),
               )
         ],

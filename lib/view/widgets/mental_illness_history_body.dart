@@ -81,7 +81,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                                     fontSize: 19),
                                 backgroundColor: kPrimaryColor,
                                 content: const Text(
-                                  " Are you sure to Delete ? ",
+                                  " Are you sure you want to Delete this Result ? ",
                                 ),
                                 actions: [
                                   ElevatedButton(
@@ -103,8 +103,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                                           .doc(dataresult[index].id)
                                           .delete();
 
-                                      Get.offAllNamed(
-                                          MentalIllnessHistoryPage.id);
+                                      Get.offAllNamed(MentalIllnessHistoryPage.id);
                                     },
                                   ),
                                   ElevatedButton(
