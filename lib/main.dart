@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
+import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/utils/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
@@ -252,12 +253,14 @@ class MindCareApp extends StatelessWidget {
             page: () => const VerificationPage(),
           ),
           GetPage(
-              name: MentalIllnessHistoryPage.id,
-              page: () =>const MentalIllnessHistoryPage(),
-              binding: MyBindings(),
-              )
+            name: MentalIllnessHistoryPage.id,
+            page: () => const MentalIllnessHistoryPage(),
+            binding: MyBindings(),
+          ),
+          GetPage(name: "/chatbot", page: () => ChatScreen())
         ],
-        initialRoute: SplashView.id,
+        // initialRoute: SplashView.id,
+        initialRoute: "/chatbot",
         // initialRoute: FirebaseAuth.instance.currentUser == null
         //     ? SplashView.id
         //     : HomePage.id,
