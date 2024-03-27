@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/mood_recommendation/video_screen.dart';
 import 'package:mindcare_app/utils/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
@@ -257,13 +259,14 @@ class MindCareApp extends StatelessWidget {
             page: () => const MentalIllnessHistoryPage(),
             binding: MyBindings(),
           ),
-          GetPage(name: "/chatbot", page: () => ChatScreen())
+          GetPage(name: "/chatbot", page: () => ChatScreen(),),
+          GetPage(name: "/video", page: ()=> VideoScreen()),
         ],
         // initialRoute: SplashView.id,
-        initialRoute: "/chatbot",
-        // initialRoute: FirebaseAuth.instance.currentUser == null
-        //     ? SplashView.id
-        //     : HomePage.id,
+        //initialRoute: "/chatbot",
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? SplashView.id
+            : HomePage.id,
         //initialRoute: SignInView.id,
         // initialRoute: BasicInfo.id,
       ),
