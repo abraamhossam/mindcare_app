@@ -259,8 +259,11 @@ class MindCareApp extends StatelessWidget {
             page: () => const MentalIllnessHistoryPage(),
             binding: MyBindings(),
           ),
-          GetPage(name: "/chatbot", page: () => ChatScreen(),),
-          GetPage(name: "/video", page: ()=> VideoScreen()),
+          GetPage(
+            name: ChatBotScreen.id,
+            page: () => ChatBotScreen(),
+          ),
+          GetPage(name: VideoScreen.id, page: () => VideoScreen()),
         ],
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",

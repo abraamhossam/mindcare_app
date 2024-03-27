@@ -5,6 +5,7 @@ import 'package:mindcare_app/mood_recommendation/mood_recommendation_videos/ange
 import 'package:video_player/video_player.dart';
 
 class VideoScreen extends StatelessWidget {
+  static String id = "/video";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

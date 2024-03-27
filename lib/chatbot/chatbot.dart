@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatBotScreen extends StatefulWidget {
+  static String id = "/chatbot";
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatBotScreenState createState() => _ChatBotScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatBotScreenState extends State<ChatBotScreen> {
   TextEditingController _controller = TextEditingController();
   List<String> _chatMessages = [];
 
