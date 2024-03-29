@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:mindcare_app/view/Doctors/list_of_doctors.dart';
+import 'package:mindcare_app/view/Doctors/widgets/list_of_doctors.dart';
 import 'package:mindcare_app/view/make_appointment.dart';
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
 import 'package:mindcare_app/view/widgets/custom_doctor_card.dart';

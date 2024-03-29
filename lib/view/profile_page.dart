@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mindcare_app/view/initial/widgets/title_text.dart';
 import 'widgets/image_profile.dart';
-import 'widgets/title_text.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

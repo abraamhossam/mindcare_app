@@ -1,37 +1,34 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:awesome_icons/awesome_icons.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/utils/shoe_toast-message.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
+import 'package:mindcare_app/view/initial/views/reset_view.dart';
+import 'package:mindcare_app/view/initial/views/sign_up_view.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
+import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
-import 'package:mindcare_app/view/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
-import 'package:mindcare_app/view/widgets/sign_image_body.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../utils/shoe_toast-message.dart';
-
-class SignUpViewBody extends StatefulWidget {
-  const SignUpViewBody({
+class SignInViewBody extends StatefulWidget {
+  const SignInViewBody({
     super.key,
   });
 
   @override
-  State<SignUpViewBody> createState() => _SignUpViewBodyState();
+  State<SignInViewBody> createState() => _SignInViewBodyState();
 }
 
-class _SignUpViewBodyState extends State<SignUpViewBody> {
+class _SignInViewBodyState extends State<SignInViewBody> {
   bool ispassword = true;
-
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  TextEditingController namecontroller = TextEditingController();
-
+  // String? emailAdrees;
+  // String? passwordd;
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -44,23 +41,17 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           child: Column(
             children: [
               SignImageBody(
-                text: "Welcome To Your Private Area".tr,
+                text: "Welcome Back".tr,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   children: [
                     CustomTextField(
-                      mycontroller: namecontroller,
-                      title: "Name".tr,
-                      hinttext: "Name hint".tr,
-                      preIcon: FontAwesomeIcons.userTie,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.height! * 0.01,
-                    ),
-                    CustomTextField(
                       mycontroller: emailcontroller,
+                      // onChanged: (data) {
+                      //   emailAdrees = data;
+                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -70,6 +61,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                     CustomTextField(
                       mycontroller: passwordcontroller,
+                      // onChanged: (data) {
+                      //   passwordd = data;
+                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -83,46 +77,41 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                           ispassword ? Icons.visibility_off : Icons.visibility,
                     ),
                     SizedBox(
+                      height: SizeConfig.height! * 0.01,
+                    ),
+                    CustomTextNavigator(
+                      text: "Forgot Password?".tr,
+                      ontap: () {
+                        Get.toNamed(
+                          ResetView.id,
+                        );
+                      },
+                    ),
+                    SizedBox(
                       height: SizeConfig.height! * 0.02,
                     ),
                     CustomButton(
-                      text: "Sign Up".tr,
+                      text: "Log In".tr,
                       ontap: () async {
                         if (formKey.currentState!.validate()) {
                           isloading = true;
                           setState(() {});
                           try {
                             final credential = await FirebaseAuth.instance
-                                .createUserWithEmailAndPassword(
-                              email: emailcontroller.text.trim(),
-                              password: passwordcontroller.text.trim(),
-                            );
-                            CollectionReference users =
-                                FirebaseFirestore.instance.collection('users');
-                            String uid = credential.user!.uid;
-                            await users
-                                .doc(uid)
-                                .set({
-                                  'full_name': namecontroller.text,
-                                  'email': emailcontroller.text,
-                                  'Id': uid,
-                                  "password": passwordcontroller.text,
-                                  'pic': ""
-                                })
-                                .then((value) => print("User Added"))
-                                .catchError((error) =>
-                                    print("Failed to add user: $error"));
-
+                                .signInWithEmailAndPassword(
+                                    email: emailcontroller.text.trim(),
+                                    password: passwordcontroller.text.trim());
                             snackbar(context, 'Success');
-                            Get.offAllNamed(SignInView.id);
+                            Get.offNamed("/home");
                           } on FirebaseAuthException catch (e) {
-                            if (e.code == 'weak-password') {
-                              snackbar(context, 'password is weak');
-                            } else if (e.code == 'email-already-in-use') {
-                              snackbar(context, 'The account already exists');
+                            if (e.code == 'user-not-found') {
+                              snackbar(context, 'user not found');
+                            } else if (e.code == 'wrong-password') {
+                              snackbar(context, 'password is Wrong');
+                              print("m******************");
                             }
                           } catch (e) {
-                            snackbar(context, 'Error in Connection');
+                            snackbar(context, 'Something went Wrong ');
                           }
                           isloading = false;
                           setState(() {});
@@ -136,15 +125,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Already Have An Account?".tr,
+                          "Don't have an account? ".tr,
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 17,
                           ),
                         ),
                         CustomTextNavigator(
-                          text: "  ${"Log In".tr}".tr,
-                          ontap: () => Get.toNamed(SignInView.id),
+                          text: "signIn bottom2".tr,
+                          ontap: () => Get.toNamed(SignUpView.id),
                         ),
                       ],
                     ),

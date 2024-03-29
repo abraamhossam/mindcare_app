@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 
-import 'home_page.dart';
 import 'widgets/mental_illness_history_body.dart';
 
 class MentalIllnessHistoryPage extends StatelessWidget {
@@ -22,7 +22,7 @@ class MentalIllnessHistoryPage extends StatelessWidget {
           ),
           leading: IconButton(
             onPressed: () {
-              Get.toNamed(HomePage.id);
+              Get.toNamed(ClientHomeView.id);
             },
             icon: const Icon(
               Icons.arrow_back,

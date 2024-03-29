@@ -17,16 +17,16 @@ import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
+import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/doctor_profile.dart';
 import 'package:mindcare_app/view/doctor_search.dart';
-import 'package:mindcare_app/view/home_page.dart';
-import 'package:mindcare_app/view/init_view.dart';
+import 'package:mindcare_app/view/initial/views/init_view.dart';
+import 'package:mindcare_app/view/initial/views/reset_view.dart';
+import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
+import 'package:mindcare_app/view/initial/views/sign_up_view.dart';
+import 'package:mindcare_app/view/initial/views/splash_view.dart';
 import 'package:mindcare_app/view/make_appointment.dart';
 import 'package:mindcare_app/view/profile_page.dart';
-import 'package:mindcare_app/view/reset_view.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
-import 'package:mindcare_app/view/sign_up_view.dart';
-import 'package:mindcare_app/view/splash_view.dart';
 import 'package:mindcare_app/view/test_page.dart';
 import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
@@ -40,7 +40,6 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'firebase_options.dart';
 import 'view/Doctors/views/edication_data.dart';
 import 'view/Doctors/views/first_info.dart';
@@ -152,8 +151,8 @@ class MindCareApp extends StatelessWidget {
           ),
           // ............سكرينات السنوسي.. ............
           GetPage(
-            name: HomePage.id,
-            page: () => const HomePage(),
+            name: ClientHomeView.id,
+            page: () => const ClientHomeView(),
           ),
           GetPage(
             name: mentalTests.id,
@@ -269,7 +268,7 @@ class MindCareApp extends StatelessWidget {
         //initialRoute: "/chatbot",
         initialRoute: FirebaseAuth.instance.currentUser == null
             ? SplashView.id
-            : HomePage.id,
+            : ClientHomeView.id,
         //initialRoute: SignInView.id,
         // initialRoute: BasicInfo.id,
       ),

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/utils/shoe_toast-message.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
+import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
-import 'package:mindcare_app/view/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
-import 'package:mindcare_app/view/widgets/sign_image_body.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'sign_in_view_doctors.dart';
 
 class SignUpViewBodyDoctors extends StatefulWidget {
   const SignUpViewBodyDoctors({super.key});

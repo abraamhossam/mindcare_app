@@ -1,34 +1,36 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:awesome_icons/awesome_icons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/utils/shoe_toast-message.dart';
+import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
+import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
+import 'package:mindcare_app/view/widgets/custom_button.dart';
+import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../utils/shoe_toast-message.dart';
-import '../../utils/size_config.dart';
-import '../../view/widgets/custom_button.dart';
-import '../../view/widgets/custom_text_field.dart';
-import '../../view/widgets/custom_text_navigator.dart';
-import '../../view/widgets/sign_image_body.dart';
-import 'sign_in_view_doctors.dart';
-
-class SignUpViewBodyDoctors extends StatefulWidget {
-  const SignUpViewBodyDoctors({super.key});
+class SignUpViewBody extends StatefulWidget {
+  const SignUpViewBody({
+    super.key,
+  });
 
   @override
-  State<SignUpViewBodyDoctors> createState() => _SignUpViewBodyDoctorsState();
+  State<SignUpViewBody> createState() => _SignUpViewBodyState();
 }
 
-class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
+class _SignUpViewBodyState extends State<SignUpViewBody> {
   bool ispassword = true;
 
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
-  // String? email;
-  // String? password;
-  // String? name;
+
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -49,9 +51,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                   children: [
                     CustomTextField(
                       mycontroller: namecontroller,
-                      // onChanged: (data) {
-                      //   name = data;
-                      // },
                       title: "Name".tr,
                       hinttext: "Name hint".tr,
                       preIcon: FontAwesomeIcons.userTie,
@@ -61,9 +60,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                     ),
                     CustomTextField(
                       mycontroller: emailcontroller,
-                      // onChanged: (data) {
-                      //   email = data;
-                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -73,9 +69,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                     ),
                     CustomTextField(
                       mycontroller: passwordcontroller,
-                      // onChanged: (data) {
-                      //   password = data;
-                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -103,14 +96,28 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                               email: emailcontroller.text.trim(),
                               password: passwordcontroller.text.trim(),
                             );
+                            CollectionReference users =
+                                FirebaseFirestore.instance.collection('users');
+                            String uid = credential.user!.uid;
+                            await users
+                                .doc(uid)
+                                .set({
+                                  'full_name': namecontroller.text,
+                                  'email': emailcontroller.text,
+                                  'Id': uid,
+                                  "password": passwordcontroller.text,
+                                  'pic': ""
+                                })
+                                .then((value) => print("User Added"))
+                                .catchError((error) =>
+                                    print("Failed to add user: $error"));
 
                             snackbar(context, 'Success');
-                            Get.offAllNamed(SignInViewDoctors.id);
+                            Get.offAllNamed(SignInView.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               snackbar(context, 'password is weak');
                             } else if (e.code == 'email-already-in-use') {
-                              // snackbar('The account already exists');
                               snackbar(context, 'The account already exists');
                             }
                           } catch (e) {
@@ -136,7 +143,7 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                         ),
                         CustomTextNavigator(
                           text: "  ${"Log In".tr}".tr,
-                          ontap: () => Get.toNamed(SignInViewDoctors.id),
+                          ontap: () => Get.toNamed(SignInView.id),
                         ),
                       ],
                     ),

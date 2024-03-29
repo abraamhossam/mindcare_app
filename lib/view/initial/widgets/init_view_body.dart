@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/drop_down_view.dart';
-import 'package:mindcare_app/view/widgets/custom_button_scroll.dart';
-import 'package:mindcare_app/view/widgets/custom_dots_indicator.dart';
-import 'package:mindcare_app/view/widgets/custom_page_view.dart';
+import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_button_scroll.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_dots_indicator.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_page_view.dart';
 
 class InitViewBody extends StatefulWidget {
   const InitViewBody({super.key});

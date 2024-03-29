@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/utils/size_config.dart';
-import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
-import 'package:mindcare_app/view/sign_in_view.dart';
+import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
+import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 
 class DropDownViewBody extends StatefulWidget {
   const DropDownViewBody({super.key});
@@ -90,9 +90,11 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
           setState(() {
             selected = data!;
             if (selected.toString() == "tharepist") {
-              Get.toNamed(SignInViewDoctors.id);
+              // Get.toNamed(SignInViewDoctors.id);
+              Get.toNamed(DoctorHomeView.id);
             } else if (selected.toString() == "client") {
-              Get.toNamed(SignInView.id);
+              // Get.toNamed(SignInView.id);
+              Get.toNamed(ClientHomeView.id);
             }
 
             // Get.toNamed(SignInView.id);

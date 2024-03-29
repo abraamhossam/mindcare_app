@@ -1,21 +1,19 @@
 import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
+import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/profile_page.dart';
+import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:mindcare_app/view/widgets/custom_button%20copy.dart';
 import 'package:mindcare_app/view/widgets/custom_card.dart';
 import 'package:mindcare_app/view/widgets/custom_tile.dart';
 
-import 'mental_illness_history.dart';
-import 'sign_in_view.dart';
-import 'tests/views/test_home_view.dart';
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  static String id = "/home";
+class ClientHomeView extends StatelessWidget {
+  const ClientHomeView({super.key});
+  static String id = "/ClientHomeView";
 
   @override
   Widget build(BuildContext context) {

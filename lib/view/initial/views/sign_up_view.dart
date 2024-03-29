@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare_app/view/widgets/sign_up_view_body.dart';
+import 'package:mindcare_app/view/initial/widgets/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});

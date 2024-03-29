@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/view/init_view.dart';
-
-import 'package:mindcare_app/view/widgets/animation_text.dart';
-import 'package:mindcare_app/view/widgets/splash_title.dart';
+import 'package:mindcare_app/view/initial/views/init_view.dart';
+import 'package:mindcare_app/view/initial/widgets/animation_text.dart';
+import 'package:mindcare_app/view/initial/widgets/splash_title.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

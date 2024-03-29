@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/view/widgets/custom_page_view_iteam.dart';
+import 'package:mindcare_app/view/initial/widgets/custom_page_view_iteam.dart';
 
 class CustomPageView extends StatelessWidget {
   const CustomPageView({super.key, required this.pageController});
