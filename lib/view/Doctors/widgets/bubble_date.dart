@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 
 class BubbleDate extends StatelessWidget {
   const BubbleDate({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare_app/view/initial/widgets/custom_init_view_title.dart';
+import 'package:mindcare_app/view/initial/widgets/app_title.dart';
 import 'package:mindcare_app/view/initial/widgets/init_view_body.dart';
 
 class InitView extends StatelessWidget {
@@ -13,7 +13,7 @@ class InitView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
           elevation: 0,
-          title: const CustomInitViewTitle(),
+          title: const AppTitle(),
         ),
         body: const InitViewBody(),
       ),

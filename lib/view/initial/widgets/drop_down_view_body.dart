@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 

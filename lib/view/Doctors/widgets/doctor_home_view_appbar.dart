@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/utils/assets.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/assets.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/custom_profile_image.dart';
 
 class DoctorHomeViewAppbar extends StatelessWidget {

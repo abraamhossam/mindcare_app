@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare_app/view/initial/widgets/custom_init_view_title.dart';
+import 'package:mindcare_app/view/initial/widgets/app_title.dart';
 import 'package:mindcare_app/view/initial/widgets/drop_down_view_body.dart';
 
 class DropDownView extends StatelessWidget {
@@ -13,7 +13,7 @@ class DropDownView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
           elevation: 0,
-          title: const CustomInitViewTitle(),
+          title: const AppTitle(),
         ),
         body: const DropDownViewBody(),
       ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 
-class TestViewQuestion extends StatelessWidget {
-  const TestViewQuestion({
+class MoodDescribeIteam extends StatelessWidget {
+  const MoodDescribeIteam({
     super.key,
     required this.text,
   });
@@ -11,23 +11,21 @@ class TestViewQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: SizeConfig.width! * 0.91,
       padding: const EdgeInsets.all(16),
-      width: SizeConfig.width! * 0.85,
-      decoration: const BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(32),
-          bottomRight: Radius.circular(32),
-          bottomLeft: Radius.circular(32),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: kPrimaryColor,
+          width: 2,
         ),
+        borderRadius: BorderRadius.circular(24),
       ),
       child: Text(
         text,
-        textAlign: TextAlign.center,
         style: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
+          color: kPrimaryColor,
           fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
       ),
     );

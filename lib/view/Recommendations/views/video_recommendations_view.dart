@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/mood_recommendation/mood_recommendation_videos/anger.dart';
+import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/view/Recommendations/mood_recommendation_videos/anger.dart';
 
 import 'package:video_player/video_player.dart';
 
-class VideoScreen extends StatelessWidget {
-  static String id = "/video";
+class VideoRecommendationsView extends StatelessWidget {
+  static String id = "/VideoRecommendationsView";
+
+  const VideoRecommendationsView({super.key});
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Center(
         child: SizedBox(
-          height: 332,
+          height: SizeConfig.height! * 0.46,
           child: ListView.builder(
-            itemCount: anger.length,
+            itemCount: 1,
             itemBuilder: (context, index) {
               final controller = VideoController(url: anger[index]);
               return VideoPlayerScreen(controller: controller);
@@ -50,7 +54,7 @@ class VideoController extends GetxController {
 class VideoPlayerScreen extends StatelessWidget {
   final VideoController controller;
 
-  const VideoPlayerScreen({required this.controller});
+  const VideoPlayerScreen({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

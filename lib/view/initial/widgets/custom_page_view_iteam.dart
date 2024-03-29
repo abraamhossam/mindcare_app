@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 
 // ignore: must_be_immutable
 class CustomPageViewIteam extends StatelessWidget {

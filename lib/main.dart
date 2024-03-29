@@ -6,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/chatbot/chatbot.dart';
-import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/mood_recommendation/video_screen.dart';
-import 'package:mindcare_app/utils/mybindings.dart';
+import 'package:mindcare_app/helper/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
 import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
@@ -17,6 +15,8 @@ import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
+import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
+import 'package:mindcare_app/view/Recommendations/views/video_recommendations_view.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/doctor_profile.dart';
 import 'package:mindcare_app/view/doctor_search.dart';
@@ -76,11 +76,12 @@ class MindCareApp extends StatelessWidget {
       splitScreenMode: true,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: kFontFamily,
-        ),
+        // theme: ThemeData(
+        //   fontFamily: kFontFamily,
+        // ),
         locale: language.initLang,
         translations: Language(),
+
         getPages: [
           GetPage(
             name: SplashView.id,
@@ -262,10 +263,19 @@ class MindCareApp extends StatelessWidget {
             name: ChatBotScreen.id,
             page: () => ChatBotScreen(),
           ),
-          GetPage(name: VideoScreen.id, page: () => VideoScreen()),
+          GetPage(
+            name: VideoRecommendationsView.id,
+            page: () => const VideoRecommendationsView(),
+          ),
+          GetPage(
+            name: MoodRecommendationsView.id,
+            page: () => const MoodRecommendationsView(),
+            binding: MyBindings(),
+          ),
         ],
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
+        // initialRoute: MoodRecommendationsView.id,
         initialRoute: FirebaseAuth.instance.currentUser == null
             ? SplashView.id
             : ClientHomeView.id,

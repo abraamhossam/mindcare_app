@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appointments_iteam.dart';
 
 class DoctorHomeViewAppointmentsListView extends StatelessWidget {

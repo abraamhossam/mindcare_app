@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/tests/views/final_test_view.dart';
 import 'package:mindcare_app/view/tests/widgets/test_view_botton.dart';
 import 'package:mindcare_app/view/tests/widgets/test_view_question.dart';

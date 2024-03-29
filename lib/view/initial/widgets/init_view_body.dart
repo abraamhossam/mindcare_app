@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_button_scroll.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_dots_indicator.dart';
@@ -19,9 +19,11 @@ class _InitViewBodyState extends State<InitViewBody> {
   void initState() {
     pageController = PageController(
       initialPage: 0,
-    )..addListener(() {
-        setState(() {});
-      });
+    )..addListener(
+        () {
+          setState(() {});
+        },
+      );
     super.initState();
   }
 

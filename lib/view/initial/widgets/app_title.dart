@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/constants.dart';
 
-class CustomInitViewTitle extends StatelessWidget {
-  const CustomInitViewTitle({
+class AppTitle extends StatelessWidget {
+  const AppTitle({
     super.key,
   });
 

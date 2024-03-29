@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/appointment_card.dart';
 import 'package:mindcare_app/view/Doctors/widgets/bubble_date.dart';
 

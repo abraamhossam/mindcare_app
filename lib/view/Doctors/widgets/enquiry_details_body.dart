@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/doctor_bottom_navigation_bar_controller.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_title.dart';
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_view_bottom.dart';
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_view_doctor_card.dart';

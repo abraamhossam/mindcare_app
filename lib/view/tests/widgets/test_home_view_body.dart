@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
-import 'package:mindcare_app/utils/size_config.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
