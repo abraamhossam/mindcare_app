@@ -54,12 +54,23 @@ class ImageProfile extends StatelessWidget {
         const SizedBox(
           height: 9,
         ),
-        const Text(
-          "Your photo should be clean,vivid and sharp.\n Make a good impression on patients ",
-          style: TextStyle(
-            color: Color(0xFF8B9DB2),
-            fontSize: 16,
-          ),
+        const Column(
+          children: [
+            Text(
+              "Your photo should be clean,vivid and sharp.",
+              style: TextStyle(
+                color: Color(0xFF8B9DB2),
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              " Make a good impression on patients",
+              style: TextStyle(
+                color: Color(0xFF8B9DB2),
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ],
     );

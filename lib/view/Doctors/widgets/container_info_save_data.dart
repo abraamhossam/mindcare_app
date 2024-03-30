@@ -22,7 +22,7 @@ class ContainerInfo extends StatelessWidget {
       padding: const EdgeInsets.all(9.0),
       child: Container(
           // constraints: BoxConstraints(),
-          width: MediaQuery.of(context).size.width / 2,
+          width: MediaQuery.of(context).size.width,
           height: height,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(5)),

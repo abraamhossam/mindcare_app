@@ -42,7 +42,7 @@ import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'view/Doctors/views/edication_data.dart';
-import 'view/Doctors/views/first_info.dart';
+import 'view/Doctors/views/basic_info.dart';
 import 'view/Doctors/views/medical_info.dart';
 import 'view/Doctors/views/profile_info.dart';
 import 'view/Doctors/views/verification_page.dart';
@@ -81,7 +81,6 @@ class MindCareApp extends StatelessWidget {
         // ),
         locale: language.initLang,
         translations: Language(),
-
         getPages: [
           GetPage(
             name: SplashView.id,
@@ -232,7 +231,7 @@ class MindCareApp extends StatelessWidget {
           //
           GetPage(
             name: BasicInfo.id,
-            page: () => const BasicInfo(),
+            page: () => BasicInfo(),
           ),
           GetPage(
             name: WorkExperienceView.id,
@@ -240,19 +239,19 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: EdicationDataView.id,
-            page: () => const EdicationDataView(),
+            page: () => EdicationDataView(),
           ),
           GetPage(
             name: MedicalInfo.id,
-            page: () => const MedicalInfo(),
+            page: () => MedicalInfo(),
           ),
           GetPage(
             name: ProfileInfo.id,
-            page: () => const ProfileInfo(),
+            page: () => ProfileInfo(),
           ),
           GetPage(
             name: VerificationPage.id,
-            page: () => const VerificationPage(),
+            page: () => VerificationPage(),
           ),
           GetPage(
             name: MentalIllnessHistoryPage.id,
@@ -279,6 +278,7 @@ class MindCareApp extends StatelessWidget {
         initialRoute: FirebaseAuth.instance.currentUser == null
             ? SplashView.id
             : ClientHomeView.id,
+        // initialRoute: BasicInfo.id
         //initialRoute: SignInView.id,
         // initialRoute: BasicInfo.id,
       ),

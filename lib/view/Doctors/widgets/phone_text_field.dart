@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TextFiledData extends StatelessWidget {
-  const TextFiledData({
-    super.key,
-    required this.labelText,
-    this.onChanged,
-    this.validator,
-    this.inputType,
-    this.maxLine,
-  });
+class PhoneTextField extends StatelessWidget {
+  const PhoneTextField(
+      {super.key,
+      required this.labelText,
+      this.onChanged,
+      this.validator,
+      this.inputType,
+      this.controller,
+      this.maxLength});
   final String labelText;
   final Function(String)? onChanged;
   final dynamic validator;
   final TextInputType? inputType;
-  final int? maxLine;
+  final TextEditingController? controller;
+  final int? maxLength;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +23,8 @@ class TextFiledData extends StatelessWidget {
         horizontal: 8,
       ),
       child: TextFormField(
-        maxLines: maxLine,
+        maxLength: maxLength,
+        controller: controller,
         keyboardType: inputType,
         validator: validator,
         style: const TextStyle(

@@ -4,9 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/Doctors/views/medical_info.dart';
-
 import '../../../controller/add_work.dart';
-import '../widgets/add_new_task.dart';
 import '../widgets/container_info_save_data.dart';
 import '../widgets/dropdown_button_year.dart';
 import '../widgets/text_button_data.dart';
@@ -81,44 +79,69 @@ class WorkExperienceView extends StatelessWidget {
                 SizedBox(
                   height: 2.h,
                 ),
-                Row(
-                  children: [
-                    const Expanded(
-                      child: DropdownButtonyear(
-                        hint: "Select",
-                        labelText: "Start Year",
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Start year",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18,
+                              ),
+                            ),
+                            DropdownButtonyear(
+                              hint: "Select",
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
-                    const Expanded(
-                      child: DropdownButtonyear(
-                        hint: "Select",
-                        labelText: "End Year",
+                      SizedBox(
+                        width: 30.w,
                       ),
-                    ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
-                  ],
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "End year",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18,
+                              ),
+                            ),
+                            DropdownButtonyear(
+                              hint: "Select",
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 30.w,
+                      ),
+                    ],
+                  ),
                 ),
+                // SizedBox(
+                //   height: 4.h,
+                // ),
+                // AddNewTask(
+                //   onTap: () {
+                //     // controller.add();
+                //     Navigator.of(context)
+                //         .push(MaterialPageRoute(builder: (context) {
+                //       return const WorkExperienceView();
+                //     }));
+                //     controller.add();
+                //   },
+                //   text: "Add New Work",
+                // ),
                 SizedBox(
-                  height: 4.h,
-                ),
-                AddNewTask(
-                  onTap: () {
-                    // controller.add();
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const WorkExperienceView();
-                    }));
-                    controller.add();
-                  },
-                  text: "Add New Work",
-                ),
-                SizedBox(
-                  height: 165.h,
+                  height: 40.h,
                 ),
                 Row(
                   children: [
