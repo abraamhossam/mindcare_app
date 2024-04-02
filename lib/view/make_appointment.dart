@@ -60,7 +60,7 @@ class MakeAppointment extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 HourButton(
-                  hour: '8:00 ${"AM".tr}',
+                  hour: '8:00 ${"A`M".tr}',
                   size: size,
                 ),
                 HourButton(

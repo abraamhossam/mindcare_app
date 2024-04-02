@@ -10,6 +10,7 @@ import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
 import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import '../views/basic_info.dart';
 import 'restet_view_doctor.dart';
 import 'sign_up_view_doctor.dart';
 
@@ -25,8 +26,6 @@ class _SignInViewBodyDoctorsState extends State<SignInViewBodyDoctors> {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  // String? emailAdrees;
-  // String? passwordd;
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class _SignInViewBodyDoctorsState extends State<SignInViewBodyDoctors> {
                                     password: passwordcontroller.text.trim());
 
                             snackbar(context, 'Success');
-                            Get.offNamed("/home");
+                            Get.offNamed(BasicInfo.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               snackbar(context, 'user not found');

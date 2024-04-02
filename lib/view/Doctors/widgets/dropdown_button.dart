@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/dropdown_button.dart';
+import '../../../controller/doctor_controller/doctor_input_data.dart';
 
 class DropdownButtonn extends StatelessWidget {
   const DropdownButtonn({
@@ -12,8 +12,8 @@ class DropdownButtonn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DropdownButtonController>(
-      init: DropdownButtonController(),
+    return GetBuilder<DoctorInputData>(
+      init: DoctorInputData(),
       builder: (controller) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

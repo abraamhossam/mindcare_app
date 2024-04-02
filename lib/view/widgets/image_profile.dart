@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
 class ImageProfile extends StatefulWidget {
-  ImageProfile({super.key});
+  const ImageProfile({super.key});
 
   @override
   State<ImageProfile> createState() => _ImageProfileState();
@@ -15,27 +15,24 @@ class ImageProfile extends StatefulWidget {
 
 class _ImageProfileState extends State<ImageProfile> {
   final User? user = FirebaseAuth.instance.currentUser;
-  String? url;
+  String? imageUrl;
   File? imageFile;
 
   Future getImage() async {
-    ImagePicker _picker = ImagePicker();
+    ImagePicker picker = ImagePicker();
     final XFile? imageGallery =
-        await _picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
     if (imageGallery != null) {
       imageFile = File(imageGallery.path);
+
       var ref = FirebaseStorage.instance
           .ref()
           .child('images')
           .child("${user!.uid}.jpg");
       await ref.putFile(imageFile!);
-      url = await ref.getDownloadURL();
+      imageUrl = await ref.getDownloadURL();
 
-      setState(() {
-        
-      });
-
-      // uploadImage();
+      setState(() {});
     }
   }
 
@@ -59,9 +56,9 @@ class _ImageProfileState extends State<ImageProfile> {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: NetworkImage(
-                  url == null
-                      ? "https://www.pngitem.com/pimgs/m/78-786293_1240-x-1240-0-avatar-profile-icon-png.png"
-                      : "$url",
+                  imageUrl == null
+                      ? "https://st3.depositphotos.com/1767687/17621/v/450/depositphotos_176214104-stock-illustration-default-avatar-profile-icon.jpg"
+                      : imageUrl!,
                 ),
               ),
             ),
@@ -70,8 +67,8 @@ class _ImageProfileState extends State<ImageProfile> {
             bottom: 0,
             right: 0,
             child: Container(
-              height: 40,
-              width: 40,
+              height: 45,
+              width: 45,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(

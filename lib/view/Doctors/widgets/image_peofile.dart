@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ImageProfile extends StatelessWidget {
-  const ImageProfile({super.key});
+import '../../../controller/doctor_controller/doctor_input_data.dart';
+
+// ignore: must_be_immutable
+class ImageProfileDoctor extends StatefulWidget {
+  const ImageProfileDoctor({super.key});
 
   @override
+  State<ImageProfileDoctor> createState() => _ImageProfileDoctorState();
+}
+
+class _ImageProfileDoctorState extends State<ImageProfileDoctor> {
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
+    return GetBuilder<DoctorInputData>(
+      init: DoctorInputData(),
+      builder: (controller) {
+        return Center(
           child: Stack(
             children: [
               Container(
@@ -23,9 +33,12 @@ class ImageProfile extends StatelessWidget {
                     )
                   ],
                   shape: BoxShape.circle,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     image: NetworkImage(
-                        "https://www.pngitem.com/pimgs/m/78-786293_1240-x-1240-0-avatar-profile-icon-png.png"),
+                      controller.imageUrl == null
+                          ? "https://st3.depositphotos.com/1767687/17621/v/450/depositphotos_176214104-stock-illustration-default-avatar-profile-icon.jpg"
+                          : controller.imageUrl!,
+                    ),
                   ),
                 ),
               ),
@@ -33,8 +46,8 @@ class ImageProfile extends StatelessWidget {
                 bottom: 0,
                 right: 0,
                 child: Container(
-                  height: 40,
-                  width: 40,
+                  height: 45,
+                  width: 45,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -42,37 +55,18 @@ class ImageProfile extends StatelessWidget {
                       ),
                       color: Colors.blue),
                   child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.edit),
+                    onPressed: () {
+                      controller.getImageDoctor();
+                    },
+                    icon: const Center(child: Icon(Icons.add_a_photo)),
                     color: Colors.white,
                   ),
                 ),
               ),
             ],
           ),
-        ),
-        const SizedBox(
-          height: 9,
-        ),
-        const Column(
-          children: [
-            Text(
-              "Your photo should be clean,vivid and sharp.",
-              style: TextStyle(
-                color: Color(0xFF8B9DB2),
-                fontSize: 16,
-              ),
-            ),
-            Text(
-              " Make a good impression on patients",
-              style: TextStyle(
-                color: Color(0xFF8B9DB2),
-                fontSize: 16,
-              ),
-            ),
-          ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

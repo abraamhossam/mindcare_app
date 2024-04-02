@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/text_button_data.dart';
+
+import '../../../controller/doctor_controller/doctor_input_data.dart';
+import '../../../model/doctor_data.dart';
 import '../widgets/container_info_save_data.dart';
+import '../widgets/text_filed_data.dart';
 
 class MedicalInfo extends StatelessWidget {
   const MedicalInfo({super.key});
@@ -35,53 +40,182 @@ class MedicalInfo extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 3,
-              ),
-              ContainerInfo(
-                indexpages: 5 / 5,
-                title: "Medical Info",
-                desc: "Enter Medical Information",
-                height: MediaQuery.of(context).size.height * 0.12,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Credentials",
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextButtonSaveData(
-                      text: "Do it later ",
-                      onPressed: () {},
-                      decorationcolor: Colors.white,
-                      textcolor: kPrimaryColor,
+            padding: const EdgeInsets.all(8.0),
+            child: GetBuilder<DoctorInputData>(
+              init: DoctorInputData(),
+              builder: (controller) {
+                return ListView(
+                  children: [
+                    const SizedBox(
+                      height: 3,
                     ),
-                  ),
-                  Expanded(
-                    child: TextButtonSaveData(
-                      text: "Go next ",
-                      onPressed: () {
-                        Get.toNamed(DoctorHomeView.id);
+                    ContainerInfo(
+                      indexpages: 5 / 5,
+                      title: "Medical Info",
+                      desc: "Enter Medical Information",
+                      height: MediaQuery.of(context).size.height * 0.12,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Text(
+                        "Credentials",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    TextFiledData(
+                      onChanged: (data) {
+                        controller.category = data;
                       },
-                      decorationcolor: Colors.blue,
-                      textcolor: Colors.white,
+                      labelText: "Category",
+                      validator: (data) {
+                        if (data!.isEmpty) {
+                          return "field is required";
+                        }
+                      },
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    TextFiledData(
+                      onChanged: (data) {
+                        controller.specialisty = data;
+                      },
+                      labelText: "Specialisty",
+                      validator: (data) {
+                        if (data!.isEmpty) {
+                          return "field is required";
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Text(
+                        "Documents",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        "#1 BOARD CERTIFICATION",
+                        style: TextStyle(
+                            color: const Color(0xFF8196AC),
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    TextFiledData(
+                      onChanged: (data) {
+                        controller.expiryBoard = data;
+                      },
+                      labelText: "Expiry data",
+                      validator: (data) {
+                        if (data!.isEmpty) {
+                          return "field is required";
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        "#1 CURRENT STATE LICENSE NUMBER ",
+                        style: TextStyle(
+                            color: const Color(0xFF8196AC),
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    TextFiledData(
+                      onChanged: (data) {
+                        controller.expiryCurrent = data;
+                      },
+                      labelText: "Expiry data",
+                      validator: (data) {
+                        if (data!.isEmpty) {
+                          return "field is required";
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButtonSaveData(
+                            text: "Do it later ",
+                            onPressed: () {
+                              Get.offAllNamed(DoctorHomeView.id);
+                            },
+                            decorationcolor: Colors.white,
+                            textcolor: kPrimaryColor,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextButtonSaveData(
+                            text: "Go next ",
+                            onPressed: () {
+                              controller.creatdoctordata(
+                                DoctorsData(
+                                  id: controller.user!.uid,
+                                  name: controller.name,
+                                  surname: controller.surname,
+                                  gender:
+                                      controller.selectitemsgender.toString(),
+                                  birth: controller.birth,
+                                  medicalTitle: controller.medicalTitle,
+                                  phone: controller.phone,
+                                  officeAddress: controller.officeAddress,
+                                  profile: controller.profile,
+                                  universty: controller.universty,
+                                  fieldOfStude: controller.fieldOfStude,
+                                  degree: controller.degree,
+                                  startYearEdiction: controller.selectitemyear,
+                                  endYearEdiction: controller.selectitemyear,
+                                  institution: controller.institution,
+                                  position: controller.position,
+                                  startYearWork: controller.selectitemyear,
+                                  endYearWork: controller.selectitemyear,
+                                  category: controller.category,
+                                  specialisty: controller.specialisty,
+                                  expiryBoard: controller.expiryBoard,
+                                  expiryCurrent: controller.expiryCurrent,
+                                  urlImage: controller.imageUrl!,
+                                ),
+                              );
+                              Get.offAllNamed(DoctorHomeView.id);
+                            },
+                            decorationcolor: Colors.blue,
+                            textcolor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              },
+            )),
       ),
     );
   }

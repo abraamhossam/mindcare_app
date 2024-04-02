@@ -40,9 +40,10 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
-import 'view/Doctors/views/edication_data.dart';
 import 'view/Doctors/views/basic_info.dart';
+import 'view/Doctors/views/edication_data.dart';
 import 'view/Doctors/views/medical_info.dart';
 import 'view/Doctors/views/profile_info.dart';
 import 'view/Doctors/views/verification_page.dart';
@@ -275,12 +276,12 @@ class MindCareApp extends StatelessWidget {
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
         // initialRoute: MoodRecommendationsView.id,
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? SplashView.id
-            : ClientHomeView.id,
-        // initialRoute: BasicInfo.id
-        //initialRoute: SignInView.id,
-        // initialRoute: BasicInfo.id,
+        // initialRoute: FirebaseAuth.instance.currentUser == null
+        //     ? SplashView.id
+        //     : ClientHomeView.id,
+
+        initialRoute: BasicInfo.id,
+        // initialRoute: SignInViewDoctors.id,
       ),
     );
   }
