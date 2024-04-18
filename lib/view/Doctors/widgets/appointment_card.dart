@@ -30,22 +30,6 @@ class AppointmentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 4,
-            ),
-            decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(16)),
-            child: const Text(
-              "Global Treatment",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
             padding: const EdgeInsets.only(
               left: 16,
             ),
@@ -92,7 +76,8 @@ class AppointmentCard extends StatelessWidget {
               const Text(
                 "Kane Brown",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               )

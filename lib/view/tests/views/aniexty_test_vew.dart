@@ -36,7 +36,7 @@ class AniextyTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I am frequently feeling unsteadiness or dizziness',
+      'questionText': 'I am frequently feeling unsteadiness or dizziness',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -71,14 +71,14 @@ class AniextyTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I am frequently having difficulty breathing.',
+      'questionText': 'I am frequently having difficulty breathing.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I am frequently feeling numb.',
+      'questionText': 'I am frequently feeling numb.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -128,21 +128,21 @@ class AniextyTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I am frequently feeling emotional distress.',
+      'questionText': 'I am frequently feeling emotional distress.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I am frequently sweating in stressful moments.',
+      'questionText': 'I am frequently sweating in stressful moments.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I am frequently experiencing insomnia.',
+      'questionText': 'I am frequently experiencing insomnia.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -163,14 +163,14 @@ class AniextyTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I am frequently feeling tense.',
+      'questionText': 'I am frequently feeling tense.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I am frequently feeling restless.',
+      'questionText': 'I am frequently feeling restless.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},

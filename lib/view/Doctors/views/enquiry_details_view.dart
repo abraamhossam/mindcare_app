@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/controller/doctor_controller/doctor_bottom_navigation_bar_controller.dart';
+import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
+
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_body.dart';
 
 class EnquiryDetailsView extends StatelessWidget {
   EnquiryDetailsView({super.key});
   static String id = "/enquirydetailsview";
-  final DoctorBottomNavigationBarController controller = Get.find();
+  final BottomNavigationBarController controller = Get.put(
+    BottomNavigationBarController(),
+  );
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 3,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                controller.navigate(0);
+                controller.indexDoctor.value = 0;
               },
               icon: const Icon(
                 Icons.arrow_back,
@@ -33,18 +37,6 @@ class EnquiryDetailsView extends StatelessWidget {
                 fontSize: 22,
               ),
             ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  controller.navigate(0);
-                },
-                icon: const Icon(
-                  Icons.more_horiz,
-                  size: 36,
-                  color: kPrimaryColor,
-                ),
-              ),
-            ],
             bottom: const TabBar(
               indicatorWeight: 4,
               indicatorColor: kPrimaryColor,
@@ -67,13 +59,6 @@ class EnquiryDetailsView extends StatelessWidget {
                   ),
                 ),
                 Tab(
-                    child: Text(
-                  "Messages",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                )),
-                Tab(
                   child: Text(
                     "Reports",
                     style: TextStyle(
@@ -89,39 +74,17 @@ class EnquiryDetailsView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Tab(
-                  child: Text(
-                    "Activity",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               EnquiryDetailsBody(),
-              Container(
-                child: Center(
-                  child: Text("ebraam"),
-                ),
+              Center(
+                child: Text("ebraam"),
               ),
-              Container(
-                child: Center(
-                  child: Text("ebraam"),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: Text("ebraam"),
-                ),
-              ),
-              Container(
-                child: Center(
-                  child: Text("ebraam"),
-                ),
+              Center(
+                child: Text("ebraam"),
               ),
             ],
           ),

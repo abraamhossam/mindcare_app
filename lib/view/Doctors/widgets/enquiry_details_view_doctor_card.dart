@@ -46,6 +46,7 @@ class EnquiryDetailsViewDoctorCard extends StatelessWidget {
                 "Requster",
                 style: TextStyle(
                   color: Colors.white,
+                  fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),

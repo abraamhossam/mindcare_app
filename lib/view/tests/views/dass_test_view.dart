@@ -60,7 +60,7 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I found it difficult to relax',
+      'questionText': 'I found it difficult to relax',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -89,14 +89,14 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I felt that I was using a lot of nervous energy',
+      'questionText': 'I felt that I was using a lot of nervous energy',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
       ]
     },
     {
-      'questionText': ' I felt sad and depressed',
+      'questionText': 'I felt sad and depressed',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -104,7 +104,7 @@ class DASSTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I found myself getting impatient when I was delayed in any way (eg, lifts, traffic lights, being kept waiting)',
+          'I found myself getting impatient when I was delayed in any way (eg, lifts, traffic lights, being kept waiting)',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -133,7 +133,7 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I felt that I was rather touchy',
+      'questionText': 'I felt that I was rather touchy',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -162,7 +162,7 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I found it hard to wind down',
+      'questionText': 'I found it hard to wind down',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -206,14 +206,14 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I felt I was close to panic',
+      'questionText': 'I felt I was close to panic',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
       ]
     },
     {
-      'questionText': ' I found it hard to calm down after something upset me',
+      'questionText': 'I found it hard to calm down after something upset me',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -228,7 +228,7 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I was unable to become enthusiastic about anything',
+      'questionText': 'I was unable to become enthusiastic about anything',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -279,7 +279,7 @@ class DASSTestView extends StatelessWidget {
       ]
     },
     {
-      'questionText': ' I felt that life was meaningless',
+      'questionText': 'I felt that life was meaningless',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
@@ -294,14 +294,14 @@ class DASSTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I was worried about situations in which I might panic and make a fool of myself',
+          'I was worried about situations in which I might panic and make a fool of myself',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},
       ]
     },
     {
-      'questionText': ' I experienced trembling (eg, in the hands)',
+      'questionText': 'I experienced trembling (eg, in the hands)',
       'answers': [
         {'text': ' Never', 'score': 0},
         {'text': ' Sometimes or Almost Always', 'score': 1},

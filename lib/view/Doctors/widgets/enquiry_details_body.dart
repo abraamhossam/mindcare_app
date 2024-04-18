@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/controller/doctor_controller/doctor_bottom_navigation_bar_controller.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_title.dart';
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_view_bottom.dart';
@@ -9,8 +7,8 @@ import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_view_doctor_ca
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_information_iteam.dart';
 
 class EnquiryDetailsBody extends StatelessWidget {
-  EnquiryDetailsBody({super.key});
-  final DoctorBottomNavigationBarController controller = Get.find();
+  const EnquiryDetailsBody({super.key});
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -85,9 +83,6 @@ class EnquiryDetailsBody extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
             ],
-          ),
-          SizedBox(
-            height: SizeConfig.height! * 0.005,
           ),
           const Padding(
             padding: EdgeInsets.only(

@@ -80,7 +80,7 @@ class FinalTestViewBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
               ),
               minimumSize: Size(
-                SizeConfig.width! * 0.6,
+                SizeConfig.width! * 0.5,
                 SizeConfig.height! * 0.05,
               ),
             ),

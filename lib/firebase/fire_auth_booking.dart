@@ -30,6 +30,7 @@ class FireAuthBooking {
       'hour': hour,
       'reply': 'waiting'
     });
+    print("hello ebraam");
   }
 
   static Future booking(

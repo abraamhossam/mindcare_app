@@ -17,7 +17,7 @@ class TestTypeIteam extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(32),
         ),
-        elevation: 10,
+        elevation: 4,
         color: kPrimaryColor,
         child: Center(
           child: Text(

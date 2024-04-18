@@ -3,7 +3,7 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_title.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appbar.dart';
-import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appointments_list_view.dart';
+import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appointments_iteam.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_virtual_consultation_body.dart';
 
 class DoctorHomeViewBody extends StatelessWidget {
@@ -33,24 +33,18 @@ class DoctorHomeViewBody extends StatelessWidget {
               const DoctorHomeTitle(
                 text: "Next appointments",
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: kPrimaryColor.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    _controller.animateTo(
-                      _controller.position.maxScrollExtent,
-                      curve: Curves.easeOut,
-                      duration: const Duration(milliseconds: 500),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.arrow_forward,
-                    size: 30,
-                    color: kPrimaryColor,
-                  ),
+              IconButton(
+                onPressed: () {
+                  _controller.animateTo(
+                    _controller.position.maxScrollExtent,
+                    curve: Curves.easeOut,
+                    duration: const Duration(milliseconds: 500),
+                  );
+                },
+                icon: const Icon(
+                  Icons.arrow_forward,
+                  size: 30,
+                  color: kPrimaryColor,
                 ),
               ),
             ],
@@ -59,7 +53,21 @@ class DoctorHomeViewBody extends StatelessWidget {
         SizedBox(
           height: SizeConfig.height! * 0.01,
         ),
-        DoctorHomeViewAppointmentsListView(Controller: _controller),
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: SizedBox(
+            height: SizeConfig.height! * 0.35,
+            child: ListView.builder(
+              controller: _controller,
+              physics: const BouncingScrollPhysics(),
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return const DoctorHomeViewAppointmentsIteam();
+              },
+            ),
+          ),
+        ),
         SizedBox(
           height: SizeConfig.height! * 0.02,
         ),

@@ -27,7 +27,7 @@ class AppTitle extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 24,
                 ),
               ),
             ]),

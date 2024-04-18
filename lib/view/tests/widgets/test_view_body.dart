@@ -32,73 +32,76 @@ class TestViewBody extends StatelessWidget {
             builder: (controller) {
               int result = controller.points;
 
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Question ${controller.index} of ${totalTest - 1}",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height! * 0.03,
-                  ),
-                  TestViewQuestion(
-                    text: questions[controller.index]['questionText'],
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height! * 0.02,
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height! * 0.2,
-                    width: SizeConfig.width! * 1,
-                    child: ListView.builder(
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          child: TestViewButton(
-                            data: questions[controller.index]['answers'][index],
-                            onPressed: () {
-                              if (controller.index == totalTest - 1) {
-                                Get.offNamed(FinalTestView.id, arguments: [
-                                  page,
-                                  result,
-                                  totalTest - 1,
-                                ]);
-                              } else {
-                                controller.nextQuestion();
-                                controller.pointsScore(
-                                  point: questions[controller.index]['answers']
-                                      [index]['score'],
-                                );
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kPrimaryColor,
-                    ),
-                    onPressed: () {
-                      controller.back();
-                    },
-                    child: const Text(
-                      "back",
-                      style: TextStyle(
-                        color: Colors.white,
+              return SizedBox(
+                width: SizeConfig.width!,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Question ${controller.index} of ${totalTest - 1}",
+                      style: const TextStyle(
                         fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: SizeConfig.height! * 0.03,
+                    ),
+                    TestViewQuestion(
+                      text: questions[controller.index]['questionText'],
+                    ),
+                    SizedBox(
+                      height: SizeConfig.height! * 0.02,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.height! * 0.2,
+                      child: ListView.builder(
+                        itemCount: 2,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                            ),
+                            child: TestViewButton(
+                              data: questions[controller.index]['answers']
+                                  [index],
+                              onPressed: () {
+                                if (controller.index == totalTest - 1) {
+                                  Get.offNamed(FinalTestView.id, arguments: [
+                                    page,
+                                    result,
+                                    totalTest - 1,
+                                  ]);
+                                } else {
+                                  controller.nextQuestion();
+                                  controller.pointsScore(
+                                    point: questions[controller.index]
+                                        ['answers'][index]['score'],
+                                  );
+                                }
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kPrimaryColor,
+                      ),
+                      onPressed: () {
+                        controller.back();
+                      },
+                      child: const Text(
+                        "back",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           );

@@ -76,9 +76,10 @@ class TestHomeViewBody extends StatelessWidget {
             child: GridView.builder(
                 itemCount: listData.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 4,
                   crossAxisCount: 2,
+                  childAspectRatio: 2.2 / 2,
                 ),
                 itemBuilder: (context, index) {
                   return TestTypeIteam(

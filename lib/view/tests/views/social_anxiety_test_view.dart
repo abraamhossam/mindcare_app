@@ -81,14 +81,14 @@ class SocialAnxietyTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I feel very uncomfortable when I have to take physical examinations.',
+          'I feel very uncomfortable when I have to take physical examinations.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I do not have that much confidence in myself.',
+      'questionText': 'I do not have that much confidence in myself.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -96,14 +96,14 @@ class SocialAnxietyTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' When I speak to people I can not avoid thinking how they see my speech.',
+          'When I speak to people I can not avoid thinking how they see my speech.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I fear being judged by people around me.',
+      'questionText': 'I fear being judged by people around me.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -159,7 +159,7 @@ class SocialAnxietyTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I feel uncomfortable when I have to enter a room in which people are waiting for me.',
+          'I feel uncomfortable when I have to enter a room in which people are waiting for me.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -167,22 +167,14 @@ class SocialAnxietyTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I feel uncomfortable when my daily routine, work, school or any activities are affected by unknown events.',
+          'I feel uncomfortable when my daily routine, work, school or any activities are affected by unknown events.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
       ]
     },
     {
-      'questionText': ' I have difficulties talking in public.',
-      'answers': [
-        {'text': 'No', 'score': 0},
-        {'text': 'Yes', 'score': 1},
-      ]
-    },
-    {
-      'questionText':
-          ' I feel uncomfortable when I have to initiate a conversation.',
+      'questionText': 'I have difficulties talking in public.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -190,7 +182,15 @@ class SocialAnxietyTestView extends StatelessWidget {
     },
     {
       'questionText':
-          ' I try to avoid as much as I can using public telephone or restroom.',
+          'I feel uncomfortable when I have to initiate a conversation.',
+      'answers': [
+        {'text': 'No', 'score': 0},
+        {'text': 'Yes', 'score': 1},
+      ]
+    },
+    {
+      'questionText':
+          'I try to avoid as much as I can using public telephone or restroom.',
       'answers': [
         {'text': 'No', 'score': 0},
         {'text': 'Yes', 'score': 1},
@@ -211,14 +211,14 @@ class SocialAnxietyTestView extends StatelessWidget {
             ),
           ),
           leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-              ),
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+          ),
         ),
         body: TestViewBody(
           page: id,

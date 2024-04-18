@@ -37,7 +37,7 @@ class TestResultCustom extends StatelessWidget {
           height: SizeConfig.height! * 0.06,
         ),
         Text(
-          "${points + 1} Points",
+          "$points  Points",
           style: const TextStyle(
             fontSize: 30,
             color: kPrimaryColor,

@@ -6,44 +6,59 @@ class BubbleDate extends StatelessWidget {
     super.key,
     required this.color1,
     required this.color2,
+    required this.hour,
+    required this.month,
+    required this.day,
   });
   final Color color1, color2;
+  final String hour;
+  final String month;
+  final String day;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: SizeConfig.height! * 0.08,
       decoration: BoxDecoration(
         color: color1,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(32),
-          topRight: Radius.circular(32),
-          bottomRight: Radius.circular(32),
-        ),
+        borderRadius: BorderRadius.circular(32),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "8:30 AM",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            hour,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
-            Text(
-              "Dec 5",
-              style: TextStyle(
-                color: color2,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                month,
+                style: TextStyle(
+                  color: color2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-          ],
-        ),
+              SizedBox(
+                width: SizeConfig.width! * 0.01,
+              ),
+              Text(
+                day,
+                style: TextStyle(
+                  color: color2,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

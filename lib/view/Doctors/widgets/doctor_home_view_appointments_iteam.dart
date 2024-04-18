@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/helper/assets.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/Doctors/widgets/appointment_card.dart';
 import 'package:mindcare_app/view/Doctors/widgets/bubble_date.dart';
+import 'package:mindcare_app/view/Doctors/widgets/custom_profile_image.dart';
 
 class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
   const DoctorHomeViewAppointmentsIteam({
@@ -21,13 +22,83 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
           const BubbleDate(
             color1: kPrimaryColor,
             color2: Colors.white,
+            hour: '2',
+            month: '3',
+            day: '2',
           ),
           SizedBox(
             height: SizeConfig.height! * 0.01,
           ),
-          AppointmentCard(
-            width: SizeConfig.width! * 0.55,
+          Container(
             height: SizeConfig.height! * 0.24,
+            width: SizeConfig.width! * 0.55,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
+            decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                  ),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        color: Colors.white,
+                        width: 3,
+                      ),
+                    ),
+                  ),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Video Consultation",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Waiting for call",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    CustomProfileImage(
+                      image: Assets.testImage,
+                      width: SizeConfig.width! * 0.1,
+                      height: SizeConfig.height! * 0.05,
+                    ),
+                    SizedBox(
+                      width: SizeConfig.width! * 0.02,
+                    ),
+                    const Text(
+                      "Kane Brown",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

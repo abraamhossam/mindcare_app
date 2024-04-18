@@ -36,7 +36,7 @@ class DoctorHomeViewAppbar extends StatelessWidget {
             Text(
               "Jessica",
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -46,8 +46,8 @@ class DoctorHomeViewAppbar extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: const Icon(
-            Icons.segment,
-            size: 46,
+            Icons.menu,
+            size: 32,
           ),
         ),
       ],
