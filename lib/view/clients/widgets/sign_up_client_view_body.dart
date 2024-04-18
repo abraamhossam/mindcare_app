@@ -2,38 +2,39 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/helper/shoe_toast-message.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
 import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'sign_in_view_doctors.dart';
 
-class SignUpViewBodyDoctors extends StatefulWidget {
-  const SignUpViewBodyDoctors({super.key});
+class SignUpClientViewBody extends StatefulWidget {
+  const SignUpClientViewBody({
+    super.key,
+  });
 
   @override
-  State<SignUpViewBodyDoctors> createState() => _SignUpViewBodyDoctorsState();
+  State<SignUpClientViewBody> createState() => _SignUpClientViewBodyState();
 }
 
-class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
+class _SignUpClientViewBodyState extends State<SignUpClientViewBody> {
   bool ispassword = true;
 
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
-  // String? email;
-  // String? password;
-  // String? name;
+
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ModalProgressHUD(
-      inAsyncCall: false,
+      inAsyncCall: isloading,
       child: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -48,9 +49,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                   children: [
                     CustomTextField(
                       mycontroller: namecontroller,
-                      // onChanged: (data) {
-                      //   name = data;
-                      // },
                       title: "Name".tr,
                       hinttext: "Name hint".tr,
                       preIcon: FontAwesomeIcons.userTie,
@@ -60,9 +58,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                     ),
                     CustomTextField(
                       mycontroller: emailcontroller,
-                      // onChanged: (data) {
-                      //   email = data;
-                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -72,9 +67,6 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                     ),
                     CustomTextField(
                       mycontroller: passwordcontroller,
-                      // onChanged: (data) {
-                      //   password = data;
-                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -97,23 +89,26 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                           isloading = true;
                           setState(() {});
                           try {
-                            final credential = await FirebaseAuth.instance
+                            await FirebaseAuth.instance
                                 .createUserWithEmailAndPassword(
                               email: emailcontroller.text.trim(),
                               password: passwordcontroller.text.trim(),
                             );
 
                             snackbar(context, 'Success');
-                            Get.offAllNamed(SignInViewDoctors.id);
+                            FireAuthRooms.createUser(
+                                name: namecontroller.text.trim(),
+                                email: emailcontroller.text.trim());
+                            Get.offNamed(SignInClientView.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               snackbar(context, 'password is weak');
                             } else if (e.code == 'email-already-in-use') {
-                              // snackbar('The account already exists');
                               snackbar(context, 'The account already exists');
                             }
                           } catch (e) {
-                            snackbar(context, 'Error in Connection');
+                            snackbar(context,
+                                "There is an error in the data entered");
                           }
                           isloading = false;
                           setState(() {});
@@ -130,12 +125,12 @@ class _SignUpViewBodyDoctorsState extends State<SignUpViewBodyDoctors> {
                           "Already Have An Account?".tr,
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 17,
+                            fontSize: 18,
                           ),
                         ),
                         CustomTextNavigator(
                           text: "  ${"Log In".tr}".tr,
-                          ontap: () => Get.toNamed(SignInViewDoctors.id),
+                          ontap: () => Get.toNamed(SignInClientView.id),
                         ),
                       ],
                     ),

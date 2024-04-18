@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'reset_view_body_doctor.dart';
+import 'package:mindcare_app/view/Doctors/widgets/reset_doctor_view_body.dart';
 
-class ResterViewDoctor extends StatelessWidget {
-  const ResterViewDoctor({super.key});
-  static String id = "/resetviewdoctor";
+class ResetDoctorView extends StatelessWidget {
+  const ResetDoctorView({super.key});
+  static String id = "/resetdoctorview";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,7 +22,7 @@ class ResterViewDoctor extends StatelessWidget {
                 color: Colors.white,
               )),
         ),
-        body: const ResetViewBodyDoctor(),
+        body: const ResetDoctorViewBody(),
       ),
     );
   }

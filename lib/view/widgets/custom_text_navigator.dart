@@ -23,7 +23,7 @@ class CustomTextNavigator extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            fontSize: 17,
+            fontSize: 18,
             color: kPrimaryColor,
             fontWeight: FontWeight.bold,
           ),

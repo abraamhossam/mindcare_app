@@ -1,24 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/helper/shoe_toast-message.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
+import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class ResetViewBody extends StatefulWidget {
-  const ResetViewBody({
+class ResetClientViewBody extends StatefulWidget {
+  const ResetClientViewBody({
     super.key,
   });
 
   @override
-  State<ResetViewBody> createState() => _ResetViewBodyState();
+  State<ResetClientViewBody> createState() => _ResetClientViewBodyState();
 }
 
-class _ResetViewBodyState extends State<ResetViewBody> {
+class _ResetClientViewBodyState extends State<ResetClientViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
 
@@ -70,7 +70,7 @@ class _ResetViewBodyState extends State<ResetViewBody> {
                             snackbar(context,
                                 "Successfully sent reset password link to $emailcontroller");
                             //
-                            Get.offAllNamed(SignInView.id);
+                            Get.offAllNamed(SignInClientView.id);
                           } catch (e) {
                             snackbar(context, "Error ");
                           }

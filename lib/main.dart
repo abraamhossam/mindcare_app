@@ -11,19 +11,21 @@ import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
 import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
 import 'package:mindcare_app/view/Doctors/views/notifications_view.dart';
-import 'package:mindcare_app/view/Doctors/views/rester_view_doctor.dart';
-import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
-import 'package:mindcare_app/view/Doctors/views/sign_up_view_doctor.dart';
+import 'package:mindcare_app/view/Doctors/views/reset_doctor_view.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_up_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/video_recommendations_view.dart';
+import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
+import 'package:mindcare_app/view/clients/views/reset_view_client_view.dart';
+import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
+import 'package:mindcare_app/view/clients/views/sign_up_client_view.dart';
 import 'package:mindcare_app/view/doctor_profile.dart';
 import 'package:mindcare_app/view/doctor_search.dart';
+import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/views/init_view.dart';
-import 'package:mindcare_app/view/initial/views/reset_view.dart';
-import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
-import 'package:mindcare_app/view/initial/views/sign_up_view.dart';
 import 'package:mindcare_app/view/initial/views/splash_view.dart';
 import 'package:mindcare_app/view/make_appointment.dart';
 import 'package:mindcare_app/view/profile_page.dart';
@@ -40,7 +42,6 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'firebase_options.dart';
 import 'view/Doctors/views/basic_info.dart';
 import 'view/Doctors/views/edication_data.dart';
@@ -92,17 +93,21 @@ class MindCareApp extends StatelessWidget {
             page: () => const InitView(),
           ),
           GetPage(
-            name: SignInView.id,
-            page: () => const SignInView(),
-          ),
-          // doctor
-          GetPage(
-            name: SignInViewDoctors.id,
-            page: () => const SignInViewDoctors(),
+            name: DropDownView.id,
+            page: () => const DropDownView(),
           ),
           GetPage(
-            name: SignUpView.id,
-            page: () => const SignUpView(),
+            name: SignInClientView.id,
+            page: () => const SignInClientView(),
+          ),
+
+          GetPage(
+            name: SignUpClientView.id,
+            page: () => const SignUpClientView(),
+          ),
+          GetPage(
+            name: ResetClientView.id,
+            page: () => const ResetClientView(),
           ),
           GetPage(
             name: DoctorHomeView.id,
@@ -131,16 +136,20 @@ class MindCareApp extends StatelessWidget {
           ),
           //
           GetPage(
-            name: SignUpViewDoctors.id,
-            page: () => const SignUpViewDoctors(),
+            name: SignUpDoctorView.id,
+            page: () => const SignUpDoctorView(),
           ),
           GetPage(
-            name: ResetView.id,
-            page: () => const ResetView(),
+            name: SignInDoctorView.id,
+            page: () => const SignInDoctorView(),
           ),
           GetPage(
-            name: ResterViewDoctor.id,
-            page: () => const ResterViewDoctor(),
+            name: ResetDoctorView.id,
+            page: () => const ResetDoctorView(),
+          ),
+          GetPage(
+            name: SignInAdminView.id,
+            page: () => const SignInAdminView(),
           ),
           GetPage(
             name: PayView.id,
@@ -276,11 +285,11 @@ class MindCareApp extends StatelessWidget {
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
         // initialRoute: MoodRecommendationsView.id,
-        // initialRoute: FirebaseAuth.instance.currentUser == null
-        //     ? SplashView.id
-        //     : ClientHomeView.id,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? SplashView.id
+            : ClientHomeView.id,
 
-        initialRoute: BasicInfo.id,
+        // initialRoute: BasicInfo.id,
         // initialRoute: SignInViewDoctors.id,
       ),
     );

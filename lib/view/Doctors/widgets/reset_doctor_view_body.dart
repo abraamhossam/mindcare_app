@@ -3,22 +3,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/helper/shoe_toast-message.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/Doctors/views/sign_in_view_doctors.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class ResetViewBodyDoctor extends StatefulWidget {
-  const ResetViewBodyDoctor({super.key});
+class ResetDoctorViewBody extends StatefulWidget {
+  const ResetDoctorViewBody({super.key});
 
   @override
-  State<ResetViewBodyDoctor> createState() => _ResetViewBodyDoctorState();
+  State<ResetDoctorViewBody> createState() => _ResetDoctorViewBodyState();
 }
 
-class _ResetViewBodyDoctorState extends State<ResetViewBodyDoctor> {
+class _ResetDoctorViewBodyState extends State<ResetDoctorViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   // String? email;
@@ -73,7 +73,7 @@ class _ResetViewBodyDoctorState extends State<ResetViewBodyDoctor> {
                             snackbar(context,
                                 "Successfully sent reset password link to $emailcontroller");
                             //
-                            Get.offAllNamed(SignInViewDoctors.id);
+                            Get.offAllNamed(SignInDoctorView.id);
                           } catch (e) {
                             // snackbar("Error ");
                             snackbar(context, "Error ");

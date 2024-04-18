@@ -4,7 +4,7 @@ import 'package:mindcare_app/view/initial/widgets/drop_down_view_body.dart';
 
 class DropDownView extends StatelessWidget {
   const DropDownView({super.key});
-
+  static String id = "/DropDownView";
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
-import 'package:mindcare_app/view/clients/views/client_home_view.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
+import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
+import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 
 class DropDownViewBody extends StatefulWidget {
   const DropDownViewBody({super.key});
@@ -14,7 +15,7 @@ class DropDownViewBody extends StatefulWidget {
 
 class _DropDownViewBodyState extends State<DropDownViewBody> {
   String? selected;
-  List<String> listData = ["tharepist", "client", "admin"];
+  List<String> listData = ["client", "tharepist", "admin"];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -90,14 +91,12 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
           setState(() {
             selected = data!;
             if (selected.toString() == "tharepist") {
-              // Get.toNamed(SignInViewDoctors.id);
-              Get.toNamed(DoctorHomeView.id);
+              Get.toNamed(SignInDoctorView.id);
             } else if (selected.toString() == "client") {
-              // Get.toNamed(SignInView.id);
-              Get.toNamed(ClientHomeView.id);
+              Get.toNamed(SignInClientView.id);
+            } else if (selected.toString() == "admin") {
+              Get.toNamed(SignInAdminView.id);
             }
-
-            // Get.toNamed(SignInView.id);
           });
         },
         value: selected,

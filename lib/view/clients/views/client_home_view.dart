@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/view/initial/views/sign_in_view.dart';
+import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/profile_page.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
@@ -131,7 +131,7 @@ class ClientHomeView extends StatelessWidget {
                             ),
                             onPressed: () async {
                               await FirebaseAuth.instance.signOut();
-                              Get.offAllNamed(SignInView.id);
+                              Get.offAllNamed(DropDownView.id);
                             },
                           ),
                           ElevatedButton(

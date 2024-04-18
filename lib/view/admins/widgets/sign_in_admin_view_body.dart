@@ -1,40 +1,35 @@
-// ignore_for_file: use_build_context_synchronously
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/helper/shoe_toast-message.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/initial/views/reset_view.dart';
-import 'package:mindcare_app/view/initial/views/sign_up_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
 import 'package:mindcare_app/view/widgets/custom_button.dart';
-import 'package:mindcare_app/view/widgets/custom_text_navigator.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SignInViewBody extends StatefulWidget {
-  const SignInViewBody({
+class SignInAdminViewBody extends StatefulWidget {
+  const SignInAdminViewBody({
     super.key,
   });
 
   @override
-  State<SignInViewBody> createState() => _SignInViewBodyState();
+  State<SignInAdminViewBody> createState() => _SignInAdminViewBodyState();
 }
 
-class _SignInViewBodyState extends State<SignInViewBody> {
+class _SignInAdminViewBodyState extends State<SignInAdminViewBody> {
   bool ispassword = true;
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  // String? emailAdrees;
-  // String? passwordd;
+
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ModalProgressHUD(
-      inAsyncCall: false,
+      inAsyncCall: isloading,
       child: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -49,9 +44,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   children: [
                     CustomTextField(
                       mycontroller: emailcontroller,
-                      // onChanged: (data) {
-                      //   emailAdrees = data;
-                      // },
                       title: "Email".tr,
                       hinttext: "Email hint".tr,
                       preIcon: Icons.email,
@@ -61,9 +53,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     ),
                     CustomTextField(
                       mycontroller: passwordcontroller,
-                      // onChanged: (data) {
-                      //   passwordd = data;
-                      // },
                       title: "Password".tr,
                       hinttext: "Password hint".tr,
                       preIcon: Icons.lock,
@@ -77,17 +66,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                           ispassword ? Icons.visibility_off : Icons.visibility,
                     ),
                     SizedBox(
-                      height: SizeConfig.height! * 0.01,
-                    ),
-                    CustomTextNavigator(
-                      text: "Forgot Password?".tr,
-                      ontap: () {
-                        Get.toNamed(
-                          ResetView.id,
-                        );
-                      },
-                    ),
-                    SizedBox(
                       height: SizeConfig.height! * 0.02,
                     ),
                     CustomButton(
@@ -96,46 +74,36 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         if (formKey.currentState!.validate()) {
                           isloading = true;
                           setState(() {});
+                          QuerySnapshot reciever =
+                              await FirebaseFirestore.instance
+                                  .collection('admins')
+                                  .where(
+                                    'email',
+                                    isEqualTo: emailcontroller.text.trim(),
+                                  )
+                                  .get();
                           try {
-                            final credential = await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                                    email: emailcontroller.text.trim(),
-                                    password: passwordcontroller.text.trim());
-                            snackbar(context, 'Success');
-                            Get.offNamed("/home");
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'user-not-found') {
-                              snackbar(context, 'user not found');
-                            } else if (e.code == 'wrong-password') {
-                              snackbar(context, 'password is Wrong');
-                              print("m******************");
+                            if (reciever.docs.first['type'] == 'Admin') {
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: emailcontroller.text.trim(),
+                                      password: passwordcontroller.text.trim());
+                              snackbar(context, 'Success');
+                              // Get.offNamed(ClientHomeView.id);
+                            } else {
+                              snackbar(
+                                context,
+                                'The email or Password is incorrect',
+                              );
                             }
                           } catch (e) {
-                            snackbar(context, 'Something went Wrong ');
+                            snackbar(
+                                context, 'The email or Password is incorrect');
                           }
                           isloading = false;
                           setState(() {});
                         }
                       },
-                    ),
-                    SizedBox(
-                      height: SizeConfig.height! * 0.01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't have an account? ".tr,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 17,
-                          ),
-                        ),
-                        CustomTextNavigator(
-                          text: "signIn bottom2".tr,
-                          ontap: () => Get.toNamed(SignUpView.id),
-                        ),
-                      ],
                     ),
                   ],
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/helper/shoe_toast-message.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/view/Doctors/widgets/appbar_widget.dart';
 import 'package:mindcare_app/view/Doctors/widgets/phone_text_field.dart';
 import '../../../controller/doctor_controller/doctor_input_data.dart';
@@ -153,8 +153,9 @@ class BasicInfo extends StatelessWidget {
                             child: TextButtonSaveData(
                               text: "Go next ",
                               onPressed: () {
-                                if(controller.imageFile==null){
-                                  return  snackbar(context, 'Please Pick Up an Image');
+                                if (controller.imageFile == null) {
+                                  return snackbar(
+                                      context, 'Please Pick Up an Image');
                                 }
                                 if (formKey.currentState!.validate()) {
                                   Get.toNamed(ProfileInfo.id);
