@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/view/Doctors/widgets/finished_bookings_body.dart';
 import 'package:mindcare_app/view/Doctors/widgets/uncoming_bookings_body.dart';
 
 class AppointmentsView extends StatelessWidget {
@@ -72,7 +73,7 @@ class AppointmentsView extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       UncomingBookingsBody(),
-                      UncomingBookingsBody(),
+                      FinishedBookingsBody(),
                     ],
                   ),
                 ),

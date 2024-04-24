@@ -99,6 +99,10 @@ class ChattingAdminView extends StatelessWidget {
                                 controller: textcontroller,
                                 onSubmitted: (data) {
                                   if (textcontroller!.text.isNotEmpty) {
+                                    FireAuthRooms.creatRoomwithAdmin(
+                                        collectionName: Get.arguments[2],
+                                        recieverId:
+                                            'fhQxkjWDs5QyZk2CqjTnk8XNZyv1');
                                     FireAuthRooms.sendMessageAdmin(
                                       recieverid: Get.arguments[1],
                                       message: textcontroller!.text,
@@ -207,8 +211,12 @@ class ChattingAdminView extends StatelessWidget {
                               color: kPrimaryColor,
                             ),
                             child: IconButton(
-                              onPressed: () async {
+                              onPressed: () {
                                 if (textcontroller!.text.isNotEmpty) {
+                                  FireAuthRooms.creatRoomwithAdmin(
+                                      collectionName: Get.arguments[2],
+                                      recieverId:
+                                          'fhQxkjWDs5QyZk2CqjTnk8XNZyv1');
                                   FireAuthRooms.sendMessageAdmin(
                                     recieverid: Get.arguments[1],
                                     message: textcontroller!.text,

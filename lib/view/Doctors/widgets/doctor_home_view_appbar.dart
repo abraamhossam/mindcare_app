@@ -16,8 +16,8 @@ class DoctorHomeViewAppbar extends StatelessWidget {
       children: [
         CustomProfileImage(
           image: Assets.testImage,
-          width: SizeConfig.width! * 0.14,
-          height: SizeConfig.height! * 0.07,
+          width: SizeConfig.width! * 0.1,
+          height: SizeConfig.height! * 0.05,
         ),
         SizedBox(
           width: SizeConfig.width! * 0.05,

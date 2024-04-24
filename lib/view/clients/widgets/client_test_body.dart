@@ -14,8 +14,8 @@ import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/widgets/test_type_iteam.dart';
 import 'package:mindcare_app/view/widgets/mental_illness_history_body.dart';
 
-class ClientTestViewBody extends StatelessWidget {
-  ClientTestViewBody({super.key});
+class ClientTestBody extends StatelessWidget {
+  ClientTestBody({super.key});
   final List<Map<String, String>> listData = [
     {
       "testname": "ADHD",
@@ -94,7 +94,7 @@ class ClientTestViewBody extends StatelessWidget {
               padding: const EdgeInsets.only(
                 left: 16,
                 right: 16,
-                top: 16,
+                top: 8,
               ),
               child: GridView.builder(
                   itemCount: listData.length,

@@ -5,8 +5,11 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
+import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
+import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
-import 'package:mindcare_app/view/clients/widgets/client_test_view_body.dart';
+import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
+import 'package:mindcare_app/view/clients/widgets/client_test_body.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/profile_page.dart';
@@ -18,9 +21,9 @@ class ClientHomeView extends StatelessWidget {
   static String id = "/ClientHomeView";
   final List pages = [
     ClientHomeViewBody(),
-    ClientTestViewBody(),
-    Text("ebraam hossam"),
-    Text("ebraam hossam"),
+    ClientTestBody(),
+    ClientAppointmentsBody(),
+    ClientMessagesBody(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -94,7 +97,7 @@ class ClientHomeView extends StatelessWidget {
                   height: 230,
                   child: DrawerHeader(
                     decoration: const BoxDecoration(
-                      color: Color(0xff607D8B),
+                      color: kPrimaryColor,
                     ),
                     child: Center(
                       child: Text(
@@ -132,6 +135,25 @@ class ClientHomeView extends StatelessWidget {
                   icon: Icons.person_search,
                   tap: () {
                     Get.toNamed('/doctor_search');
+                  },
+                ),
+                Tile(
+                  name: "Admin",
+                  icon: Icons.admin_panel_settings,
+                  tap: () {
+                    List members = [
+                      FirebaseAuth.instance.currentUser!.uid,
+                      'fhQxkjWDs5QyZk2CqjTnk8XNZyv1'
+                    ];
+
+                    Get.toNamed(
+                      ChattingAdminView.id,
+                      arguments: [
+                        members.toString(),
+                        'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
+                        'users',
+                      ],
+                    );
                   },
                 ),
                 Tile(name: "Talk with Ai Chatbot".tr, icon: Icons.chat),

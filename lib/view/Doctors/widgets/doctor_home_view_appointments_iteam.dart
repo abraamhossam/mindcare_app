@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/assets.dart';
 import 'package:mindcare_app/helper/size_config.dart';
-import 'package:mindcare_app/view/Doctors/widgets/bubble_date.dart';
+
+import 'package:mindcare_app/view/Doctors/widgets/bubble_date_doctor.dart';
 import 'package:mindcare_app/view/Doctors/widgets/custom_profile_image.dart';
 
 class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
@@ -19,11 +20,9 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const BubbleDate(
-            color1: kPrimaryColor,
-            color2: Colors.white,
-            hour: '2',
-            month: '3',
+          const BubbleDateDoctor(
+            hour: '2.00 AM',
+            month: 'Apr',
             day: '2',
           ),
           SizedBox(
@@ -37,7 +36,7 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: kPrimaryColor,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,7 +58,7 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Video Consultation",
+                        "Booking Session",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -67,7 +66,7 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Waiting for call",
+                        "Waiting for reply",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,

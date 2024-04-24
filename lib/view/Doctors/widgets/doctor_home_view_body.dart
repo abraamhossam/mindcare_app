@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_title.dart';
-import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appbar.dart';
+// import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appbar.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appointments_iteam.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_virtual_consultation_body.dart';
 
@@ -15,16 +15,6 @@ class DoctorHomeViewBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: SizeConfig.height! * 0.02,
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: DoctorHomeViewAppbar(),
-        ),
-        SizedBox(
-          height: SizeConfig.height! * 0.03,
-        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(

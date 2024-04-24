@@ -46,94 +46,102 @@ class _ListTileWidgetState extends State<ListTileWidget> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(5, 5, 5, 10),
-                child: ListTile(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      side: const BorderSide(color: Colors.black),
-                    ),
-                    leading: const CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/yoga.png"),
-                      radius: 25,
-                    ),
-                    title: Text(
-                      "Result of Mental Illness Test ${dataresult[index]['Result']}% ",
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                child: Card(
+                  elevation: 4,
+                  child: ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: const BorderSide(
+                          color: kPrimaryColor,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      "data of test: ${dataresult[index]['time'].toString()}",
-                      style: const TextStyle(
-                        fontSize: 15,
+                      leading: const CircleAvatar(
+                        backgroundImage: AssetImage("assets/images/yoga.png"),
+                        radius: 25,
                       ),
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                contentTextStyle: const TextStyle(
-                                    height: 1.5,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 19),
-                                backgroundColor: kPrimaryColor,
-                                content: const Text(
-                                  " Are you sure you want to Delete this Result ? ",
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
-                                    child: const Text(
-                                      "Ok",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                      title: Text(
+                        "Result of Mental Illness Test ${dataresult[index]['Result']}% ",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        "data of test: ${dataresult[index]['time'].toString()}",
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  contentTextStyle: const TextStyle(
+                                      height: 1.5,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 19),
+                                  backgroundColor: kPrimaryColor,
+                                  content: const Text(
+                                    " Are you sure you want to Delete this Result ? ",
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.white)),
+                                      child: const Text(
+                                        "Ok",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
-                                    ),
-                                    onPressed: () async {
-                                      await FirebaseFirestore.instance
-                                          .collection("Result")
-                                          .doc(dataresult[index].id)
-                                          .delete();
+                                      onPressed: () async {
+                                        await FirebaseFirestore.instance
+                                            .collection("Result")
+                                            .doc(dataresult[index].id)
+                                            .delete();
 
-                                      Get.offAllNamed(MentalIllnessHistoryPage.id);
-                                    },
-                                  ),
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
-                                    child: const Text(
-                                      "Cancel",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17,
-                                      ),
+                                        Get.offAllNamed(
+                                            MentalIllnessHistoryPage.id);
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      },
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.redAccent,
-                        size: 28,
-                      ),
-                    )),
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.white)),
+                                      child: const Text(
+                                        "Cancel",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          color: kPrimaryColor,
+                          size: 28,
+                        ),
+                      )),
+                ),
               );
-            });
+            },
+          );
   }
 }

@@ -6,8 +6,8 @@ import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/chat_card.dart';
 
-class DoctorMessagesBody extends StatelessWidget {
-  const DoctorMessagesBody({super.key});
+class ClientMessagesBody extends StatelessWidget {
+  const ClientMessagesBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,27 +32,27 @@ class DoctorMessagesBody extends StatelessWidget {
                     return ChatCard(
                       ontap: () async {
                         List members = [
-                          listIteams[index].members![0],
-                          FirebaseAuth.instance.currentUser!.uid
+                          FirebaseAuth.instance.currentUser!.uid,
+                          listIteams[index].members![1],
                         ];
 
                         Get.toNamed(
                           ChattingView.id,
                           arguments: [
                             members,
-                            listIteams[index].members![0],
-                            listIteams[index].from!,
-                            listIteams[index].fromType!,
+                            listIteams[index].members![1],
+                            listIteams[index].to!,
+                            listIteams[index].toType!,
                           ],
                         );
                       },
-                      name: listIteams[index].from!,
-                      type: listIteams[index].fromType!,
+                      name: listIteams[index].to!,
+                      type: listIteams[index].toType!,
                     );
                   },
                 );
         } else if (snapchot.hasError) {
-          return const Text("OOps there is an error");
+          return const Center(child: Text("OOps there is an error"));
         } else {
           return const Center(
             child: CircularProgressIndicator(),
