@@ -98,13 +98,31 @@ class ChattingView extends StatelessWidget {
                                 maxLines: 5,
                                 minLines: 1,
                                 controller: textcontroller,
-                                onSubmitted: (data) {
+                                onSubmitted: (data) async {
                                   if (textcontroller!.text.isNotEmpty) {
-                                    FireAuthRooms.sendMessage(
-                                      recieverid: Get.arguments[1],
-                                      message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
-                                    );
+                                    if (Get.arguments[3] == "Doctor") {
+                                      QuerySnapshot reciever =
+                                          await FirebaseFirestore.instance
+                                              .collection('doctors')
+                                              .where('name',
+                                                  isEqualTo: Get.arguments[2])
+                                              .get();
+                                      FireAuthRooms.creatRoom(
+                                        recieverName: Get.arguments[2],
+                                        recieverId: reciever.docs.first.id,
+                                      );
+                                      FireAuthRooms.sendMessage(
+                                        recieverid: Get.arguments[1],
+                                        message: textcontroller!.text,
+                                        roomId: Get.arguments[0].toString(),
+                                      );
+                                    } else {
+                                      FireAuthRooms.sendMessage(
+                                        recieverid: Get.arguments[1],
+                                        message: textcontroller!.text,
+                                        roomId: Get.arguments[0].toString(),
+                                      );
+                                    }
                                   }
                                   textcontroller!.clear();
                                   _scrollController.animateTo(
