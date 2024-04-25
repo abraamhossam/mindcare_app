@@ -25,7 +25,7 @@ class ClientAppointmentsBody extends StatelessWidget {
             ..sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
 
           return listIteams.isEmpty
-              ? const Center(child: Text("hello world"))
+              ? const Center(child: Text("No Bookings yet"))
               : ListView.builder(
                   itemCount: snapchot.data!.docs.length,
                   itemBuilder: (context, index) {

@@ -33,7 +33,7 @@ class UncomingBookingsBody extends StatelessWidget {
               ..sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
 
             return listIteams.isEmpty
-                ? const Center(child: Text("hello world"))
+                ? const Center(child: Text("No bookings"))
                 : ListView.builder(
                     itemCount: listIteams.length,
                     itemBuilder: (context, index) {

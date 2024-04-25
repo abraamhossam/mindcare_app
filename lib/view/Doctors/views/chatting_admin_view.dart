@@ -23,27 +23,49 @@ class ChattingAdminView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: kPrimaryColor,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              size: 26,
-              color: Colors.white,
-            ),
-          ),
-          title: const Text(
-            "Admin",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        appBar: Get.arguments[3] == "Admin"
+            ? AppBar(
+                backgroundColor: kPrimaryColor,
+                leading: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 26,
+                    color: Colors.white,
+                  ),
+                ),
+                title: const Text(
+                  "Admin",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            : AppBar(
+                backgroundColor: kPrimaryColor,
+                leading: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 26,
+                    color: Colors.white,
+                  ),
+                ),
+                title: Text(
+                  "${Get.arguments[3]}:  ${Get.arguments[2]}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("adminRooms")
@@ -99,15 +121,31 @@ class ChattingAdminView extends StatelessWidget {
                                 controller: textcontroller,
                                 onSubmitted: (data) {
                                   if (textcontroller!.text.isNotEmpty) {
-                                    FireAuthRooms.creatRoomwithAdmin(
-                                        collectionName: Get.arguments[2],
-                                        recieverId:
-                                            'fhQxkjWDs5QyZk2CqjTnk8XNZyv1');
-                                    FireAuthRooms.sendMessageAdmin(
-                                      recieverid: Get.arguments[1],
-                                      message: textcontroller!.text,
-                                      roomId: Get.arguments[0],
-                                    );
+                                    if (Get.arguments[4] == 'User') {
+                                      FireAuthRooms.creatRoomwithAdmin(
+                                          collectionName: "Users",
+                                          recieverId: Get.arguments[1]);
+                                      FireAuthRooms.sendMessageAdmin(
+                                        recieverid: Get.arguments[1],
+                                        message: textcontroller!.text,
+                                        roomId: Get.arguments[0].toString(),
+                                      );
+                                    } else if (Get.arguments[4] == 'Doctor') {
+                                      FireAuthRooms.creatRoomwithAdmin(
+                                          collectionName: "doctors",
+                                          recieverId: Get.arguments[1]);
+                                      FireAuthRooms.sendMessageAdmin(
+                                        recieverid: Get.arguments[1],
+                                        message: textcontroller!.text,
+                                        roomId: Get.arguments[0].toString(),
+                                      );
+                                    } else if (Get.arguments[4] == "Admin") {
+                                      FireAuthRooms.sendMessageAdmin(
+                                        recieverid: Get.arguments[1],
+                                        message: textcontroller!.text,
+                                        roomId: Get.arguments[0].toString(),
+                                      );
+                                    }
                                   }
                                   textcontroller!.clear();
                                   _scrollController.animateTo(
@@ -213,22 +251,38 @@ class ChattingAdminView extends StatelessWidget {
                             child: IconButton(
                               onPressed: () {
                                 if (textcontroller!.text.isNotEmpty) {
-                                  FireAuthRooms.creatRoomwithAdmin(
-                                      collectionName: Get.arguments[2],
-                                      recieverId:
-                                          'fhQxkjWDs5QyZk2CqjTnk8XNZyv1');
-                                  FireAuthRooms.sendMessageAdmin(
-                                    recieverid: Get.arguments[1],
-                                    message: textcontroller!.text,
-                                    roomId: Get.arguments[0],
-                                  );
-                                  textcontroller!.clear();
-                                  _scrollController.animateTo(
-                                    0,
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 500),
-                                  );
+                                  if (Get.arguments[4] == 'User') {
+                                    FireAuthRooms.creatRoomwithAdmin(
+                                        collectionName: "Users",
+                                        recieverId: Get.arguments[1]);
+                                    FireAuthRooms.sendMessageAdmin(
+                                      recieverid: Get.arguments[1],
+                                      message: textcontroller!.text,
+                                      roomId: Get.arguments[0].toString(),
+                                    );
+                                  } else if (Get.arguments[4] == 'Doctor') {
+                                    FireAuthRooms.creatRoomwithAdmin(
+                                        collectionName: "doctors",
+                                        recieverId: Get.arguments[1]);
+                                    FireAuthRooms.sendMessageAdmin(
+                                      recieverid: Get.arguments[1],
+                                      message: textcontroller!.text,
+                                      roomId: Get.arguments[0].toString(),
+                                    );
+                                  } else if (Get.arguments[4] == "Admin") {
+                                    FireAuthRooms.sendMessageAdmin(
+                                      recieverid: Get.arguments[1],
+                                      message: textcontroller!.text,
+                                      roomId: Get.arguments[0].toString(),
+                                    );
+                                  }
                                 }
+                                textcontroller!.clear();
+                                _scrollController.animateTo(
+                                  0,
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 500),
+                                );
                               },
                               icon: const Icon(
                                 Iconsax.send1,

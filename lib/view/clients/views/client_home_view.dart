@@ -143,7 +143,7 @@ class ClientHomeView extends StatelessWidget {
                   tap: () {
                     List members = [
                       FirebaseAuth.instance.currentUser!.uid,
-                      'fhQxkjWDs5QyZk2CqjTnk8XNZyv1'
+                      'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
                     ];
 
                     Get.toNamed(
@@ -151,7 +151,9 @@ class ClientHomeView extends StatelessWidget {
                       arguments: [
                         members.toString(),
                         'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
-                        'users',
+                        'admin',
+                        "Admin",
+                        "User",
                       ],
                     );
                   },

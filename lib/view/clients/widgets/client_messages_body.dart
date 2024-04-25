@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mindcare_app/model/room_model.dart';
-import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/chat_card.dart';
 
 class ClientMessagesBody extends StatelessWidget {
@@ -25,29 +23,13 @@ class ClientMessagesBody extends StatelessWidget {
             ..sort((a, b) => b.lastMessageTime!.compareTo(a.lastMessageTime!));
 
           return listIteams.isEmpty
-              ? const Center(child: Text("hello world"))
+              ? const Center(child: Text("No messages yet"))
               : ListView.builder(
                   itemCount: listIteams.length,
                   itemBuilder: (context, index) {
                     return ChatCard(
-                      ontap: () async {
-                        List members = [
-                          FirebaseAuth.instance.currentUser!.uid,
-                          listIteams[index].members![1],
-                        ];
-
-                        Get.toNamed(
-                          ChattingView.id,
-                          arguments: [
-                            members,
-                            listIteams[index].members![1],
-                            listIteams[index].to!,
-                            listIteams[index].toType!,
-                          ],
-                        );
-                      },
-                      name: listIteams[index].to!,
-                      type: listIteams[index].toType!,
+                      type: "User",
+                      model: listIteams[index],
                     );
                   },
                 );

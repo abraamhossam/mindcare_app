@@ -38,7 +38,6 @@ class CustomTestCard extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                //padding: const EdgeInsets.symmetric(vertical: 10.0),
                 padding:
                     const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                 child: Lottie.asset(

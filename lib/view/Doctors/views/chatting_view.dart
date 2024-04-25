@@ -40,7 +40,7 @@ class ChattingView extends StatelessWidget {
             "${Get.arguments[3]}:  ${Get.arguments[2]}",
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -199,13 +199,32 @@ class ChattingView extends StatelessWidget {
                               color: kPrimaryColor,
                             ),
                             child: IconButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (textcontroller!.text.isNotEmpty) {
-                                  FireAuthRooms.sendMessage(
-                                    recieverid: Get.arguments[1],
-                                    message: textcontroller!.text,
-                                    roomId: Get.arguments[0].toString(),
-                                  );
+                                  if (Get.arguments[3] == "Doctor") {
+                                    QuerySnapshot reciever =
+                                        await FirebaseFirestore
+                                            .instance
+                                            .collection('doctors')
+                                            .where('name',
+                                                isEqualTo: Get.arguments[2])
+                                            .get();
+                                    FireAuthRooms.creatRoom(
+                                      recieverName: Get.arguments[2],
+                                      recieverId: reciever.docs.first.id,
+                                    );
+                                    FireAuthRooms.sendMessage(
+                                      recieverid: Get.arguments[1],
+                                      message: textcontroller!.text,
+                                      roomId: Get.arguments[0].toString(),
+                                    );
+                                  } else {
+                                    FireAuthRooms.sendMessage(
+                                      recieverid: Get.arguments[1],
+                                      message: textcontroller!.text,
+                                      roomId: Get.arguments[0].toString(),
+                                    );
+                                  }
                                 }
                                 textcontroller!.clear();
                                 _scrollController.animateTo(

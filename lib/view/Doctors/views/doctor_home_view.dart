@@ -120,7 +120,7 @@ class DoctorHomeView extends StatelessWidget {
                       tap: () {
                         List members = [
                           FirebaseAuth.instance.currentUser!.uid,
-                          'fhQxkjWDs5QyZk2CqjTnk8XNZyv1'
+                          'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
                         ];
 
                         Get.toNamed(
@@ -128,7 +128,9 @@ class DoctorHomeView extends StatelessWidget {
                           arguments: [
                             members.toString(),
                             'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
-                            'doctors',
+                            "admin",
+                            "Admin",
+                            "Doctor"
                           ],
                         );
                       },
@@ -144,35 +146,3 @@ class DoctorHomeView extends StatelessWidget {
         });
   }
 }
-// CurvedNavigationBar(
-//                 height: 50,
-//                 backgroundColor: Colors.transparent,
-//                 buttonBackgroundColor: kPrimaryColor,
-//                 color: kPrimaryColor,
-//                 animationDuration: const Duration(microseconds: 300),
-//                 items: <Widget>[
-//                   const Icon(
-//                     Icons.home,
-//                     size: 26,
-//                     color: Colors.white,
-//                   ),
-//                   const Icon(
-//                     Icons.contact_mail_outlined,
-//                     size: 26,
-//                     color: Colors.white,
-//                   ),
-//                   const Icon(
-//                     Icons.date_range,
-//                     size: 26,
-//                     color: Colors.white,
-//                   ),
-//                   const Icon(
-//                     Icons.notifications_none,
-//                     size: 26,
-//                     color: Colors.white,
-//                   ),
-//                 ],
-//                 onTap: (index) {
-//                   controller.index.value = index;
-//                 },
-//               ),

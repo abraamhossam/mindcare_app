@@ -83,6 +83,18 @@ class MindCareApp extends StatelessWidget {
         // ),
         locale: language.initLang,
         translations: Language(),
+        initialBinding: MyBindings(),
+        // initialRoute: SplashView.id,
+        //initialRoute: "/chatbot",
+        // initialRoute: MoodRecommendationsView.id,
+        // initialRoute: FirebaseAuth.instance.currentUser == null
+        //     ? SplashView.id
+        //     : ClientHomeView.id,
+        initialRoute: DropDownView.id,
+        // initialRoute: DoctorHomeView.id,
+        // initialRoute: ClientHomeView.id,
+        // initialRoute: BasicInfo.id,
+        // initialRoute: SignInViewDoctors.id,
         getPages: [
           GetPage(
             name: SplashView.id,
@@ -287,17 +299,6 @@ class MindCareApp extends StatelessWidget {
             binding: MyBindings(),
           ),
         ],
-        // initialRoute: SplashView.id,
-        //initialRoute: "/chatbot",
-        // initialRoute: MoodRecommendationsView.id,
-        // initialRoute: FirebaseAuth.instance.currentUser == null
-        //     ? SplashView.id
-        //     : ClientHomeView.id,
-        initialRoute: DropDownView.id,
-        // initialRoute: DoctorHomeView.id,
-        // initialRoute: ClientHomeView.id,
-        // initialRoute: BasicInfo.id,
-        // initialRoute: SignInViewDoctors.id,
       ),
     );
   }

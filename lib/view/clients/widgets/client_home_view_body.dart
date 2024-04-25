@@ -1,17 +1,26 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/controller/test_controller/test_controller.dart';
+import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
+import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
+import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
+import 'package:mindcare_app/view/tests/views/depression_test_view.dart';
+import 'package:mindcare_app/view/tests/views/post_traumatic_stress_test_view.dart';
 import 'package:mindcare_app/view/widgets/custom_button%20copy.dart';
 import 'package:mindcare_app/view/widgets/custom_card.dart';
 
 class ClientHomeViewBody extends StatelessWidget {
-  const ClientHomeViewBody({super.key});
-
+  ClientHomeViewBody({super.key});
+  final TestController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    controller.back();
     return ListView(
       children: [
         Row(
@@ -48,21 +57,59 @@ class ClientHomeViewBody extends StatelessWidget {
             ),
           ),
         ),
-        const SingleChildScrollView(
+        SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
               Button(
+                title: "chat",
+                onPressed: () async {
+                  QuerySnapshot reciever = await FirebaseFirestore.instance
+                      .collection('doctors')
+                      .where('name', isEqualTo: "doctor1")
+                      .get();
+                  String recieverId = reciever.docs.first.id;
+
+                  List members = [
+                    FirebaseAuth.instance.currentUser!.uid,
+                    recieverId,
+                  ];
+
+                  Get.toNamed(ChattingView.id, arguments: [
+                    members.toString(),
+                    recieverId,
+                    "doctor1",
+                    "Doctor",
+                  ]);
+                },
+              ),
+              Button(
                 title: "Depression",
+                onPressed: () {
+                  controller.back();
+                  Get.toNamed(DepressionTestView.id);
+                },
               ),
               Button(
                 title: "Anxiety",
+                onPressed: () {
+                  controller.back();
+                  Get.toNamed(AniextyTestView.id);
+                },
               ),
               Button(
-                title: "Anger",
+                title: "Stress",
+                onPressed: () {
+                  controller.back();
+                  Get.toNamed(PostTraumaticStressTestView.id);
+                },
               ),
               Button(
-                title: "Fear",
+                title: "Dass",
+                onPressed: () {
+                  controller.back();
+                  Get.toNamed(DASSTestView.id);
+                },
               ),
             ],
           ),
