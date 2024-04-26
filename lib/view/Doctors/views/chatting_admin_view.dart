@@ -123,7 +123,7 @@ class ChattingAdminView extends StatelessWidget {
                                   if (textcontroller!.text.isNotEmpty) {
                                     if (Get.arguments[4] == 'User') {
                                       FireAuthRooms.creatRoomwithAdmin(
-                                          collectionName: "Users",
+                                          collectionName: "users",
                                           recieverId: Get.arguments[1]);
                                       FireAuthRooms.sendMessageAdmin(
                                         recieverid: Get.arguments[1],
@@ -253,7 +253,7 @@ class ChattingAdminView extends StatelessWidget {
                                 if (textcontroller!.text.isNotEmpty) {
                                   if (Get.arguments[4] == 'User') {
                                     FireAuthRooms.creatRoomwithAdmin(
-                                        collectionName: "Users",
+                                        collectionName: "users",
                                         recieverId: Get.arguments[1]);
                                     FireAuthRooms.sendMessageAdmin(
                                       recieverid: Get.arguments[1],

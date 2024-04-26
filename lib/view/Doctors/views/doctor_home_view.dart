@@ -130,7 +130,7 @@ class DoctorHomeView extends StatelessWidget {
                             'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
                             "admin",
                             "Admin",
-                            "Doctor"
+                            "Doctor",
                           ],
                         );
                       },
