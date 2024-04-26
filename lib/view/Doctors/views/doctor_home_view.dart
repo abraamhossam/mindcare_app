@@ -146,3 +146,50 @@ class DoctorHomeView extends StatelessWidget {
         });
   }
 }
+
+
+//  CustomNavigationBarItem(
+//                       icon: StreamBuilder(
+//                         stream: FirebaseFirestore.instance
+//                             .collection("adminRooms")
+//                             .where(
+//                               'members',
+//                               arrayContains:
+//                                   FirebaseAuth.instance.currentUser!.uid,
+//                             )
+//                             .snapshots(),
+//                         builder: (context, snapshot) {
+//                           final unReadList = snapshot.data?.docs
+//                               .map((e) => MessageModel.fromjson(e.data()))
+//                               .where((element) => element.read == "")
+//                               .where((element) =>
+//                                   element.members![0] !=
+//                                   FirebaseAuth.instance.currentUser!.uid);
+//                           return (unReadList == null)
+//                               ? const Icon(
+//                                   Iconsax.message_text,
+//                                   size: 26,
+//                                 )
+//                               : unReadList.isEmpty
+//                                   ? const Icon(
+//                                       Iconsax.message_text,
+//                                       size: 26,
+//                                     )
+//                                   : Badge(
+//                                       backgroundColor: Colors.green,
+//                                       padding:
+//                                           EdgeInsets.symmetric(horizontal: 8),
+//                                       label: Text(
+//                                         unReadList.length.toString(),
+//                                         style: TextStyle(
+//                                           color: Colors.white,
+//                                         ),
+//                                       ),
+//                                       child: Icon(
+//                                         Iconsax.message_text,
+//                                         size: 26,
+//                                       ),
+//                                     );
+//                         },
+//                       ),
+//                     ),

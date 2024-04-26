@@ -46,7 +46,7 @@ class DoctorHomeViewBody extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: SizedBox(
-            height: SizeConfig.height! * 0.35,
+            height: SizeConfig.height! * 0.38,
             child: ListView.builder(
               controller: _controller,
               physics: const BouncingScrollPhysics(),

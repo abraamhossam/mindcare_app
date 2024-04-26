@@ -46,18 +46,10 @@ class EnquiryDetailsBody extends StatelessWidget {
                   subTitle: "Video call",
                   subTitleColor: Colors.black,
                 ),
-                EnquiryInformationIteam(
+                const EnquiryInformationIteam(
                   title: "status",
                   subTitle: "Wait for call",
-                  subTitleColor: kPrimaryColor,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                  subTitleColor: Colors.black,
                 ),
               ],
             ),
