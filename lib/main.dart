@@ -186,8 +186,8 @@ class MindCareApp extends StatelessWidget {
             page: () => const mentalTests(),
           ),
           GetPage(
-            name: doctorSearch.id,
-            page: () => doctorSearch(),
+            name: DoctorSearch.id,
+            page: () => DoctorSearch(),
           ),
           GetPage(
             name: doctorProfile.id,

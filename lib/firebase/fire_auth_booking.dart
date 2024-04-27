@@ -28,13 +28,16 @@ class FireAuthBooking {
       'month': month,
       'day': day,
       'hour': hour,
-      'reply': 'waiting'
+      'reply': 'waiting',
+      'read': '',
+      "doctor_reply": "0",
     });
-    print("hello ebraam");
   }
 
   static Future booking(
-      {required String userName, required String reply}) async {
+      {required String userName,
+      required String reply,
+      required String doctorReply}) async {
     QuerySnapshot user = await firestore
         .collection('users')
         .where('name', isEqualTo: userName)
@@ -42,6 +45,9 @@ class FireAuthBooking {
     List members = [user.docs.first.id, myUid];
     await firestore.collection('bookings').doc(members.toString()).update({
       'reply': reply,
+    });
+    await firestore.collection('bookings').doc(members.toString()).update({
+      'doctor_reply': doctorReply,
     });
   }
 

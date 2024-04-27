@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,13 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
+import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_test_body.dart';
+import 'package:mindcare_app/view/doctor_search.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/profile_page.dart';
@@ -73,9 +76,44 @@ class ClientHomeView extends StatelessWidget {
                   ),
                 ),
                 CustomNavigationBarItem(
-                  icon: const Icon(
-                    Iconsax.calendar,
-                    size: 26,
+                  icon: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("bookings")
+                        .where(
+                          'members',
+                          arrayContains: FirebaseAuth.instance.currentUser!.uid,
+                        )
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      final unReadList = snapshot.data?.docs
+                          .map((e) => BookingModel.fromjson(e.data()))
+                          .where((element) => element.doctorReply == "1");
+
+                      return (unReadList == null)
+                          ? const Icon(
+                              Iconsax.calendar,
+                              size: 26,
+                            )
+                          : unReadList.isEmpty
+                              ? const Icon(
+                                  Iconsax.calendar,
+                                  size: 26,
+                                )
+                              : const Badge(
+                                  backgroundColor: Colors.green,
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  label: Text(
+                                    "",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Iconsax.calendar,
+                                    size: 26,
+                                  ),
+                                );
+                    },
                   ),
                 ),
                 CustomNavigationBarItem(
@@ -85,8 +123,29 @@ class ClientHomeView extends StatelessWidget {
                   ),
                 ),
               ],
-              onTap: (i) {
+              onTap: (i) async {
                 controller.indexUser.value = i;
+                if (controller.indexUser.value == 2) {
+                  QuerySnapshot<Map<String, dynamic>> collections =
+                      await FirebaseFirestore.instance
+                          .collection("bookings")
+                          .where(
+                            'members',
+                            arrayContains:
+                                FirebaseAuth.instance.currentUser!.uid,
+                          )
+                          .get();
+                  collections.docs.forEach(
+                    (element) {
+                      FirebaseFirestore.instance
+                          .collection('bookings')
+                          .doc(element.id)
+                          .update({
+                        'doctor_reply': "2",
+                      });
+                    },
+                  );
+                }
               },
             ),
           ),
@@ -134,7 +193,7 @@ class ClientHomeView extends StatelessWidget {
                   name: "Search for doctors".tr,
                   icon: Icons.person_search,
                   tap: () {
-                    Get.toNamed('/doctor_search');
+                    Get.toNamed(DoctorSearch.id);
                   },
                 ),
                 Tile(

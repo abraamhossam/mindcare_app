@@ -104,11 +104,12 @@ class UncomingBookingsBody extends StatelessWidget {
                                         children: [
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(),
-                                            onPressed: () {
+                                            onPressed: () async {
                                               FireAuthBooking.booking(
                                                 userName:
                                                     listIteams[index].userName!,
                                                 reply: 'accept',
+                                                doctorReply: "1",
                                               );
                                             },
                                             child: const Text(
@@ -119,11 +120,12 @@ class UncomingBookingsBody extends StatelessWidget {
                                             ),
                                           ),
                                           ElevatedButton(
-                                            onPressed: () {
+                                            onPressed: () async {
                                               FireAuthBooking.booking(
                                                 userName:
                                                     listIteams[index].userName!,
                                                 reply: 'reject',
+                                                doctorReply: "1",
                                               );
                                             },
                                             child: const Text(

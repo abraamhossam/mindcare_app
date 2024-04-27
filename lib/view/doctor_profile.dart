@@ -50,7 +50,7 @@ class doctorProfile extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Get.offNamed('/doctor_search');
+                      Get.back();
                     },
                     icon: Icon(
                       back,

@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
+import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
@@ -72,9 +74,48 @@ class DoctorHomeView extends StatelessWidget {
                       ),
                     ),
                     CustomNavigationBarItem(
-                      icon: const Icon(
-                        Iconsax.calendar,
-                        size: 26,
+                      icon: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection("bookings")
+                            .where(
+                              'members',
+                              arrayContains:
+                                  FirebaseAuth.instance.currentUser!.uid,
+                            )
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          final unReadList = snapshot.data?.docs
+                              .map((e) => BookingModel.fromjson(e.data()))
+                              .where((element) => element.read == "")
+                              .where((element) =>
+                                  element.members![0] !=
+                                  FirebaseAuth.instance.currentUser!.uid);
+                          return (unReadList == null)
+                              ? const Icon(
+                                  Iconsax.calendar,
+                                  size: 26,
+                                )
+                              : unReadList.isEmpty
+                                  ? const Icon(
+                                      Iconsax.calendar,
+                                      size: 26,
+                                    )
+                                  : Badge(
+                                      backgroundColor: Colors.green,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      label: Text(
+                                        unReadList.length.toString(),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      child: const Icon(
+                                        Iconsax.calendar,
+                                        size: 26,
+                                      ),
+                                    );
+                        },
                       ),
                     ),
                     CustomNavigationBarItem(
@@ -84,8 +125,30 @@ class DoctorHomeView extends StatelessWidget {
                       ),
                     ),
                   ],
-                  onTap: (i) {
+                  onTap: (i) async {
                     controller.indexDoctor.value = i;
+                    if (controller.indexDoctor.value == 2) {
+                      QuerySnapshot<Map<String, dynamic>> collections =
+                          await FirebaseFirestore.instance
+                              .collection("bookings")
+                              .where(
+                                'members',
+                                arrayContains:
+                                    FirebaseAuth.instance.currentUser!.uid,
+                              )
+                              .get();
+
+                      collections.docs.forEach(
+                        (element) {
+                          FirebaseFirestore.instance
+                              .collection('bookings')
+                              .doc(element.id)
+                              .update({
+                            'read': DateTime.now().toString(),
+                          });
+                        },
+                      );
+                    }
                   },
                 ),
               ),

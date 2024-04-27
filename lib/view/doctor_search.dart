@@ -7,9 +7,9 @@ import 'package:mindcare_app/view/make_appointment.dart';
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
 import 'package:mindcare_app/view/widgets/custom_doctor_card.dart';
 
-class doctorSearch extends StatelessWidget {
-  doctorSearch({super.key});
-  static String id = "/doctor_search";
+class DoctorSearch extends StatelessWidget {
+  DoctorSearch({super.key});
+  static String id = "/doctorsearch";
 
   Color color = const Color(0xff2296F3);
 
@@ -19,7 +19,7 @@ class doctorSearch extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Get.offNamed('/home');
+            Get.back();
           },
           icon: Icon(
             back,
