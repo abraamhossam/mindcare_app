@@ -23,6 +23,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("Result")
         .where("User_id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .orderBy("data", descending: true)
         .get();
     dataresult.addAll(querySnapshot.docs);
     isloading = false;

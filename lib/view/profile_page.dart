@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
       } else {
         setState(() {
           email = userdata.get("email");
-          name = userdata.get("full_name");
+          name = userdata.get("name");
         });
         // print("**********done***");
       }
@@ -74,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.blue,
                 ),
                 title: "Name",
-                subtitle: "$name",
+                subtitle: name,
               ),
               // SizedBox(
               //   height: 1,

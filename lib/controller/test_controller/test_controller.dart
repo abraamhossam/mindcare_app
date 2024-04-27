@@ -32,6 +32,8 @@ class TestController extends GetxController {
           'Result': ((points / index) * 100).toInt(),
           'time':
               (" ${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}"),
+              "data": (" ${DateTime.now().hour}-${DateTime.now().minute}-${DateTime.now().second}"
+              ),
         })
         .then((value) => print("Result Added"))
         .catchError((error) => print("Failed to add  Result: $error"));
