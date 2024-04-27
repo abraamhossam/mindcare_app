@@ -48,19 +48,20 @@ class FireAuthRooms {
       'type_from': 'User',
       'type_to': 'Doctor',
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
+      'read': '',
     });
   }
 
   static Future sendMessage({
     required String recieverid,
     required String message,
-    required String roomId,
+    required List roomId,
     String? type,
   }) async {
     String msgId = Uuid().v1();
     await firestore
         .collection('rooms')
-        .doc(roomId)
+        .doc(roomId.toString())
         .collection('messages')
         .doc(msgId)
         .set({
@@ -72,9 +73,18 @@ class FireAuthRooms {
       'type': type ?? 'text',
       'read': '',
     });
-    firestore.collection('rooms').doc(roomId).update({
+    firestore.collection('rooms').doc(roomId.toString()).update({
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
     });
+    if (roomId[0] == myUid) {
+      firestore.collection('rooms').doc(roomId.toString()).update({
+        'read': "1",
+      });
+    } else if (roomId[1] == myUid) {
+      firestore.collection('rooms').doc(roomId.toString()).update({
+        'read': "2",
+      });
+    }
   }
 
   static Future creatRoomwithAdmin(
@@ -95,6 +105,7 @@ class FireAuthRooms {
       'type_from': user.docs.first['type'],
       'type_to': 'Admin',
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
+      'read': '',
     });
   }
 
@@ -121,6 +132,9 @@ class FireAuthRooms {
     });
     firestore.collection('adminRooms').doc(roomId).update({
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
+    });
+    firestore.collection('adminRooms').doc(roomId).update({
+      'read': "false",
     });
   }
 

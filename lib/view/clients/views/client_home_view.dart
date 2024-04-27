@@ -7,6 +7,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/model/booking_model.dart';
+import 'package:mindcare_app/model/message_model.dart';
+import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
@@ -117,9 +119,45 @@ class ClientHomeView extends StatelessWidget {
                   ),
                 ),
                 CustomNavigationBarItem(
-                  icon: const Icon(
-                    Iconsax.message_text,
-                    size: 26,
+                  icon: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("rooms")
+                        .where(
+                          'members',
+                          arrayContains: FirebaseAuth.instance.currentUser!.uid,
+                        )
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      final unReadList = snapshot.data?.docs
+                          .map((e) => RoomModel.fromjson(e.data()))
+                          .where((element) => element.read == "2");
+
+                      return (unReadList == null)
+                          ? const Icon(
+                              Iconsax.message_text,
+                              size: 26,
+                            )
+                          : unReadList.isEmpty
+                              ? const Icon(
+                                  Iconsax.message_text,
+                                  size: 26,
+                                )
+                              : Badge(
+                                  backgroundColor: Colors.green,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  label: Text(
+                                    unReadList.length.toString(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Iconsax.message_text,
+                                    size: 26,
+                                  ),
+                                );
+                    },
                   ),
                 ),
               ],
@@ -145,6 +183,26 @@ class ClientHomeView extends StatelessWidget {
                       });
                     },
                   );
+                }
+                if (controller.indexUser.value == 3) {
+                  QuerySnapshot<Map<String, dynamic>> collections =
+                      await FirebaseFirestore.instance
+                          .collection("rooms")
+                          .where(
+                            'members',
+                            arrayContains:
+                                FirebaseAuth.instance.currentUser!.uid,
+                          )
+                          .get();
+
+                  collections.docs.forEach((element) {
+                    FirebaseFirestore.instance
+                        .collection('rooms')
+                        .doc(element.id)
+                        .update({
+                      'read': "",
+                    });
+                  });
                 }
               },
             ),
@@ -216,8 +274,46 @@ class ClientHomeView extends StatelessWidget {
                       ],
                     );
                   },
+                  trailing: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("adminRooms")
+                        .doc([
+                          FirebaseAuth.instance.currentUser!.uid,
+                          'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
+                        ].toString())
+                        .collection("messages")
+                        .snapshots(),
+                    builder: ((context, snapshot) {
+                      final unReadList = snapshot.data?.docs
+                          .map((e) => MessageModel.fromjson(e.data()))
+                          .where((element) => element.read == "")
+                          .where((element) =>
+                              element.fromId !=
+                              FirebaseAuth.instance.currentUser!.uid);
+
+                      return (unReadList == null)
+                          ? const Text("")
+                          : unReadList.isEmpty
+                              ? const Text("")
+                              : Badge(
+                                  backgroundColor: Colors.green,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  label: Text(
+                                    unReadList.length.toString(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  largeSize: 30,
+                                );
+                    }),
+                  ),
                 ),
-                Tile(name: "Talk with Ai Chatbot".tr, icon: Icons.chat),
+                Tile(
+                  name: "Talk with Ai Chatbot".tr,
+                  icon: Icons.chat,
+                ),
                 Tile(
                   name: "Logout",
                   icon: Icons.logout,

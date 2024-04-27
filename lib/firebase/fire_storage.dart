@@ -6,7 +6,7 @@ class FireStorage {
   final FirebaseStorage fireStorage = FirebaseStorage.instance;
   sendImage(
       {required File file,
-      required String roomId,
+      required List roomId,
       required String recieverId}) async {
     String ext = file.path.split(".").last;
     final ref = fireStorage

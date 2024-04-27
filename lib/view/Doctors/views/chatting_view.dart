@@ -114,13 +114,13 @@ class ChattingView extends StatelessWidget {
                                       FireAuthRooms.sendMessage(
                                         recieverid: Get.arguments[1],
                                         message: textcontroller!.text,
-                                        roomId: Get.arguments[0].toString(),
+                                        roomId: Get.arguments[0],
                                       );
                                     } else {
                                       FireAuthRooms.sendMessage(
                                         recieverid: Get.arguments[1],
                                         message: textcontroller!.text,
-                                        roomId: Get.arguments[0].toString(),
+                                        roomId: Get.arguments[0],
                                       );
                                     }
                                   }
@@ -154,8 +154,7 @@ class ChattingView extends StatelessWidget {
                                           if (image != null) {
                                             FireStorage().sendImage(
                                               file: File(image.path),
-                                              roomId:
-                                                  Get.arguments[0].toString(),
+                                              roomId: Get.arguments[0],
                                               recieverId: Get.arguments[1],
                                             );
                                           }
@@ -181,8 +180,7 @@ class ChattingView extends StatelessWidget {
                                           if (image != null) {
                                             FireStorage().sendImage(
                                               file: File(image.path),
-                                              roomId:
-                                                  Get.arguments[0].toString(),
+                                              roomId: Get.arguments[0],
                                               recieverId: Get.arguments[1],
                                             );
                                           }
@@ -234,13 +232,13 @@ class ChattingView extends StatelessWidget {
                                     FireAuthRooms.sendMessage(
                                       recieverid: Get.arguments[1],
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
+                                      roomId: Get.arguments[0],
                                     );
                                   } else {
                                     FireAuthRooms.sendMessage(
                                       recieverid: Get.arguments[1],
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
+                                      roomId: Get.arguments[0],
                                     );
                                   }
                                 }

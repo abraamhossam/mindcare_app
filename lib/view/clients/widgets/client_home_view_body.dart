@@ -75,7 +75,7 @@ class ClientHomeViewBody extends StatelessWidget {
                   ];
 
                   Get.toNamed(ChattingView.id, arguments: [
-                    members.toString(),
+                    members,
                     recieverId,
                     "doctor1",
                     "Doctor",

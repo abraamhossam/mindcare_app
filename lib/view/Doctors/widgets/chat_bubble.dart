@@ -92,11 +92,13 @@ class ChatBubbleReciever extends StatefulWidget {
 class _ChatBubbleRecieverState extends State<ChatBubbleReciever> {
   @override
   void initState() {
-    FireAuthRooms.readMessage(
-      roomId: widget.roomId,
-      msgId: widget.messageIteam.id,
-      type: widget.type,
-    );
+    if (widget.messageIteam.toId == FirebaseAuth.instance.currentUser!.uid) {
+      FireAuthRooms.readMessage(
+        roomId: widget.roomId,
+        msgId: widget.messageIteam.id,
+        type: widget.type,
+      );
+    }
     super.initState();
   }
 
