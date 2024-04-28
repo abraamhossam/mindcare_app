@@ -21,22 +21,95 @@ import 'package:mindcare_app/view/profile_page.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:mindcare_app/view/widgets/custom_tile.dart';
 
-class ClientHomeView extends StatelessWidget {
-  ClientHomeView({super.key});
+class ClientHomeView extends StatefulWidget {
+  const ClientHomeView({super.key});
   static String id = "/ClientHomeView";
+
+  @override
+  State<ClientHomeView> createState() => _ClientHomeViewState();
+}
+
+class _ClientHomeViewState extends State<ClientHomeView> {
   final List pages = [
     ClientHomeViewBody(),
     ClientTestBody(),
     ClientAppointmentsBody(),
     ClientMessagesBody(),
   ];
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  void _openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<BottomNavigationBarController>(
       init: BottomNavigationBarController(),
       builder: (controller) {
         return Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
+            leading: IconButton(
+              onPressed: () async {
+                _openDrawer();
+                QuerySnapshot<Map<String, dynamic>> collections =
+                    await FirebaseFirestore.instance
+                        .collection("adminRooms")
+                        .where(
+                          'members',
+                          arrayContains: FirebaseAuth.instance.currentUser!.uid,
+                        )
+                        .get();
+
+                collections.docs.forEach((element) {
+                  FirebaseFirestore.instance
+                      .collection('adminRooms')
+                      .doc(element.id)
+                      .update({
+                    'read': "",
+                  });
+                });
+              },
+              icon: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("adminRooms")
+                    .where(
+                      'members',
+                      arrayContains: FirebaseAuth.instance.currentUser!.uid,
+                    )
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  final unReadList = snapshot.data?.docs
+                      .map((e) => RoomModel.fromjson(e.data()))
+                      .where((element) => element.read == "1");
+
+                  return (unReadList == null)
+                      ? const Icon(
+                          Icons.menu,
+                          size: 26,
+                        )
+                      : unReadList.isEmpty
+                          ? const Icon(
+                              Icons.menu,
+                              size: 26,
+                            )
+                          : const Badge(
+                              backgroundColor: Colors.green,
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                              label: Text(
+                                "",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.menu,
+                                size: 26,
+                              ),
+                            );
+                },
+              ),
+            ),
             centerTitle: true,
             title: const Text.rich(
               TextSpan(
@@ -377,22 +450,3 @@ class ClientHomeView extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-// ignore: must_be_immutable
-
-/* BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: "Home")
-      ]) */
