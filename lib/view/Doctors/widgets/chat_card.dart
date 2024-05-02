@@ -12,37 +12,19 @@ class ChatCard extends StatelessWidget {
   const ChatCard({
     super.key,
     required this.model,
-    required this.type,
   });
 
   final RoomModel model;
-  final String type;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return GestureDetector(
       onTap: () {
-        if (type == "User") {
-          Get.toNamed(
-            ChattingView.id,
-            arguments: [
-              model.members,
-              model.members![1],
-              model.to,
-              model.toType,
-            ],
-          );
-        } else if (type == "Doctor") {
-          Get.toNamed(
-            ChattingView.id,
-            arguments: [
-              model.members,
-              model.members![0],
-              model.from,
-              model.fromType,
-            ],
-          );
-        }
+        Get.toNamed(
+          ChattingView.id,
+          arguments: model,
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(

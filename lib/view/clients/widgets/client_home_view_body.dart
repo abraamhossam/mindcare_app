@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
+import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
@@ -73,13 +75,83 @@ class ClientHomeViewBody extends StatelessWidget {
                     FirebaseAuth.instance.currentUser!.uid,
                     recieverId,
                   ];
+                  FireAuthRooms.creatRoom(
+                    recieverName: "doctor1",
+                    recieverId: reciever.docs.first.id,
+                  );
 
-                  Get.toNamed(ChattingView.id, arguments: [
-                    members,
-                    recieverId,
-                    "doctor1",
-                    "Doctor",
-                  ]);
+                  // ignore: use_build_context_synchronously
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        contentTextStyle: const TextStyle(
+                            height: 1.5,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                        backgroundColor: const Color(0xff607D8B),
+                        content: const Text(
+                          "Are you sure to create chat with therapist ? ",
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                            child: const Text(
+                              "Ok",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () async {
+                              DocumentSnapshot<Map<String, dynamic>>
+                                  collection = await FirebaseFirestore.instance
+                                      .collection("rooms")
+                                      .doc(members.toString())
+                                      .get();
+
+                              Get.offNamed(
+                                ChattingView.id,
+                                arguments:
+                                    RoomModel.fromjson(collection.data()),
+                              );
+                              FirebaseFirestore.instance
+                                  .collection('rooms')
+                                  .doc(members.toString())
+                                  .update({
+                                'success': "true",
+                              });
+                              FireAuthRooms.sendMessage(
+                                recieverid: reciever.docs.first.id,
+                                message: "hello",
+                                roomId: members,
+                              );
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.blue)),
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () {
+                              FirebaseFirestore.instance
+                                  .collection("rooms")
+                                  .doc(members.toString())
+                                  .delete();
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
               Button(

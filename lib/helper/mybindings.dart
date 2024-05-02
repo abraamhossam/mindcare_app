@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mindcare_app/controller/get_details_controller.dart';
 
 import 'package:mindcare_app/controller/recommendations_controller/moods_controller.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
@@ -9,5 +10,6 @@ class MyBindings implements Bindings {
     Get.put(TestController(), permanent: true);
 
     Get.put(MoodsController());
+    Get.put(GetDetailscontroller(), permanent: true);
   }
 }

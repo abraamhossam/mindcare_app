@@ -9,16 +9,21 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/firebase/fire_storage.dart';
 import 'package:mindcare_app/model/message_model.dart';
+import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/widgets/chat_bubble.dart';
 
 // ignore: must_be_immutable
 class ChattingView extends StatelessWidget {
-  ChattingView({super.key});
+  ChattingView({
+    super.key,
+  });
   static String id = "/chattingview";
 
   TextEditingController? textcontroller = TextEditingController();
 
   final _scrollController = ScrollController();
+  final RoomModel model = Get.arguments;
+  String myUid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,7 @@ class ChattingView extends StatelessWidget {
             ),
           ),
           title: Text(
-            "${Get.arguments[3]}:  ${Get.arguments[2]}",
+            "${model.toType}:  ${model.to}",
             style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
@@ -48,7 +53,7 @@ class ChattingView extends StatelessWidget {
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("rooms")
-              .doc(Get.arguments[0].toString())
+              .doc(model.members.toString())
               .collection('messages')
               .orderBy(
                 'created_at',
@@ -70,14 +75,14 @@ class ChattingView extends StatelessWidget {
                                   snapshot.data!.docs[index]['fromid']
                               ? ChatBubbleSender(
                                   type: 'users',
-                                  roomId: Get.arguments[0].toString(),
+                                  roomId: model.members.toString(),
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
                                 )
                               : ChatBubbleReciever(
                                   type: 'users',
-                                  roomId: Get.arguments[0].toString(),
+                                  roomId: model.members.toString(),
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
@@ -100,27 +105,17 @@ class ChattingView extends StatelessWidget {
                                 controller: textcontroller,
                                 onSubmitted: (data) async {
                                   if (textcontroller!.text.isNotEmpty) {
-                                    if (Get.arguments[3] == "Doctor") {
-                                      QuerySnapshot reciever =
-                                          await FirebaseFirestore.instance
-                                              .collection('doctors')
-                                              .where('name',
-                                                  isEqualTo: Get.arguments[2])
-                                              .get();
-                                      FireAuthRooms.creatRoom(
-                                        recieverName: Get.arguments[2],
-                                        recieverId: reciever.docs.first.id,
-                                      );
+                                    if (model.members![0] == myUid) {
                                       FireAuthRooms.sendMessage(
-                                        recieverid: Get.arguments[1],
+                                        recieverid: model.members![1],
                                         message: textcontroller!.text,
-                                        roomId: Get.arguments[0],
+                                        roomId: model.members!,
                                       );
                                     } else {
                                       FireAuthRooms.sendMessage(
-                                        recieverid: Get.arguments[1],
+                                        recieverid: model.members![0],
                                         message: textcontroller!.text,
-                                        roomId: Get.arguments[0],
+                                        roomId: model.members!,
                                       );
                                     }
                                   }
@@ -154,8 +149,8 @@ class ChattingView extends StatelessWidget {
                                           if (image != null) {
                                             FireStorage().sendImage(
                                               file: File(image.path),
-                                              roomId: Get.arguments[0],
-                                              recieverId: Get.arguments[1],
+                                              roomId: model.members!,
+                                              recieverId: model.members![0],
                                             );
                                           }
                                           _scrollController.animateTo(
@@ -217,28 +212,17 @@ class ChattingView extends StatelessWidget {
                             child: IconButton(
                               onPressed: () async {
                                 if (textcontroller!.text.isNotEmpty) {
-                                  if (Get.arguments[3] == "Doctor") {
-                                    QuerySnapshot reciever =
-                                        await FirebaseFirestore
-                                            .instance
-                                            .collection('doctors')
-                                            .where('name',
-                                                isEqualTo: Get.arguments[2])
-                                            .get();
-                                    FireAuthRooms.creatRoom(
-                                      recieverName: Get.arguments[2],
-                                      recieverId: reciever.docs.first.id,
-                                    );
+                                  if (model.members![0] == myUid) {
                                     FireAuthRooms.sendMessage(
-                                      recieverid: Get.arguments[1],
+                                      recieverid: model.members![1],
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0],
+                                      roomId: model.members!,
                                     );
                                   } else {
                                     FireAuthRooms.sendMessage(
-                                      recieverid: Get.arguments[1],
+                                      recieverid: model.members![0],
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0],
+                                      roomId: model.members!,
                                     );
                                   }
                                 }

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
+import 'package:mindcare_app/controller/get_details_controller.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
@@ -36,9 +37,17 @@ class _ClientHomeViewState extends State<ClientHomeView> {
     ClientAppointmentsBody(),
     ClientMessagesBody(),
   ];
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   void _openDrawer() {
     _scaffoldKey.currentState?.openDrawer();
+  }
+
+  @override
+  void initState() {
+    GetDetailscontroller().getDetails(type: 'User');
+
+    super.initState();
   }
 
   @override

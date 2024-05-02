@@ -28,7 +28,6 @@ class DoctorMessagesBody extends StatelessWidget {
                   itemCount: listIteams.length,
                   itemBuilder: (context, index) {
                     return ChatCard(
-                      type: "Doctor",
                       model: listIteams[index],
                     );
                   },

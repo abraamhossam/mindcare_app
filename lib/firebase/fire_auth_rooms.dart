@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:mindcare_app/controller/get_details_controller.dart';
 import 'package:uuid/uuid.dart';
 
 class FireAuthRooms {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static String myUid = FirebaseAuth.instance.currentUser!.uid;
+  static final GetDetailscontroller controller = Get.find();
 
   static Future createUser({
     required String name,
@@ -16,6 +19,7 @@ class FireAuthRooms {
       'email': email,
       'type': 'User',
       'image': "",
+      "token": "",
     });
   }
 
@@ -27,6 +31,7 @@ class FireAuthRooms {
       'email': email,
       'type': 'Doctor',
       'image': "",
+      "token": "",
     });
   }
 
@@ -49,6 +54,7 @@ class FireAuthRooms {
       'type_to': 'Doctor',
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
       'read': '',
+      'success': "false",
     });
   }
 
@@ -161,6 +167,29 @@ class FireAuthRooms {
           .update({
         'read': DateTime.now().microsecondsSinceEpoch.toString(),
       });
+    }
+  }
+
+  static Future sendNotification(
+      {required String recieveId,
+      required String msg,
+      required String type}) async {
+    if (type == 'User') {
+      QuerySnapshot user =
+          await firestore.collection("users").where(recieveId).get();
+      final header = {
+        "Content-Type": "application/json",
+        "Authorization":
+            "AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+      };
+      final body = {
+        "to": user.docs.first['token'],
+        "notification": {
+          "title": controller.dataModel!.name,
+          "body": msg,
+        }
+      };
+      print(body);
     }
   }
 }
