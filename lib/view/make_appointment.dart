@@ -166,18 +166,68 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                       month: month.toString(),
                       hour: hour.toString());
                   if (check == 'waiting') {
+                    // ignore: use_build_context_synchronously
                     snackbar(context,
                         'Already Booked Session and waiting for reply');
                   } else {
                     if (checkTime == false) {
-                      FireAuthBooking.createBooking(
-                          month: month,
-                          day: day,
-                          hour: hour,
-                          doctorName: "doctor1");
-                      snackbar(context,
-                          "Booked session successfully and waiting for reply from therapist");
+                      // ignore: use_build_context_synchronously
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              contentTextStyle: const TextStyle(
+                                  height: 1.5,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                              backgroundColor: const Color(0xff607D8B),
+                              content: const Text(
+                                "Are you sure to booking session ? ",
+                              ),
+                              actions: [
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.blue)),
+                                  child: const Text(
+                                    "Ok",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () async {
+                                    FireAuthBooking.createBooking(
+                                        month: month,
+                                        day: day,
+                                        hour: hour,
+                                        doctorName: "doctor1");
+                                    Get.back();
+                                    snackbar(context,
+                                        "Booked session successfully and waiting for reply from therapist");
+                                  },
+                                ),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.blue)),
+                                  child: const Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                              ],
+                            );
+                          });
                     } else {
+                      // ignore: use_build_context_synchronously
                       snackbar(context, "This time is already booked");
                     }
                   }
@@ -193,54 +243,6 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                 ),
               ),
             ),
-
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25.0),
-            //   child: Text(
-            //     'Choose The Hour'.tr,
-            //     style: const TextStyle(
-            //       fontSize: 20,
-            //       fontWeight: FontWeight.w600,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(bottom: 8.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       HourButton(
-            //         hour: '8:00 ${"A`M".tr}',
-            //         size: size,
-            //       ),
-            //       HourButton(
-            //         hour: '10:00 ${"AM".tr}',
-            //         size: size,
-            //       ),
-            //       HourButton(
-            //         hour: '1:00 ${"PM".tr}',
-            //         size: size,
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: [
-            //     HourButton(
-            //       hour: '3:00 ${"PM".tr}',
-            //       size: size,
-            //     ),
-            //     HourButton(
-            //       hour: '4:00 ${"PM".tr}',
-            //       size: size,
-            //     ),
-            //     HourButton(
-            //       hour: '6:00 ${"PM".tr}',
-            //       size: size,
-            //     ),
-            //   ],
-            // ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               child: Text(

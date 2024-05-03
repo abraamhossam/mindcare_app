@@ -41,14 +41,23 @@ class ChattingView extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          title: Text(
-            "${model.toType}:  ${model.to}",
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          title: model.members![0] == myUid
+              ? Text(
+                  "${model.toType}:  ${model.to}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : Text(
+                  "${model.fromType}:  ${model.from}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
@@ -74,15 +83,13 @@ class ChattingView extends StatelessWidget {
                           return FirebaseAuth.instance.currentUser!.uid ==
                                   snapshot.data!.docs[index]['fromid']
                               ? ChatBubbleSender(
-                                  type: 'users',
-                                  roomId: model.members.toString(),
+                                  roomIteam: model,
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
                                 )
                               : ChatBubbleReciever(
-                                  type: 'users',
-                                  roomId: model.members.toString(),
+                                  roomIteam: model,
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
@@ -147,11 +154,21 @@ class ChattingView extends StatelessWidget {
                                             source: ImageSource.gallery,
                                           );
                                           if (image != null) {
-                                            FireStorage().sendImage(
-                                              file: File(image.path),
-                                              roomId: model.members!,
-                                              recieverId: model.members![0],
-                                            );
+                                            if (model.members![0] == myUid) {
+                                              FireStorage().sendImage(
+                                                file: File(image.path),
+                                                roomId: model.members!,
+                                                recieverId: model.members![1]
+                                                    .toString(),
+                                              );
+                                            } else {
+                                              FireStorage().sendImage(
+                                                file: File(image.path),
+                                                roomId: model.members!,
+                                                recieverId: model.members![0]
+                                                    .toString(),
+                                              );
+                                            }
                                           }
                                           _scrollController.animateTo(
                                             0,
@@ -173,11 +190,21 @@ class ChattingView extends StatelessWidget {
                                             source: ImageSource.camera,
                                           );
                                           if (image != null) {
-                                            FireStorage().sendImage(
-                                              file: File(image.path),
-                                              roomId: Get.arguments[0],
-                                              recieverId: Get.arguments[1],
-                                            );
+                                            if (model.members![0] == myUid) {
+                                              FireStorage().sendImage(
+                                                file: File(image.path),
+                                                roomId: model.members!,
+                                                recieverId: model.members![1]
+                                                    .toString(),
+                                              );
+                                            } else {
+                                              FireStorage().sendImage(
+                                                file: File(image.path),
+                                                roomId: model.members!,
+                                                recieverId: model.members![0]
+                                                    .toString(),
+                                              );
+                                            }
                                           }
                                           _scrollController.animateTo(
                                             0,

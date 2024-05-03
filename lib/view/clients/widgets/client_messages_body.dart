@@ -14,7 +14,6 @@ class ClientMessagesBody extends StatelessWidget {
           .collection("rooms")
           .where('members',
               arrayContains: FirebaseAuth.instance.currentUser!.uid)
-          .where('success', isEqualTo: 'true')
           .snapshots(),
       builder: (context, snapchot) {
         if (snapchot.hasData) {

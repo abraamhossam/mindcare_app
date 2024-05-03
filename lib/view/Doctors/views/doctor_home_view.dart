@@ -6,6 +6,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
@@ -42,6 +43,9 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
   @override
   void initState() {
     GetDetailscontroller().getDetails(type: 'Doctor');
+    GetDetailscontroller().checkChat(
+      collectionName: "doctors",
+    );
     super.initState();
   }
 
@@ -57,7 +61,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                 leading: IconButton(
                   onPressed: () async {
                     _openDrawer();
-                    QuerySnapshot<Map<String, dynamic>> collections =
+                    QuerySnapshot<Map<String, dynamic>> collection =
                         await FirebaseFirestore.instance
                             .collection("adminRooms")
                             .where(
@@ -66,15 +70,14 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                                   FirebaseAuth.instance.currentUser!.uid,
                             )
                             .get();
-
-                    collections.docs.forEach((element) {
+                    if (collection.docs.first['read'] == "2") {
                       FirebaseFirestore.instance
                           .collection('adminRooms')
-                          .doc(element.id)
+                          .doc(collection.docs.first.id)
                           .update({
                         'read': "",
                       });
-                    });
+                    }
                   },
                   icon: StreamBuilder(
                     stream: FirebaseFirestore.instance
@@ -87,7 +90,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                     builder: (context, snapshot) {
                       final unReadList = snapshot.data?.docs
                           .map((e) => RoomModel.fromjson(e.data()))
-                          .where((element) => element.read == "1");
+                          .where((element) => element.read == "2");
 
                       return (unReadList == null)
                           ? const Icon(
@@ -320,22 +323,31 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                     Tile(
                       name: "Admin",
                       icon: Icons.admin_panel_settings,
-                      tap: () {
+                      tap: () async {
+                        QuerySnapshot user = await FirebaseFirestore.instance
+                            .collection("doctors")
+                            .where('id',
+                                isEqualTo:
+                                    FirebaseAuth.instance.currentUser!.uid)
+                            .get();
                         List members = [
-                          FirebaseAuth.instance.currentUser!.uid,
+                          user.docs.first.id,
                           'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
                         ];
+                        DocumentSnapshot<Map<String, dynamic>> collection =
+                            await FirebaseFirestore.instance
+                                .collection("adminRooms")
+                                .doc(members.toString())
+                                .get();
 
-                        Get.toNamed(
-                          ChattingAdminView.id,
-                          arguments: [
-                            members.toString(),
-                            'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
-                            "admin",
-                            "Admin",
-                            "Doctor",
-                          ],
-                        );
+                        if (collection.exists == true) {
+                          Get.toNamed(
+                            ChattingAdminView.id,
+                            arguments: RoomModel.fromjson(
+                              collection.data(),
+                            ),
+                          );
+                        }
                       },
                       trailing: StreamBuilder(
                         stream: FirebaseFirestore.instance

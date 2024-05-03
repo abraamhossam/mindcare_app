@@ -9,8 +9,10 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/firebase/fire_storage.dart';
 import 'package:mindcare_app/model/message_model.dart';
-import '../widgets/chat_bubble.dart';
+import 'package:mindcare_app/model/room_model.dart';
+import 'package:mindcare_app/view/Doctors/widgets/chat_bubble_admin.dart';
 
+// ignore: must_be_immutable
 class ChattingAdminView extends StatelessWidget {
   ChattingAdminView({super.key});
   static String id = "/ChatAdminView";
@@ -19,11 +21,15 @@ class ChattingAdminView extends StatelessWidget {
 
   final _scrollController = ScrollController();
 
+  final RoomModel model = Get.arguments;
+
+  String myUid = FirebaseAuth.instance.currentUser!.uid;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: Get.arguments[3] == "Admin"
+        appBar: model.toType == "Admin"
             ? AppBar(
                 backgroundColor: kPrimaryColor,
                 leading: IconButton(
@@ -40,7 +46,7 @@ class ChattingAdminView extends StatelessWidget {
                   "Admin",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -58,7 +64,7 @@ class ChattingAdminView extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  "${Get.arguments[3]}:  ${Get.arguments[2]}",
+                  "${model.fromType}:  ${model.from}",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -69,7 +75,7 @@ class ChattingAdminView extends StatelessWidget {
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("adminRooms")
-              .doc(Get.arguments[0].toString())
+              .doc(model.members.toString())
               .collection('messages')
               .orderBy(
                 'created_at',
@@ -89,16 +95,14 @@ class ChattingAdminView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return FirebaseAuth.instance.currentUser!.uid ==
                                   snapshot.data!.docs[index]['fromid']
-                              ? ChatBubbleSender(
-                                  type: 'admin',
-                                  roomId: Get.arguments[0].toString(),
+                              ? ChatBubbleAdminSender(
+                                  roomIteam: model,
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
                                 )
-                              : ChatBubbleReciever(
-                                  type: 'admin',
-                                  roomId: Get.arguments[0].toString(),
+                              : ChatBubbleAdminReciever(
+                                  roomIteam: model,
                                   messageIteam: MessageModel.fromjson(
                                     snapshot.data!.docs[index],
                                   ),
@@ -121,30 +125,22 @@ class ChattingAdminView extends StatelessWidget {
                                 controller: textcontroller,
                                 onSubmitted: (data) {
                                   if (textcontroller!.text.isNotEmpty) {
-                                    if (Get.arguments[4] == 'User') {
-                                      FireAuthRooms.creatRoomwithAdmin(
-                                          collectionName: "users",
-                                          recieverId: Get.arguments[1]);
-                                      FireAuthRooms.sendMessageAdmin(
-                                        recieverid: Get.arguments[1],
-                                        message: textcontroller!.text,
-                                        roomId: Get.arguments[0].toString(),
-                                      );
-                                    } else if (Get.arguments[4] == 'Doctor') {
-                                      FireAuthRooms.creatRoomwithAdmin(
-                                          collectionName: "doctors",
-                                          recieverId: Get.arguments[1]);
-                                      FireAuthRooms.sendMessageAdmin(
-                                        recieverid: Get.arguments[1],
-                                        message: textcontroller!.text,
-                                        roomId: Get.arguments[0].toString(),
-                                      );
-                                    } else if (Get.arguments[4] == "Admin") {
-                                      FireAuthRooms.sendMessageAdmin(
-                                        recieverid: Get.arguments[1],
-                                        message: textcontroller!.text,
-                                        roomId: Get.arguments[0].toString(),
-                                      );
+                                    if (textcontroller!.text.isNotEmpty) {
+                                      if (model.members![0] == myUid) {
+                                        FireAuthRooms.sendMessageAdmin(
+                                          recieverid:
+                                              model.members![1].toString(),
+                                          message: textcontroller!.text,
+                                          roomId: model.members.toString(),
+                                        );
+                                      } else {
+                                        FireAuthRooms.sendMessageAdmin(
+                                          recieverid:
+                                              model.members![0].toString(),
+                                          message: textcontroller!.text,
+                                          roomId: model.members.toString(),
+                                        );
+                                      }
                                     }
                                   }
                                   textcontroller!.clear();
@@ -171,12 +167,23 @@ class ChattingAdminView extends StatelessWidget {
                                             source: ImageSource.gallery,
                                           );
                                           if (image != null) {
-                                            FireStorage().sendImageAdmin(
-                                              file: File(image.path),
-                                              roomId:
-                                                  Get.arguments[0].toString(),
-                                              recieverId: Get.arguments[1],
-                                            );
+                                            if (model.members![0] == myUid) {
+                                              FireStorage().sendImageAdmin(
+                                                file: File(image.path),
+                                                roomId:
+                                                    model.members.toString(),
+                                                recieverId: model.members![1]
+                                                    .toString(),
+                                              );
+                                            } else {
+                                              FireStorage().sendImageAdmin(
+                                                file: File(image.path),
+                                                roomId:
+                                                    model.members.toString(),
+                                                recieverId: model.members![0]
+                                                    .toString(),
+                                              );
+                                            }
                                           }
                                           _scrollController.animateTo(
                                             0,
@@ -198,12 +205,23 @@ class ChattingAdminView extends StatelessWidget {
                                             source: ImageSource.camera,
                                           );
                                           if (image != null) {
-                                            FireStorage().sendImageAdmin(
-                                              file: File(image.path),
-                                              roomId:
-                                                  Get.arguments[0].toString(),
-                                              recieverId: Get.arguments[1],
-                                            );
+                                            if (model.members![0] == myUid) {
+                                              FireStorage().sendImageAdmin(
+                                                file: File(image.path),
+                                                roomId:
+                                                    model.members.toString(),
+                                                recieverId: model.members![1]
+                                                    .toString(),
+                                              );
+                                            } else {
+                                              FireStorage().sendImageAdmin(
+                                                file: File(image.path),
+                                                roomId:
+                                                    model.members.toString(),
+                                                recieverId: model.members![0]
+                                                    .toString(),
+                                              );
+                                            }
                                           }
                                           _scrollController.animateTo(
                                             0,
@@ -251,29 +269,17 @@ class ChattingAdminView extends StatelessWidget {
                             child: IconButton(
                               onPressed: () {
                                 if (textcontroller!.text.isNotEmpty) {
-                                  if (Get.arguments[4] == 'User') {
-                                    FireAuthRooms.creatRoomwithAdmin(
-                                        collectionName: "users",
-                                        recieverId: Get.arguments[1]);
+                                  if (model.members![0] == myUid) {
                                     FireAuthRooms.sendMessageAdmin(
-                                      recieverid: Get.arguments[1],
+                                      recieverid: model.members![1].toString(),
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
+                                      roomId: model.members.toString(),
                                     );
-                                  } else if (Get.arguments[4] == 'Doctor') {
-                                    FireAuthRooms.creatRoomwithAdmin(
-                                        collectionName: "doctors",
-                                        recieverId: Get.arguments[1]);
+                                  } else {
                                     FireAuthRooms.sendMessageAdmin(
-                                      recieverid: Get.arguments[1],
+                                      recieverid: model.members![0].toString(),
                                       message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
-                                    );
-                                  } else if (Get.arguments[4] == "Admin") {
-                                    FireAuthRooms.sendMessageAdmin(
-                                      recieverid: Get.arguments[1],
-                                      message: textcontroller!.text,
-                                      roomId: Get.arguments[0].toString(),
+                                      roomId: model.members.toString(),
                                     );
                                   }
                                 }

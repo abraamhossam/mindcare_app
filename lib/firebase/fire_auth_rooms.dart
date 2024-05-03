@@ -54,7 +54,6 @@ class FireAuthRooms {
       'type_to': 'Doctor',
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
       'read': '',
-      'success': "false",
     });
   }
 
@@ -140,34 +139,36 @@ class FireAuthRooms {
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
     });
     firestore.collection('adminRooms').doc(roomId).update({
-      'read': "false",
+      'read': "1",
     });
   }
 
   static Future readMessage({
     required String roomId,
     required String msgId,
-    required String type,
   }) async {
-    if (type == 'admin') {
-      await firestore
-          .collection('adminRooms')
-          .doc(roomId)
-          .collection("messages")
-          .doc(msgId)
-          .update({
-        'read': DateTime.now().microsecondsSinceEpoch.toString(),
-      });
-    } else {
-      await firestore
-          .collection('rooms')
-          .doc(roomId)
-          .collection("messages")
-          .doc(msgId)
-          .update({
-        'read': DateTime.now().microsecondsSinceEpoch.toString(),
-      });
-    }
+    await firestore
+        .collection('rooms')
+        .doc(roomId)
+        .collection("messages")
+        .doc(msgId)
+        .update({
+      'read': DateTime.now().microsecondsSinceEpoch.toString(),
+    });
+  }
+
+  static Future readMessageAdmin({
+    required String roomId,
+    required String msgId,
+  }) async {
+    await firestore
+        .collection('adminRooms')
+        .doc(roomId)
+        .collection("messages")
+        .doc(msgId)
+        .update({
+      'read': DateTime.now().microsecondsSinceEpoch.toString(),
+    });
   }
 
   static Future sendNotification(
@@ -185,7 +186,7 @@ class FireAuthRooms {
       final body = {
         "to": user.docs.first['token'],
         "notification": {
-          "title": controller.dataModel!.name,
+          "title": controller.dataModel.value.name,
           "body": msg,
         }
       };

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/room_model.dart';
@@ -18,6 +19,7 @@ import 'package:mindcare_app/view/widgets/custom_card.dart';
 class ClientHomeViewBody extends StatelessWidget {
   ClientHomeViewBody({super.key});
   final TestController controller = Get.find();
+  final BottomNavigationBarController controllerIndex = Get.find();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -75,83 +77,77 @@ class ClientHomeViewBody extends StatelessWidget {
                     FirebaseAuth.instance.currentUser!.uid,
                     recieverId,
                   ];
-                  FireAuthRooms.creatRoom(
-                    recieverName: "doctor1",
-                    recieverId: reciever.docs.first.id,
-                  );
 
-                  // ignore: use_build_context_synchronously
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        contentTextStyle: const TextStyle(
-                            height: 1.5,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                        backgroundColor: const Color(0xff607D8B),
-                        content: const Text(
-                          "Are you sure to create chat with therapist ? ",
-                        ),
-                        actions: [
-                          ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue)),
-                            child: const Text(
-                              "Ok",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () async {
-                              DocumentSnapshot<Map<String, dynamic>>
-                                  collection = await FirebaseFirestore.instance
-                                      .collection("rooms")
-                                      .doc(members.toString())
-                                      .get();
+                  DocumentSnapshot<Map<String, dynamic>> collection =
+                      await FirebaseFirestore.instance
+                          .collection("rooms")
+                          .doc(members.toString())
+                          .get();
 
-                              Get.offNamed(
-                                ChattingView.id,
-                                arguments:
-                                    RoomModel.fromjson(collection.data()),
-                              );
-                              FirebaseFirestore.instance
-                                  .collection('rooms')
-                                  .doc(members.toString())
-                                  .update({
-                                'success': "true",
-                              });
-                              FireAuthRooms.sendMessage(
-                                recieverid: reciever.docs.first.id,
-                                message: "hello",
-                                roomId: members,
-                              );
-                            },
+                  if (collection.exists == false) {
+                    // ignore: use_build_context_synchronously
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          contentTextStyle: const TextStyle(
+                              height: 1.5,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                          backgroundColor: const Color(0xff607D8B),
+                          content: const Text(
+                            "Are you sure to create chat with therapist ?",
                           ),
-                          ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.blue)),
-                            child: const Text(
-                              "Cancel",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                          actions: [
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.blue)),
+                              child: const Text(
+                                "Ok",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              onPressed: () {
+                                FireAuthRooms.creatRoom(
+                                  recieverName: "doctor1",
+                                  recieverId: reciever.docs.first.id,
+                                );
+                                Get.back();
+                                controllerIndex.indexUser.value = 3;
+                                FireAuthRooms.sendMessage(
+                                  recieverid: reciever.docs.first.id,
+                                  message: "hello",
+                                  roomId: members,
+                                );
+                              },
                             ),
-                            onPressed: () {
-                              FirebaseFirestore.instance
-                                  .collection("rooms")
-                                  .doc(members.toString())
-                                  .delete();
-                              Get.back();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.blue)),
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              onPressed: () {
+                                Get.back();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    Get.toNamed(
+                      ChattingView.id,
+                      arguments: RoomModel.fromjson(collection.data()),
+                    );
+                  }
                 },
               ),
               Button(

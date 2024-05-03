@@ -46,10 +46,14 @@ class _ClientHomeViewState extends State<ClientHomeView> {
   @override
   void initState() {
     GetDetailscontroller().getDetails(type: 'User');
+    GetDetailscontroller().checkChat(
+      collectionName: "users",
+    );
 
     super.initState();
   }
 
+  final GetDetailscontroller controllerData = Get.find();
   @override
   Widget build(BuildContext context) {
     return GetX<BottomNavigationBarController>(
@@ -61,7 +65,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
             leading: IconButton(
               onPressed: () async {
                 _openDrawer();
-                QuerySnapshot<Map<String, dynamic>> collections =
+                QuerySnapshot<Map<String, dynamic>> collection =
                     await FirebaseFirestore.instance
                         .collection("adminRooms")
                         .where(
@@ -69,15 +73,14 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                           arrayContains: FirebaseAuth.instance.currentUser!.uid,
                         )
                         .get();
-
-                collections.docs.forEach((element) {
+                if (collection.docs.first['read'] == "2") {
                   FirebaseFirestore.instance
                       .collection('adminRooms')
-                      .doc(element.id)
+                      .doc(collection.docs.first.id)
                       .update({
                     'read': "",
                   });
-                });
+                }
               },
               icon: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -90,7 +93,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                 builder: (context, snapshot) {
                   final unReadList = snapshot.data?.docs
                       .map((e) => RoomModel.fromjson(e.data()))
-                      .where((element) => element.read == "1");
+                      .where((element) => element.read == "2");
 
                   return (unReadList == null)
                       ? const Icon(
@@ -339,22 +342,30 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                 Tile(
                   name: "Admin",
                   icon: Icons.admin_panel_settings,
-                  tap: () {
+                  tap: () async {
+                    QuerySnapshot user = await FirebaseFirestore.instance
+                        .collection("users")
+                        .where('id',
+                            isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                        .get();
                     List members = [
-                      FirebaseAuth.instance.currentUser!.uid,
+                      user.docs.first.id,
                       'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
                     ];
+                    DocumentSnapshot<Map<String, dynamic>> collection =
+                        await FirebaseFirestore.instance
+                            .collection("adminRooms")
+                            .doc(members.toString())
+                            .get();
 
-                    Get.toNamed(
-                      ChattingAdminView.id,
-                      arguments: [
-                        members.toString(),
-                        'fhQxkjWDs5QyZk2CqjTnk8XNZyv1',
-                        'admin',
-                        "Admin",
-                        "User",
-                      ],
-                    );
+                    if (collection.exists == true) {
+                      Get.toNamed(
+                        ChattingAdminView.id,
+                        arguments: RoomModel.fromjson(
+                          collection.data(),
+                        ),
+                      );
+                    }
                   },
                   trailing: StreamBuilder(
                     stream: FirebaseFirestore.instance

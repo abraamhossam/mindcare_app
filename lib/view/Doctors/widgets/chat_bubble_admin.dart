@@ -8,8 +8,8 @@ import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 
-class ChatBubbleSender extends StatefulWidget {
-  const ChatBubbleSender({
+class ChatBubbleAdminSender extends StatefulWidget {
+  const ChatBubbleAdminSender({
     super.key,
     required this.messageIteam,
     required this.roomIteam,
@@ -19,14 +19,14 @@ class ChatBubbleSender extends StatefulWidget {
   final RoomModel roomIteam;
 
   @override
-  State<ChatBubbleSender> createState() => _ChatBubbleSenderState();
+  State<ChatBubbleAdminSender> createState() => _ChatBubbleAdminSenderState();
 }
 
-class _ChatBubbleSenderState extends State<ChatBubbleSender> {
+class _ChatBubbleAdminSenderState extends State<ChatBubbleAdminSender> {
   @override
   void initState() {
     if (widget.messageIteam.toId == FirebaseAuth.instance.currentUser!.uid) {
-      FireAuthRooms.readMessage(
+      FireAuthRooms.readMessageAdmin(
         roomId: widget.roomIteam.members.toString(),
         msgId: widget.messageIteam.id,
       );
@@ -74,8 +74,8 @@ class _ChatBubbleSenderState extends State<ChatBubbleSender> {
   }
 }
 
-class ChatBubbleReciever extends StatefulWidget {
-  const ChatBubbleReciever({
+class ChatBubbleAdminReciever extends StatefulWidget {
+  const ChatBubbleAdminReciever({
     super.key,
     required this.messageIteam,
     required this.roomIteam,
@@ -84,14 +84,15 @@ class ChatBubbleReciever extends StatefulWidget {
   final RoomModel roomIteam;
 
   @override
-  State<ChatBubbleReciever> createState() => _ChatBubbleRecieverState();
+  State<ChatBubbleAdminReciever> createState() =>
+      _ChatBubbleAdminRecieverState();
 }
 
-class _ChatBubbleRecieverState extends State<ChatBubbleReciever> {
+class _ChatBubbleAdminRecieverState extends State<ChatBubbleAdminReciever> {
   @override
   void initState() {
     if (widget.messageIteam.toId == FirebaseAuth.instance.currentUser!.uid) {
-      FireAuthRooms.readMessage(
+      FireAuthRooms.readMessageAdmin(
         roomId: widget.roomIteam.members.toString(),
         msgId: widget.messageIteam.id,
       );
