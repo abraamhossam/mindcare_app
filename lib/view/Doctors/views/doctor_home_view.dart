@@ -6,14 +6,12 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
-import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
-
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_body.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_messages_body.dart';

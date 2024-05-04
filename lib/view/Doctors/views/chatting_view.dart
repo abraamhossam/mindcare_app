@@ -245,6 +245,11 @@ class ChattingView extends StatelessWidget {
                                       message: textcontroller!.text,
                                       roomId: model.members!,
                                     );
+                                    FireAuthRooms.sendNotification(
+                                      recieveId: model.members![1],
+                                      msg: textcontroller!.text,
+                                      type: "User",
+                                    );
                                   } else {
                                     FireAuthRooms.sendMessage(
                                       recieverid: model.members![0],

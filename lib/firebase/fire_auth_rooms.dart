@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
 import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
 
 class FireAuthRooms {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -176,12 +179,13 @@ class FireAuthRooms {
       required String msg,
       required String type}) async {
     if (type == 'User') {
+      print("===================");
       QuerySnapshot user =
           await firestore.collection("users").where(recieveId).get();
       final header = {
         "Content-Type": "application/json",
         "Authorization":
-            "AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+            "key=!AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
       };
       final body = {
         "to": user.docs.first['token'],
@@ -190,7 +194,12 @@ class FireAuthRooms {
           "body": msg,
         }
       };
-      print(body);
+      final request = await http.post(
+        Uri.parse("https://fcm.googleapis.com/fcm/send"),
+        body: jsonEncode(body),
+        headers: header,
+      );
+      print(request.statusCode);
     }
   }
 }

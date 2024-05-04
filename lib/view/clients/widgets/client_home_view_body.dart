@@ -65,7 +65,7 @@ class ClientHomeViewBody extends StatelessWidget {
           child: Row(
             children: [
               Button(
-                title: "chat",
+                title: "Create Chat",
                 onPressed: () async {
                   QuerySnapshot reciever = await FirebaseFirestore.instance
                       .collection('doctors')

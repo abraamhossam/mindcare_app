@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
 class MoodsController extends GetxController {
-  RxInt pos = 0.obs;
+  int pos = 0;
   next({required int index}) {
-    pos.value = index;
+    pos = index;
+    update();
   }
 }

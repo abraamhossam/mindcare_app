@@ -90,6 +90,7 @@ class MindCareApp extends StatelessWidget {
         // initialRoute: FirebaseAuth.instance.currentUser == null
         //     ? SplashView.id
         //     : ClientHomeView.id,
+
         initialRoute: DropDownView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
@@ -291,12 +292,11 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: VideoRecommendationsView.id,
-            page: () => const VideoRecommendationsView(),
+            page: () => VideoRecommendationsView(),
           ),
           GetPage(
             name: MoodRecommendationsView.id,
             page: () => const MoodRecommendationsView(),
-            binding: MyBindings(),
           ),
         ],
       ),
