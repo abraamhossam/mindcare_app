@@ -31,7 +31,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
     "ebraam",
     "ebraam",
   ];
-  // final MoodsController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -104,38 +104,33 @@ class MoodRecommendationsViewBody extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.height! * 0.02,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                ),
-                child: SizedBox(
-                  height: SizeConfig.height! * 0.16,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: listData.length,
-                    itemBuilder: (context, index) {
-                      if (controller.pos == index) {
-                        return MoodIteam(
-                          color: Colors.white,
-                          backGroundColor: kPrimaryColor,
-                          onTap: () {
-                            controller.next(index: index);
-                          },
-                          model: listData[index],
-                        );
-                      } else {
-                        return MoodIteam(
-                          backGroundColor: Colors.white,
-                          color: kPrimaryColor,
-                          borderColor: kPrimaryColor,
-                          onTap: () {
-                            controller.next(index: index);
-                          },
-                          model: listData[index],
-                        );
-                      }
-                    },
-                  ),
+              SizedBox(
+                height: SizeConfig.height! * 0.16,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: listData.length,
+                  itemBuilder: (context, index) {
+                    if (controller.pos == index) {
+                      return MoodIteam(
+                        color: Colors.white,
+                        backGroundColor: kPrimaryColor,
+                        onTap: () {
+                          controller.next(index: index);
+                        },
+                        model: listData[index],
+                      );
+                    } else {
+                      return MoodIteam(
+                        backGroundColor: Colors.white,
+                        color: kPrimaryColor,
+                        borderColor: kPrimaryColor,
+                        onTap: () {
+                          controller.next(index: index);
+                        },
+                        model: listData[index],
+                      );
+                    }
+                  },
                 ),
               ),
               SizedBox(
@@ -184,7 +179,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
                     minimumSize: Size(
                         SizeConfig.width! * 0.9, SizeConfig.height! * 0.06),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(24),
                     ),
                     backgroundColor: kPrimaryColor,
                   ),

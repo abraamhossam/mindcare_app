@@ -86,12 +86,12 @@ class MindCareApp extends StatelessWidget {
         initialBinding: MyBindings(),
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
-        // initialRoute: MoodRecommendationsView.id,
+        initialRoute: MoodRecommendationsView.id,
         // initialRoute: FirebaseAuth.instance.currentUser == null
         //     ? SplashView.id
         //     : ClientHomeView.id,
 
-        initialRoute: DropDownView.id,
+        // initialRoute: DropDownView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,

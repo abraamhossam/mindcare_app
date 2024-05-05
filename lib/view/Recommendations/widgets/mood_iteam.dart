@@ -26,7 +26,7 @@ class MoodIteam extends StatelessWidget {
           vertical: 16,
         ),
         margin: const EdgeInsets.only(
-          right: 16,
+          left: 16,
         ),
         decoration: BoxDecoration(
           color: backGroundColor,
