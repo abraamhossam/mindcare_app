@@ -15,6 +15,7 @@ import 'package:mindcare_app/view/Doctors/views/reset_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
+import 'package:mindcare_app/view/Doctors/widgets/profile_doc_page.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/video_recommendations_view.dart';
 import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
@@ -42,6 +43,7 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
 import 'view/Doctors/views/basic_info.dart';
 import 'view/Doctors/views/edication_data.dart';
@@ -86,12 +88,12 @@ class MindCareApp extends StatelessWidget {
         initialBinding: MyBindings(),
         // initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
-        initialRoute: MoodRecommendationsView.id,
+        // initialRoute: MoodRecommendationsView.id,
         // initialRoute: FirebaseAuth.instance.currentUser == null
         //     ? SplashView.id
         //     : ClientHomeView.id,
 
-        // initialRoute: DropDownView.id,
+        initialRoute: DropDownView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,
@@ -176,6 +178,10 @@ class MindCareApp extends StatelessWidget {
           GetPage(
             name: ProfilePage.id,
             page: () => const ProfilePage(),
+          ),
+          GetPage(
+            name: ProfilePagedoctor.id,
+            page: () => const ProfilePagedoctor(),
           ),
           // ............سكرينات السنوسي.. ............
           GetPage(

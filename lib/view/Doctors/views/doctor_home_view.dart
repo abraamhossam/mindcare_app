@@ -15,6 +15,7 @@ import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_body.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_messages_body.dart';
+import 'package:mindcare_app/view/Doctors/widgets/profile_doc_page.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/widgets/custom_tile.dart';
 
@@ -316,7 +317,9 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                     Tile(
                       name: "Profile".tr,
                       icon: Icons.person,
-                      tap: () {},
+                      tap: () {
+                        Get.toNamed(ProfilePagedoctor.id);
+                      },
                     ),
                     Tile(
                       name: "Admin",
