@@ -26,7 +26,6 @@ import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/clients/views/reset_view_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_up_client_view.dart';
-
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/views/init_view.dart';
 import 'package:mindcare_app/view/initial/views/splash_view.dart';
@@ -45,7 +44,6 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'firebase_options.dart';
 import 'view/Doctors/views/basic_info.dart';
 import 'view/Doctors/views/edication_data.dart';
@@ -91,11 +89,11 @@ class MindCareApp extends StatelessWidget {
         //initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
         // initialRoute: MoodRecommendationsView.id,
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? SplashView.id
-            : ClientHomeView.id,
+        // initialRoute: FirebaseAuth.instance.currentUser == null
+        //     ? SplashView.id
+        //     : ClientHomeView.id,
 
-        //initialRoute: DropDownView.id,
+        initialRoute: DropDownView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,

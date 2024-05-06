@@ -101,15 +101,18 @@ class _SignInClientViewBodyState extends State<SignInClientViewBody> {
                                   .signInWithEmailAndPassword(
                                       email: emailcontroller.text.trim(),
                                       password: passwordcontroller.text.trim());
+                              // ignore: use_build_context_synchronously
                               snackbar(context, 'Success');
-                              Get.offNamed(ClientHomeView.id);
+                              Get.offAllNamed(ClientHomeView.id);
                             } else {
+                              // ignore: use_build_context_synchronously
                               snackbar(
                                 context,
                                 'The email or Password is incorrect',
                               );
                             }
                           } catch (e) {
+                            // ignore: use_build_context_synchronously
                             snackbar(
                                 context, 'The email or Password is incorrect');
                           }

@@ -118,11 +118,21 @@ class ChattingView extends StatelessWidget {
                                         message: textcontroller!.text,
                                         roomId: model.members!,
                                       );
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![1],
+                                        msg: textcontroller!.text,
+                                        type: "Doctor",
+                                      );
                                     } else {
                                       FireAuthRooms.sendMessage(
                                         recieverid: model.members![0],
                                         message: textcontroller!.text,
                                         roomId: model.members!,
+                                      );
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![0],
+                                        msg: textcontroller!.text,
+                                        type: "User",
                                       );
                                     }
                                   }
@@ -248,13 +258,18 @@ class ChattingView extends StatelessWidget {
                                     FireAuthRooms.sendNotification(
                                       recieveId: model.members![1],
                                       msg: textcontroller!.text,
-                                      type: "User",
+                                      type: "Doctor",
                                     );
                                   } else {
                                     FireAuthRooms.sendMessage(
                                       recieverid: model.members![0],
                                       message: textcontroller!.text,
                                       roomId: model.members!,
+                                    );
+                                    FireAuthRooms.sendNotification(
+                                      recieveId: model.members![0],
+                                      msg: textcontroller!.text,
+                                      type: "User",
                                     );
                                   }
                                 }

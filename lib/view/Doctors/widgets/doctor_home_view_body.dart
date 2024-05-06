@@ -43,19 +43,21 @@ class DoctorHomeViewBody extends StatelessWidget {
         SizedBox(
           height: SizeConfig.height! * 0.01,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: SizedBox(
-            height: SizeConfig.height! * 0.38,
-            child: ListView.builder(
-              controller: _controller,
-              physics: const BouncingScrollPhysics(),
-              itemCount: 5,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return const DoctorHomeViewAppointmentsIteam();
-              },
-            ),
+        SizedBox(
+          height: SizeConfig.height! * 0.38,
+          child: ListView.builder(
+            controller: _controller,
+            physics: const BouncingScrollPhysics(),
+            itemCount: 5,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.only(
+                  left: 8,
+                ),
+                child: DoctorHomeViewAppointmentsIteam(),
+              );
+            },
           ),
         ),
         SizedBox(

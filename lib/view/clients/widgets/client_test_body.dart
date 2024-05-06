@@ -94,7 +94,6 @@ class ClientTestBody extends StatelessWidget {
               padding: const EdgeInsets.only(
                 left: 16,
                 right: 16,
-                top: 8,
               ),
               child: GridView.builder(
                   itemCount: listData.length,
@@ -114,8 +113,8 @@ class ClientTestBody extends StatelessWidget {
                     );
                   }),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 16,
                 right: 16,
                 top: 16,
