@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Doctor_recommendatio/doctor_profile2.dart';
+import 'package:mindcare_app/Doctor_recommendatio/doctor_search.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/chatbot/chatbot.dart';
@@ -23,8 +26,7 @@ import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/clients/views/reset_view_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_up_client_view.dart';
-import 'package:mindcare_app/view/doctor_profile.dart';
-import 'package:mindcare_app/view/doctor_search.dart';
+
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/views/init_view.dart';
 import 'package:mindcare_app/view/initial/views/splash_view.dart';
@@ -86,14 +88,14 @@ class MindCareApp extends StatelessWidget {
         locale: language.initLang,
         translations: Language(),
         initialBinding: MyBindings(),
-        // initialRoute: SplashView.id,
+        //initialRoute: SplashView.id,
         //initialRoute: "/chatbot",
         // initialRoute: MoodRecommendationsView.id,
-        // initialRoute: FirebaseAuth.instance.currentUser == null
-        //     ? SplashView.id
-        //     : ClientHomeView.id,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? SplashView.id
+            : ClientHomeView.id,
 
-        initialRoute: DropDownView.id,
+        //initialRoute: DropDownView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,
@@ -192,10 +194,7 @@ class MindCareApp extends StatelessWidget {
             name: mentalTests.id,
             page: () => const mentalTests(),
           ),
-          GetPage(
-            name: DoctorSearch.id,
-            page: () => DoctorSearch(),
-          ),
+
           GetPage(
             name: doctorProfile.id,
             page: () => doctorProfile(),
@@ -304,6 +303,10 @@ class MindCareApp extends StatelessWidget {
             name: MoodRecommendationsView.id,
             page: () => const MoodRecommendationsView(),
           ),
+          GetPage(
+            name: DoctorSearch.id,
+            page: () => DoctorSearch(),
+          )
         ],
       ),
     );

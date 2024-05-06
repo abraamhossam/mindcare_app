@@ -4,25 +4,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/view/doctor_profile.dart';
+import 'package:mindcare_app/Doctor_recommendatio/doctor_profile2.dart';
 
 class CustomDoctorCard extends StatelessWidget {
   CustomDoctorCard({
     super.key,
     required this.doctor,
     required this.tap,
-    /* required this.name,
-    required this.phone,
-    required this.score,
-    required this.img, */
   });
 
   final Map<String, dynamic> doctor;
   final Function tap;
-  /* final String name;
-  final String phone;
-  final String score;
-  final String img; */
+
   Color buttonColor = const Color(0xff2296F3);
 
   @override
@@ -45,7 +38,7 @@ class CustomDoctorCard extends StatelessWidget {
                   child: Image(
                       height: size.width * 0.24,
                       width: size.width * 0.24,
-                      image: MemoryImage(base64Decode(doctor['img']))),
+                      image: MemoryImage(base64Decode(doctor['Picture']))),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -54,7 +47,7 @@ class CustomDoctorCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        doctor['name'],
+                        doctor['Doctors_Names'],
                         style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
@@ -62,7 +55,7 @@ class CustomDoctorCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8, right: 15),
                       child: Text(
-                        doctor['phone'],
+                        doctor['Phone'].toString(),
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 101, 101, 101)),
@@ -74,7 +67,7 @@ class CustomDoctorCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            doctor['score'],
+                            doctor['Rating'].toString(),
                           ),
                           Icon(
                             Icons.star,

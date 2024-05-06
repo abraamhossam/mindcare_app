@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mindcare_app/Doctor_recommendatio/doctor_search.dart';
+import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
@@ -15,7 +17,7 @@ import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_test_body.dart';
-import 'package:mindcare_app/view/doctor_search.dart';
+
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/profile_page.dart';
@@ -406,6 +408,9 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                 Tile(
                   name: "Talk with Ai Chatbot".tr,
                   icon: Icons.chat,
+                  tap: () {
+                    Get.toNamed(ChatBotScreen.id);
+                  },
                 ),
                 Tile(
                   name: "Logout",
