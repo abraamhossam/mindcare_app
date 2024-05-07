@@ -75,7 +75,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                   width: size.width * 0.16,
                 ),
                 Text(
-                  widget.doctor!['name'],
+                  widget.doctor!['Doctors_Names'],
                   style: const TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w600,

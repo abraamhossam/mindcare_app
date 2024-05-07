@@ -4,14 +4,15 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetDetailscontroller extends GetxController {
-  String myId = FirebaseAuth.instance.currentUser!.uid;
   Rx<UserModel> dataModel =
       UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
           .obs;
 
   getDetails({required String type}) async {
+    String myId = FirebaseAuth.instance.currentUser!.uid;
     if (type == "User") {
       await FirebaseFirestore.instance.collection("users").doc(myId).get().then(
             (value) => dataModel.value = UserModel.fromjson(
