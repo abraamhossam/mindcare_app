@@ -56,7 +56,7 @@ class _UsersPageState extends State<UsersPage> {
                   subtitle: Text('${user['email']}'),
                   trailing: ZegoSendCallInvitationButton(
                     iconSize: const Size.fromRadius(20),
-                    isVideoCall: true,
+                    isVideoCall: false,
                     resourceID:
                         resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
                     invitees: [

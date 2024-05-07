@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -104,7 +105,9 @@ class MindCareApp extends StatelessWidget {
         //     ? SplashView.id
         //     : ClientHomeView.id,
 
-        initialRoute: DropDownView.id,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? DropDownView.id
+            : ClientHomeView.id,
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,
