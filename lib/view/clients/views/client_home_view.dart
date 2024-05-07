@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:mindcare_app/Doctor_recommendatio/doctor_search.dart';
+import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
+
 import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';

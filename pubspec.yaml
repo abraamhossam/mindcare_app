@@ -61,6 +61,8 @@ dependencies:
   url_launcher: ^6.2.4
   uuid: ^4.3.3
   video_player: ^2.8.3
+  zego_uikit_prebuilt_call: ^4.9.0
+  zego_uikit_signaling_plugin: ^2.7.6
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:mindcare_app/Doctor_recommendatio/doctor_profile2.dart';
+import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
+
 
 class DoctorLocatorController extends GetxController {
   final TextEditingController cityController = TextEditingController();

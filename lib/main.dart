@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mindcare_app/Doctor_recommendatio/doctor_profile2.dart';
-import 'package:mindcare_app/Doctor_recommendatio/doctor_search.dart';
+
+import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
+import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
 import 'package:mindcare_app/chatbot/chatbot.dart';
@@ -44,6 +44,8 @@ import 'package:mindcare_app/view/tests/views/schizophrenia_test_view.dart';
 import 'package:mindcare_app/view/tests/views/social_anxiety_test_view.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 import 'firebase_options.dart';
 import 'view/Doctors/views/basic_info.dart';
 import 'view/Doctors/views/edication_data.dart';
@@ -55,20 +57,27 @@ import 'view/mental_illness_history.dart';
 import 'view/widgets/pay_view.dart';
 
 SharedPreferences? sharedPrefs;
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(navigatorKey);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   WidgetsFlutterBinding.ensureInitialized();
   sharedPrefs = await SharedPreferences.getInstance();
-  runApp(
-    const MindCareApp(),
-  );
+  ZegoUIKit().initLog().then((value) {
+    ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI(
+      [ZegoUIKitSignalingPlugin()],
+    );
+
+    runApp(MindCareApp(navigatorKey: navigatorKey));
+  });
 }
 
 class MindCareApp extends StatelessWidget {
-  const MindCareApp({super.key});
+  const MindCareApp({super.key, required this.navigatorKey});
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +88,7 @@ class MindCareApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: GetMaterialApp(
+        navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         // theme: ThemeData(
         //   fontFamily: kFontFamily,
@@ -126,12 +136,12 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: DoctorHomeView.id,
-            page: () => DoctorHomeView(),
+            page: () => const DoctorHomeView(),
             binding: MyBindings(),
           ),
           GetPage(
             name: EnquiryDetailsView.id,
-            page: () => EnquiryDetailsView(),
+            page: () => const EnquiryDetailsView(),
             binding: MyBindings(),
           ),
           GetPage(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mindcare_app/Doctor_recommendatio/cities.dart';
-import 'package:mindcare_app/Doctor_recommendatio/doctor_location_controller.dart';
+import 'package:mindcare_app/Doctor_recommendation/cities.dart';
+import 'package:mindcare_app/Doctor_recommendation/doctor_location_controller.dart';
+
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
 
 // ignore: use_key_in_widget_constructors
