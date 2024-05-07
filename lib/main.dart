@@ -105,9 +105,10 @@ class MindCareApp extends StatelessWidget {
         //     ? SplashView.id
         //     : ClientHomeView.id,
 
-        initialRoute: FirebaseAuth.instance.currentUser == null
+        initialRoute: DropDownView.id,
+        /* initialRoute: FirebaseAuth.instance.currentUser == null
             ? DropDownView.id
-            : ClientHomeView.id,
+            : ClientHomeView.id, */
         // initialRoute: DoctorHomeView.id,
         // initialRoute: ClientHomeView.id,
         // initialRoute: BasicInfo.id,
