@@ -6,12 +6,12 @@ import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/user_model.dart';
 
 class GetDetailscontroller extends GetxController {
-  // String myId = FirebaseAuth.instance.currentUser!.uid;
+  String myId = FirebaseAuth.instance.currentUser!.uid;
   Rx<UserModel> dataModel =
       UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
           .obs;
 
-  /* getDetails({required String type}) async {
+  getDetails({required String type}) async {
     if (type == "User") {
       await FirebaseFirestore.instance.collection("users").doc(myId).get().then(
             (value) => dataModel.value = UserModel.fromjson(
@@ -53,7 +53,7 @@ class GetDetailscontroller extends GetxController {
       );
     }
   }
- */
+
   checkChat({required String collectionName}) async {
     QuerySnapshot user = await FirebaseFirestore.instance
         .collection(collectionName)

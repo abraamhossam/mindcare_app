@@ -41,7 +41,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
 
   @override
   void initState() {
-    // GetDetailscontroller().getDetails(type: 'Doctor');
+    GetDetailscontroller().getDetails(type: 'Doctor');
     GetDetailscontroller().checkChat(
       collectionName: "doctors",
     );
