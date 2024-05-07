@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
+import 'package:mindcare_app/Zego%20Cloud/users_view.dart';
+import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
 
 import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
@@ -34,6 +36,9 @@ class ClientHomeView extends StatefulWidget {
 }
 
 class _ClientHomeViewState extends State<ClientHomeView> {
+  final VideoCallController videoCallController =
+      Get.put(VideoCallController());
+
   final List pages = [
     ClientHomeViewBody(),
     ClientTestBody(),
@@ -48,7 +53,8 @@ class _ClientHomeViewState extends State<ClientHomeView> {
 
   @override
   void initState() {
-    GetDetailscontroller().getDetails(type: 'User');
+    videoCallController.onUserLogin(FirebaseAuth.instance.currentUser!);
+    // GetDetailscontroller().getDetails(type: 'User');
     GetDetailscontroller().checkChat(
       collectionName: "users",
     );
@@ -414,6 +420,13 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                   },
                 ),
                 Tile(
+                  name: "Video Call",
+                  icon: Icons.video_call,
+                  tap: () {
+                    Get.toNamed(UsersPage.id);
+                  },
+                ),
+                Tile(
                   name: "Logout",
                   icon: Icons.logout,
                   tap: () {
@@ -442,6 +455,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () async {
+                                  videoCallController.onUserLogout();
                                   await FirebaseAuth.instance.signOut();
                                   Get.offAllNamed(DropDownView.id);
                                 },

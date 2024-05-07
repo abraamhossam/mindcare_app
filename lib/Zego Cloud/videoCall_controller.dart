@@ -11,6 +11,7 @@ class VideoCallController extends GetxController {
   User? user = FirebaseAuth.instance.currentUser;
 
   Future<List<QueryDocumentSnapshot>> getUserData() async {
+    users.clear();
     QuerySnapshot data =
         await FirebaseFirestore.instance.collection("users").get();
     users.addAll(data.docs);

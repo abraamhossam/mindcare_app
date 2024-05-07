@@ -7,6 +7,7 @@ import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
 import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
+import 'package:mindcare_app/Zego%20Cloud/users_view.dart';
 import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/helper/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
@@ -109,6 +110,10 @@ class MindCareApp extends StatelessWidget {
         // initialRoute: BasicInfo.id,
         // initialRoute: SignInViewDoctors.id,
         getPages: [
+          GetPage(
+            name: UsersPage.id,
+            page: () => UsersPage(),
+          ),
           GetPage(
             name: SplashView.id,
             page: () => const SplashView(),
