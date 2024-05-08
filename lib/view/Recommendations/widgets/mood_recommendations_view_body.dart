@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/controller/get_details_controller.dart';
 import 'package:mindcare_app/controller/moods_controller.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/mood_recommedations_model.dart';
@@ -31,7 +32,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
     "ebraam",
     "ebraam",
   ];
-
+  final GetDetailscontroller dataController = Get.find();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -80,7 +81,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
                   left: 16,
                 ),
                 child: Text(
-                  "Hi, ebraam",
+                  "Hi, ${dataController.userData.value.name}",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black.withOpacity(0.4),

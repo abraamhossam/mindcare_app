@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/main.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_button_scroll.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_dots_indicator.dart';
@@ -59,6 +60,7 @@ class _InitViewBodyState extends State<InitViewBody> {
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.easeIn);
               } else if (pageController.page == 2) {
+                sharedPrefs!.setString("frist_time", "true");
                 Get.offAll(
                   () => const DropDownView(),
                   transition: Transition.rightToLeft,

@@ -4,21 +4,31 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetDetailscontroller extends GetxController {
   Rx<UserModel> dataModel =
       UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
           .obs;
-
+  Rx<UserModel> userData =
+      UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
+          .obs;
   getDetails({required String type}) async {
     String myId = FirebaseAuth.instance.currentUser!.uid;
     if (type == "User") {
-      await FirebaseFirestore.instance.collection("users").doc(myId).get().then(
-            (value) => dataModel.value = UserModel.fromjson(
-              value.data(),
-            ),
-          );
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(myId)
+          .get()
+          .then((value) {
+        dataModel.value = UserModel.fromjson(
+          value.data(),
+        );
+        userData.value = UserModel.fromjson(
+          value.data(),
+        );
+      });
+      print(userData.value.email);
+      print("+++++++++++++++++++++++++++++++++++++000");
 
       FirebaseMessaging.instance.requestPermission();
       await FirebaseMessaging.instance.getToken().then(

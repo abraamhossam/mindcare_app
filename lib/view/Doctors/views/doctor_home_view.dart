@@ -6,6 +6,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
+import 'package:mindcare_app/main.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
@@ -45,6 +46,8 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
     GetDetailscontroller().checkChat(
       collectionName: "doctors",
     );
+    sharedPrefs!.setString("type", "Doctor");
+    print(FirebaseAuth.instance.currentUser!.uid);
     super.initState();
   }
 
@@ -418,6 +421,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                                     onPressed: () async {
                                       await FirebaseAuth.instance.signOut();
                                       Get.offAllNamed(DropDownView.id);
+                                      sharedPrefs!.setString("type", "");
                                     },
                                   ),
                                   ElevatedButton(

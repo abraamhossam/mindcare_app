@@ -12,10 +12,12 @@ import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
+import 'package:mindcare_app/main.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
+import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
@@ -58,6 +60,8 @@ class _ClientHomeViewState extends State<ClientHomeView> {
     GetDetailscontroller().checkChat(
       collectionName: "users",
     );
+    sharedPrefs!.setString("type", "User");
+    print(FirebaseAuth.instance.currentUser!.uid);
 
     super.initState();
   }
@@ -413,6 +417,13 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                   ),
                 ),
                 Tile(
+                  name: "Moods",
+                  icon: Icons.mood,
+                  tap: () {
+                    Get.toNamed(MoodRecommendationsView.id);
+                  },
+                ),
+                Tile(
                   name: "Talk with Ai Chatbot".tr,
                   icon: Icons.chat,
                   tap: () {
@@ -458,6 +469,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                                   videoCallController.onUserLogout();
                                   await FirebaseAuth.instance.signOut();
                                   Get.offAllNamed(DropDownView.id);
+                                  sharedPrefs!.setString("type", "");
                                 },
                               ),
                               ElevatedButton(

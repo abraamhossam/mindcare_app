@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
 import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
 import 'package:mindcare_app/Langauge/language.dart';
@@ -92,27 +90,16 @@ class MindCareApp extends StatelessWidget {
       child: GetMaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        // theme: ThemeData(
-        //   fontFamily: kFontFamily,
-        // ),
         locale: language.initLang,
         translations: Language(),
         initialBinding: MyBindings(),
-        //initialRoute: SplashView.id,
-        //initialRoute: "/chatbot",
-        // initialRoute: MoodRecommendationsView.id,
-        // initialRoute: FirebaseAuth.instance.currentUser == null
-        //     ? SplashView.id
-        //     : ClientHomeView.id,
-
-        initialRoute: DropDownView.id,
-        /* initialRoute: FirebaseAuth.instance.currentUser == null
-            ? DropDownView.id
-            : ClientHomeView.id, */
-        // initialRoute: DoctorHomeView.id,
-        // initialRoute: ClientHomeView.id,
-        // initialRoute: BasicInfo.id,
-        // initialRoute: SignInViewDoctors.id,
+        initialRoute: sharedPrefs!.getString("frist_time") == "true"
+            ? sharedPrefs!.getString("type") == "User"
+                ? ClientHomeView.id
+                : sharedPrefs!.getString("type") == "Doctor"
+                    ? DoctorHomeView.id
+                    : DropDownView.id
+            : SplashView.id,
         getPages: [
           GetPage(
             name: UsersPage.id,
