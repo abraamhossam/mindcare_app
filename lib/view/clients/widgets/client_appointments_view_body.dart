@@ -111,7 +111,7 @@ class ClientAppointmentsBody extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           const Text(
-                                            "Booking Session",
+                                            "Therapy Session",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 24,
@@ -127,14 +127,26 @@ class ClientAppointmentsBody extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 )
-                                              : const Text(
-                                                  "replied from therapist>>>>>>>>>>>>>>>>",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
+                                              : listIteams[index].reply ==
+                                                      'accept'
+                                                  ? const Text(
+                                                      "Your appointment has been successfully booked.",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    )
+                                                  : const Text(
+                                                      "Your appointment has been successfully cancelled.",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
                                         ],
                                       ),
                                     ),

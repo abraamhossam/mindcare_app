@@ -7,35 +7,26 @@ import 'package:mindcare_app/model/user_model.dart';
 
 class GetDetailscontroller extends GetxController {
   Rx<UserModel> dataModel =
-      UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
-          .obs;
-  Rx<UserModel> userData =
-      UserModel(name: "", email: "", id: "", image: "", type: "", token: "")
+      UserModel(name: "", email: "", id: '', image: "", type: "", token: "")
           .obs;
   getDetails({required String type}) async {
-    String myId = FirebaseAuth.instance.currentUser!.uid;
     if (type == "User") {
       await FirebaseFirestore.instance
           .collection("users")
-          .doc(myId)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then((value) {
-        dataModel.value = UserModel.fromjson(
-          value.data(),
-        );
-        userData.value = UserModel.fromjson(
-          value.data(),
-        );
+        dataModel.value = UserModel.fromjson(value);
       });
-      print(userData.value.email);
-      print("+++++++++++++++++++++++++++++++++++++000");
-
       FirebaseMessaging.instance.requestPermission();
       await FirebaseMessaging.instance.getToken().then(
         (value) {
           if (value != null) {
             dataModel.value.token = value;
-            FirebaseFirestore.instance.collection("users").doc(myId).update({
+            FirebaseFirestore.instance
+                .collection("users")
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .update({
               'token': value,
             });
           }
@@ -44,7 +35,7 @@ class GetDetailscontroller extends GetxController {
     } else if (type == "Doctor") {
       await FirebaseFirestore.instance
           .collection("doctors")
-          .doc(myId)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then(
             (value) => dataModel.value = UserModel.fromjson(
@@ -56,7 +47,10 @@ class GetDetailscontroller extends GetxController {
         (value) {
           if (value != null) {
             dataModel.value.token = value;
-            FirebaseFirestore.instance.collection("doctors").doc(myId).update({
+            FirebaseFirestore.instance
+                .collection("doctors")
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .update({
               'token': value,
             });
           }

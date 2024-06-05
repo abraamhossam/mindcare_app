@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({
@@ -17,6 +17,10 @@ class CustomProfileImage extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
+        border: Border.all(
+          color: Colors.white,
+          width: 3,
+        ),
         image: DecorationImage(
           fit: BoxFit.fill,
           image: AssetImage(image),

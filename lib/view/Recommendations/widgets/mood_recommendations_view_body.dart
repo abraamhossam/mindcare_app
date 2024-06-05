@@ -26,11 +26,11 @@ class MoodRecommendationsViewBody extends StatelessWidget {
         moodName: "Overthinking"),
   ];
   List<String> listDescription = [
-    "Today i'm happy,i'm a little nervous about exams,but i try to prepare a little Today i'm happy,i'm a little nervous about exams,but i try to prepare a little Today i'm happy,i'm a little nervous about exams,but i try to prepare a little",
-    "ebraam",
-    "ebraam",
-    "ebraam",
-    "ebraam",
+    "Sadness is an emotional state associated with feelings of sorrow, disappointment, and grief. It is often a response to loss, failure, or other negative experiences.",
+    "Fear is an emotional response to perceived danger or threat. It is characterized by anxiety, apprehension, and a desire to escape or avoid the source of danger.",
+    "Guilt is a complex emotional experience that occurs when a person believes or realizes they have compromised their own standards of conduct or violated a moral standard, leading to feelings of remorse and regret.",
+    "Anger is a strong emotional response to perceived provocation, hurt, or threat. It can manifest as frustration, irritation, or rage, and is often accompanied by physiological arousal.",
+    "Overthinking is the process of continuously analyzing or dwelling on a particular thought or situation to the point where it becomes counterproductive and often causes anxiety or stress. It involves excessive rumination on potential outcomes, past actions.",
   ];
   final GetDetailscontroller dataController = Get.find();
   @override
@@ -81,7 +81,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
                   left: 16,
                 ),
                 child: Text(
-                  "Hi, ${dataController.userData.value.name}",
+                  "Hi, ${dataController.dataModel.value.name}",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black.withOpacity(0.4),
@@ -171,7 +171,7 @@ class MoodRecommendationsViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: SizeConfig.height! * 0.04,
+                height: SizeConfig.height! * 0.02,
               ),
               Align(
                 alignment: Alignment.center,

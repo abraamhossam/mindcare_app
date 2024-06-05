@@ -6,7 +6,7 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
-import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
+import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
 
 class ChatCard extends StatelessWidget {
   const ChatCard({
@@ -22,7 +22,7 @@ class ChatCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(
-          ChattingView.id,
+          ChattingUsersView.id,
           arguments: model,
         );
       },

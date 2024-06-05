@@ -40,7 +40,9 @@ class _ListTileWidgetState extends State<ListTileWidget> {
   Widget build(BuildContext context) {
     return isloading == true
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: kPrimaryColor,
+            ),
           )
         : ListView.builder(
             itemCount: dataresult.length,

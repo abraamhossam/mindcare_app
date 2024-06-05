@@ -7,6 +7,8 @@ class RoomModel {
   String? toType;
   String? fromType;
   String? read;
+  String? report;
+  String? block;
   RoomModel({
     this.id,
     this.lastMessageTime,
@@ -16,6 +18,8 @@ class RoomModel {
     this.fromType,
     this.toType,
     this.read,
+    this.report,
+    this.block,
   });
   factory RoomModel.fromjson(dynamic jsonData) {
     return RoomModel(
@@ -27,6 +31,8 @@ class RoomModel {
       fromType: jsonData['type_from'],
       toType: jsonData['type_to'],
       read: jsonData['read'],
+      report: jsonData['report'],
+      block: jsonData['block'],
     );
   }
 }

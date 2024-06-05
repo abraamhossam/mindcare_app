@@ -47,7 +47,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
     ClientAppointmentsBody(),
     ClientMessagesBody(),
   ];
-
+  final GetDetailscontroller controller = Get.find();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   void _openDrawer() {
     _scaffoldKey.currentState?.openDrawer();
@@ -56,12 +56,11 @@ class _ClientHomeViewState extends State<ClientHomeView> {
   @override
   void initState() {
     videoCallController.onUserLogin(FirebaseAuth.instance.currentUser!);
-    GetDetailscontroller().getDetails(type: 'User');
-    GetDetailscontroller().checkChat(
+    controller.getDetails(type: 'User');
+    controller.checkChat(
       collectionName: "users",
     );
     sharedPrefs!.setString("type", "User");
-    print(FirebaseAuth.instance.currentUser!.uid);
 
     super.initState();
   }
@@ -456,9 +455,9 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                             ),
                             actions: [
                               ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.blue)),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: kPrimaryColor,
+                                ),
                                 child: const Text(
                                   "Ok",
                                   style: TextStyle(
@@ -473,9 +472,9 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                                 },
                               ),
                               ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.blue)),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: kPrimaryColor,
+                                ),
                                 child: const Text(
                                   "Cancel",
                                   style: TextStyle(

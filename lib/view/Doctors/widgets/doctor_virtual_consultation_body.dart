@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/helper/assets.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 
 class DoctorVirtualConsultationBody extends StatelessWidget {
   const DoctorVirtualConsultationBody({
     super.key,
+    this.controller,
   });
-
+  final BottomNavigationBarController? controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +53,7 @@ class DoctorVirtualConsultationBody extends StatelessWidget {
                   height: SizeConfig.height! * 0.005,
                 ),
                 const Text(
-                  "Virtual consultation",
+                  "Therapy session",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -75,7 +77,9 @@ class DoctorVirtualConsultationBody extends StatelessWidget {
                         backgroundColor: kPrimaryColor,
                         minimumSize: const Size(100, 32),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller!.indexDoctor.value = 2;
+                      },
                       child: const Text(
                         "Arrange",
                         style: TextStyle(

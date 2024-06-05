@@ -11,7 +11,7 @@ import 'package:mindcare_app/chatbot/chatbot.dart';
 import 'package:mindcare_app/helper/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
-import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
+import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
 import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
 import 'package:mindcare_app/view/Doctors/views/reset_doctor_view.dart';
@@ -146,8 +146,8 @@ class MindCareApp extends StatelessWidget {
             binding: MyBindings(),
           ),
           GetPage(
-            name: ChattingView.id,
-            page: () => ChattingView(),
+            name: ChattingUsersView.id,
+            page: () => ChattingUsersView(),
             binding: MyBindings(),
           ),
           GetPage(

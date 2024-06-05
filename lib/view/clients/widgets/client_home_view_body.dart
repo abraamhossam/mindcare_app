@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
-import 'package:mindcare_app/controller/get_details_controller.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/room_model.dart';
-import 'package:mindcare_app/view/Doctors/views/chatting_view.dart';
+import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
 import 'package:mindcare_app/view/tests/views/depression_test_view.dart';
@@ -88,6 +87,7 @@ class ClientHomeViewBody extends StatelessWidget {
                   if (collection.exists == false) {
                     // ignore: use_build_context_synchronously
                     showDialog(
+                      // ignore: use_build_context_synchronously
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
@@ -102,9 +102,9 @@ class ClientHomeViewBody extends StatelessWidget {
                           ),
                           actions: [
                             ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: kPrimaryColor,
+                              ),
                               child: const Text(
                                 "Ok",
                                 style: TextStyle(
@@ -120,15 +120,15 @@ class ClientHomeViewBody extends StatelessWidget {
                                 controllerIndex.indexUser.value = 3;
                                 FireAuthRooms.sendMessage(
                                   recieverid: reciever.docs.first.id,
-                                  message: "hello",
+                                  message: "hello doctor",
                                   roomId: members,
                                 );
                               },
                             ),
                             ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.blue)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: kPrimaryColor,
+                              ),
                               child: const Text(
                                 "Cancel",
                                 style: TextStyle(
@@ -145,7 +145,7 @@ class ClientHomeViewBody extends StatelessWidget {
                     );
                   } else {
                     Get.toNamed(
-                      ChattingView.id,
+                      ChattingUsersView.id,
                       arguments: RoomModel.fromjson(collection.data()),
                     );
                   }

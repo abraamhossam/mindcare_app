@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/view/Doctors/widgets/enquiry_details_body.dart';
+import 'package:mindcare_app/view/Doctors/widgets/reports_body.dart';
 
 class EnquiryDetailsView extends StatelessWidget {
   const EnquiryDetailsView({super.key});
@@ -9,7 +10,7 @@ class EnquiryDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: TabBar(
           indicatorWeight: 4,
@@ -40,25 +41,12 @@ class EnquiryDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            Tab(
-              child: Text(
-                "Files",
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
           ],
         ),
         body: TabBarView(
           children: [
             EnquiryDetailsBody(),
-            Center(
-              child: Text("ebraam"),
-            ),
-            Center(
-              child: Text("ebraam"),
-            ),
+            ReportsBody(),
           ],
         ),
       ),

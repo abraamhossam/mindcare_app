@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_title.dart';
-// import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appbar.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_appointments_iteam.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_virtual_consultation_body.dart';
 
 class DoctorHomeViewBody extends StatelessWidget {
   DoctorHomeViewBody({super.key});
   final _controller = ScrollController();
+  final BottomNavigationBarController navgatorcontroller = Get.find();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -43,22 +45,8 @@ class DoctorHomeViewBody extends StatelessWidget {
         SizedBox(
           height: SizeConfig.height! * 0.01,
         ),
-        SizedBox(
-          height: SizeConfig.height! * 0.38,
-          child: ListView.builder(
-            controller: _controller,
-            physics: const BouncingScrollPhysics(),
-            itemCount: 5,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const Padding(
-                padding: EdgeInsets.only(
-                  left: 8,
-                ),
-                child: DoctorHomeViewAppointmentsIteam(),
-              );
-            },
-          ),
+        DoctorHomeViewAppointmentsIteam(
+          controller: _controller,
         ),
         SizedBox(
           height: SizeConfig.height! * 0.02,
@@ -72,9 +60,11 @@ class DoctorHomeViewBody extends StatelessWidget {
         SizedBox(
           height: SizeConfig.height! * 0.01,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: DoctorVirtualConsultationBody(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: DoctorVirtualConsultationBody(
+            controller: navgatorcontroller,
+          ),
         ),
       ],
     );

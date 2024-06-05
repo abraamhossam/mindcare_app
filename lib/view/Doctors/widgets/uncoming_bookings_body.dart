@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/firebase/fire_auth_booking.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/view/Doctors/widgets/bubble_date.dart';
@@ -30,7 +31,9 @@ class UncomingBookingsBody extends StatelessWidget {
             List<BookingModel> listIteams = snapchot.data!.docs
                 .map((e) => BookingModel.fromjson(e.data()))
                 .toList()
-              ..sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+              ..sort(
+                (a, b) => b.createdAt!.compareTo(a.createdAt!),
+              );
 
             return listIteams.isEmpty
                 ? const Center(child: Text("No bookings"))
@@ -111,6 +114,13 @@ class UncomingBookingsBody extends StatelessWidget {
                                                 reply: 'accept',
                                                 doctorReply: "1",
                                               );
+                                              FireAuthRooms.sendNotificationBooking(
+                                                  msg:
+                                                      "Your appointment has been successfully booked. Thank you for choosing our service.",
+                                                  type: "User",
+                                                  recieverName:
+                                                      listIteams[index]
+                                                          .userName!);
                                             },
                                             child: const Text(
                                               "Accept",
@@ -127,6 +137,13 @@ class UncomingBookingsBody extends StatelessWidget {
                                                 reply: 'reject',
                                                 doctorReply: "1",
                                               );
+                                              FireAuthRooms.sendNotificationBooking(
+                                                  msg:
+                                                      "Your appointment has been successfully cancelled. We're sorry to see you go.",
+                                                  type: "User",
+                                                  recieverName:
+                                                      listIteams[index]
+                                                          .userName!);
                                             },
                                             child: const Text(
                                               "Reject",

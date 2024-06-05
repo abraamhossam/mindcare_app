@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ class FireAuthRooms {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static String myUid = FirebaseAuth.instance.currentUser!.uid;
   static final GetDetailscontroller controller = Get.find();
-
+  static String myName = controller.dataModel.value.name!;
   static Future createUser({
     required String name,
     required String email,
@@ -57,6 +56,8 @@ class FireAuthRooms {
       'type_to': 'Doctor',
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
       'read': '',
+      'report': '',
+      'block': 'no',
     });
   }
 
@@ -174,12 +175,12 @@ class FireAuthRooms {
     });
   }
 
-  static Future sendNotification(
-      {required String recieveId,
-      required String msg,
-      required String type}) async {
+  static Future sendNotification({
+    required String recieveId,
+    required String msg,
+    required String type,
+  }) async {
     if (type == 'User') {
-      print("===================");
       QuerySnapshot user =
           await firestore.collection("users").where(recieveId).get();
       final header = {
@@ -190,7 +191,7 @@ class FireAuthRooms {
       final body = {
         "to": user.docs.first['token'],
         "notification": {
-          "title": controller.dataModel.value.name,
+          "title": myName,
           "body": msg,
         }
       };
@@ -199,6 +200,7 @@ class FireAuthRooms {
         body: jsonEncode(body),
         headers: header,
       );
+      print("================================================0");
       print(request.statusCode);
     } else if (type == "Doctor") {
       QuerySnapshot user =
@@ -211,7 +213,7 @@ class FireAuthRooms {
       final body = {
         "to": user.docs.first['token'],
         "notification": {
-          "title": controller.dataModel.value.name,
+          "title": myName,
           "body": msg,
         }
       };
@@ -220,6 +222,7 @@ class FireAuthRooms {
         body: jsonEncode(body),
         headers: header,
       );
+      print("================================================0");
       print(request.statusCode);
     } else {
       final header = {
@@ -231,7 +234,7 @@ class FireAuthRooms {
         "to":
             "en5RY1bbTHe3QCuYeVVjV2:APA91bHYiVj9xP16poMLnzUll2LCbSsVTIc2uWmvEC-MMpq7mcXsMDw6nNaEkSrU5fcaimHp05jmnOhck-L8LNo6vuGhLfcws5ErQRT8j4h7BxLJVrknHCU9yXHVi_PwfXT6l-bQm0Lu",
         "notification": {
-          "title": controller.dataModel.value.name,
+          "title": myName,
           "body": msg,
         }
       };
@@ -240,6 +243,62 @@ class FireAuthRooms {
         body: jsonEncode(body),
         headers: header,
       );
+      print(request.statusCode);
+    }
+  }
+
+  static Future sendNotificationBooking({
+    required String msg,
+    required String type,
+    required String recieverName,
+  }) async {
+    if (type == 'User') {
+      QuerySnapshot user = await firestore
+          .collection('users')
+          .where('name', isEqualTo: recieverName)
+          .get();
+      final header = {
+        "Content-Type": "application/json",
+        "Authorization":
+            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+      };
+      final body = {
+        "to": user.docs.first['token'],
+        "notification": {
+          "title": myName,
+          "body": msg,
+        }
+      };
+      final request = await http.post(
+        Uri.parse("https://fcm.googleapis.com/fcm/send"),
+        body: jsonEncode(body),
+        headers: header,
+      );
+      print("================================================0");
+      print(request.statusCode);
+    } else if (type == "Doctor") {
+      QuerySnapshot user = await firestore
+          .collection('doctors')
+          .where('name', isEqualTo: recieverName)
+          .get();
+      final header = {
+        "Content-Type": "application/json",
+        "Authorization":
+            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+      };
+      final body = {
+        "to": user.docs.first['token'],
+        "notification": {
+          "title": myName,
+          "body": msg,
+        }
+      };
+      final request = await http.post(
+        Uri.parse("https://fcm.googleapis.com/fcm/send"),
+        body: jsonEncode(body),
+        headers: header,
+      );
+      print("================================================0");
       print(request.statusCode);
     }
   }

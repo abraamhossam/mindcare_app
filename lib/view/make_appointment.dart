@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/botton_time_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_booking.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
@@ -173,6 +174,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                     if (checkTime == false) {
                       // ignore: use_build_context_synchronously
                       showDialog(
+                          // ignore: use_build_context_synchronously
                           context: context,
                           builder: (context) {
                             return AlertDialog(
@@ -187,10 +189,9 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                               ),
                               actions: [
                                 ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.blue)),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: kPrimaryColor,
+                                  ),
                                   child: const Text(
                                     "Ok",
                                     style: TextStyle(
@@ -199,20 +200,27 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                                   ),
                                   onPressed: () async {
                                     FireAuthBooking.createBooking(
-                                        month: month,
-                                        day: day,
-                                        hour: hour,
-                                        doctorName: "doctor1");
+                                      month: month,
+                                      day: day,
+                                      hour: hour,
+                                      doctorName: "doctor1",
+                                    );
                                     Get.back();
-                                    snackbar(context,
-                                        "Booked session successfully and waiting for reply from therapist");
+                                    snackbar(
+                                      context,
+                                      "Booked session successfully and waiting for reply from therapist",
+                                    );
+                                    FireAuthRooms.sendNotificationBooking(
+                                      msg: "he wants to book a therapy session",
+                                      type: "Doctor",
+                                      recieverName: "DoctorName",
+                                    );
                                   },
                                 ),
                                 ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.blue)),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: kPrimaryColor,
+                                  ),
                                   child: const Text(
                                     "Cancel",
                                     style: TextStyle(

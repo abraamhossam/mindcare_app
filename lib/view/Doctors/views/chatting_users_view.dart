@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,18 +9,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/firebase/fire_storage.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/widgets/chat_bubble.dart';
 
 // ignore: must_be_immutable
-class ChattingView extends StatelessWidget {
-  ChattingView({
+class ChattingUsersView extends StatelessWidget {
+  ChattingUsersView({
     super.key,
   });
   static String id = "/chattingview";
 
   TextEditingController? textcontroller = TextEditingController();
+  TextEditingController? textcontroller2 = TextEditingController();
 
   final _scrollController = ScrollController();
   final RoomModel model = Get.arguments;
@@ -58,6 +62,134 @@ class ChattingView extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                FontAwesomeIcons.video,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                FontAwesomeIcons.phoneAlt,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            model.members![1] == myUid
+                ? IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            contentTextStyle: const TextStyle(
+                                height: 1.5,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                            backgroundColor: const Color(0xff607D8B),
+                            content: SizedBox(
+                              height: SizeConfig.height! * 0.2,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    "make a report on this user",
+                                  ),
+                                  SizedBox(
+                                    height: SizeConfig.height! * 0.02,
+                                  ),
+                                  Expanded(
+                                    child: TextField(
+                                      maxLines: 2,
+                                      minLines: 1,
+                                      controller: textcontroller2,
+                                      cursorColor: Colors.white,
+                                      decoration: const InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            actions: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: kPrimaryColor,
+                                ),
+                                child: const Text(
+                                  "Block",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  if (textcontroller2!.text.isNotEmpty) {
+                                    if (model.report!.isNotEmpty) {
+                                      snackbar(context,
+                                          "You have already made a report about this user");
+                                      Get.back();
+                                    }
+                                    if (model.report!.isEmpty) {
+                                      FirebaseFirestore.instance
+                                          .collection("rooms")
+                                          .doc(model.id.toString())
+                                          .update({
+                                        'report':
+                                            textcontroller2!.text.toString(),
+                                        'block': 'yes',
+                                      });
+                                      Get.back();
+                                    }
+                                  }
+                                  textcontroller2!.clear();
+                                },
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: kPrimaryColor,
+                                ),
+                                child: const Text(
+                                  "Cancel",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    icon: const Icon(
+                      FontAwesomeIcons.ellipsisV,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  )
+                : const Text(""),
+          ],
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
@@ -110,39 +242,6 @@ class ChattingView extends StatelessWidget {
                                 maxLines: 5,
                                 minLines: 1,
                                 controller: textcontroller,
-                                onSubmitted: (data) async {
-                                  if (textcontroller!.text.isNotEmpty) {
-                                    if (model.members![0] == myUid) {
-                                      FireAuthRooms.sendMessage(
-                                        recieverid: model.members![1],
-                                        message: textcontroller!.text,
-                                        roomId: model.members!,
-                                      );
-                                      FireAuthRooms.sendNotification(
-                                        recieveId: model.members![1],
-                                        msg: textcontroller!.text,
-                                        type: "Doctor",
-                                      );
-                                    } else {
-                                      FireAuthRooms.sendMessage(
-                                        recieverid: model.members![0],
-                                        message: textcontroller!.text,
-                                        roomId: model.members!,
-                                      );
-                                      FireAuthRooms.sendNotification(
-                                        recieveId: model.members![0],
-                                        msg: textcontroller!.text,
-                                        type: "User",
-                                      );
-                                    }
-                                  }
-                                  textcontroller!.clear();
-                                  _scrollController.animateTo(
-                                    0,
-                                    curve: Curves.easeOut,
-                                    duration: const Duration(milliseconds: 500),
-                                  );
-                                },
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
@@ -249,28 +348,32 @@ class ChattingView extends StatelessWidget {
                             child: IconButton(
                               onPressed: () async {
                                 if (textcontroller!.text.isNotEmpty) {
-                                  if (model.members![0] == myUid) {
-                                    FireAuthRooms.sendMessage(
-                                      recieverid: model.members![1],
-                                      message: textcontroller!.text,
-                                      roomId: model.members!,
-                                    );
-                                    FireAuthRooms.sendNotification(
-                                      recieveId: model.members![1],
-                                      msg: textcontroller!.text,
-                                      type: "Doctor",
-                                    );
+                                  if (model.block == 'no') {
+                                    if (model.members![0] == myUid) {
+                                      FireAuthRooms.sendMessage(
+                                        recieverid: model.members![1],
+                                        message: textcontroller!.text,
+                                        roomId: model.members!,
+                                      );
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![1],
+                                        msg: textcontroller!.text,
+                                        type: "User",
+                                      );
+                                    } else {
+                                      FireAuthRooms.sendMessage(
+                                        recieverid: model.members![0],
+                                        message: textcontroller!.text,
+                                        roomId: model.members!,
+                                      );
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![0],
+                                        msg: textcontroller!.text,
+                                        type: "Doctor",
+                                      );
+                                    }
                                   } else {
-                                    FireAuthRooms.sendMessage(
-                                      recieverid: model.members![0],
-                                      message: textcontroller!.text,
-                                      roomId: model.members!,
-                                    );
-                                    FireAuthRooms.sendNotification(
-                                      recieveId: model.members![0],
-                                      msg: textcontroller!.text,
-                                      type: "User",
-                                    );
+                                    snackbar(context, "Can not send message");
                                   }
                                 }
                                 textcontroller!.clear();
