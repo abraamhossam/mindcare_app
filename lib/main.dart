@@ -23,6 +23,7 @@ import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_vie
 import 'package:mindcare_app/view/Recommendations/views/video_recommendations_view.dart';
 import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
 import 'package:mindcare_app/view/clients/doctor%20profile/doctor_profile3.dart';
+import 'package:mindcare_app/view/clients/doctor%20profile/doctors_view.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/clients/views/reset_view_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
@@ -312,7 +313,14 @@ class MindCareApp extends StatelessWidget {
             name: DoctorSearch.id,
             page: () => DoctorSearch(),
           ),
-          GetPage(name: ProfileDoctor.id, page: () => ProfileDoctor())
+          GetPage(
+            name: ProfileDoctor.id,
+            page: () => ProfileDoctor(),
+          ),
+          GetPage(
+            name: DoctorsView.id,
+            page: () => DoctorsView(),
+          ),
         ],
       ),
     );

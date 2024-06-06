@@ -18,6 +18,7 @@ import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
+import 'package:mindcare_app/view/clients/doctor%20profile/doctors_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
@@ -433,7 +434,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                   name: "Video Call",
                   icon: Icons.video_call,
                   tap: () {
-                    Get.toNamed(UsersPage.id);
+                    Get.toNamed(DoctorsView.id);
                   },
                 ),
                 Tile(

@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:mindcare_app/Zego%20Cloud/constants.dart';
-
 import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
 import 'package:mindcare_app/view/clients/doctor%20profile/doctor_profile3.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 class UsersPage extends StatefulWidget {
   static String id = '/users_page';
+
+  const UsersPage({super.key});
 
   @override
   State<UsersPage> createState() => _UsersPageState();
@@ -53,25 +53,26 @@ class _UsersPageState extends State<UsersPage> {
             if (doctor['name'] !=
                 FirebaseAuth.instance.currentUser!.displayName) {
               return ListTile(
-                  onTap: () {
-                    Get.to(ProfileDoctor(
-                      doctor: doctor,
-                    ));
-                  },
-                  title: Text('${doctor["name"]}'),
-                  subtitle: Text('${doctor['phone']}'),
-                  trailing: ZegoSendCallInvitationButton(
-                    iconSize: const Size.fromRadius(20),
-                    isVideoCall: false,
-                    resourceID:
-                        resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
-                    invitees: [
-                      ZegoUIKitUser(
-                        id: doctor["id"],
-                        name: doctor["name"],
-                      ),
-                    ],
+                onTap: () {
+                  Get.to(ProfileDoctor(
+                    doctor: doctor,
                   ));
+                },
+                title: Text('${doctor["name"]}'),
+                subtitle: Text('${doctor['phone']}'),
+                // trailing: ZegoSendCallInvitationButton(
+                //   iconSize: const Size.fromRadius(20),
+                //   isVideoCall: false,
+                //   resourceID:
+                //       resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+                //   invitees: [
+                //     ZegoUIKitUser(
+                //       id: doctor["id"],
+                //       name: doctor["name"],
+                //     ),
+                //   ],
+                // ),
+              );
             }
           }),
     );
