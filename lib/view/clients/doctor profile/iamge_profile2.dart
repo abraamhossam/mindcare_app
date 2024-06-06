@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
-class ImageProfile extends StatefulWidget {
-  const ImageProfile({super.key});
+class ImageProfile2 extends StatefulWidget {
+  QueryDocumentSnapshot? doctor;
+  ImageProfile2({super.key, this.doctor});
 
   @override
-  State<ImageProfile> createState() => _ImageProfileState();
+  State<ImageProfile2> createState() => _ImageProfile2State();
 }
 
-class _ImageProfileState extends State<ImageProfile> {
-  final User? user = FirebaseAuth.instance.currentUser;
+class _ImageProfile2State extends State<ImageProfile2> {
   //late DocumentSnapshot doctordata;
 
   String? imageUrl;
@@ -27,45 +27,6 @@ class _ImageProfileState extends State<ImageProfile> {
   @override
   void initState() {
     super.initState();
-    getdata();
-  }
-
-  void getdata() async {
-    try {
-      final DocumentSnapshot doctordata = await FirebaseFirestore.instance
-          .collection("doctors_data")
-          .doc(user!.uid)
-          .get();
-      if (doctordata == null) {
-        return;
-      } else {
-        setState(() {
-          image = doctordata!.get("image");
-        });
-      }
-    } catch (e) {}
-  }
-
-  Future getImage() async {
-    ImagePicker picker = ImagePicker();
-    final XFile? imageGallery =
-        await picker.pickImage(source: ImageSource.gallery);
-    if (imageGallery != null) {
-      setState(() {
-        imag = imageGallery.path;
-      });
-      imageFile = File(imageGallery.path);
-      var ref = FirebaseStorage.instance
-          .ref()
-          .child('images')
-          .child("${user!.uid}.jpg");
-      await ref.putFile(imageFile!);
-      imageUrl = await ref.getDownloadURL();
-      await FirebaseFirestore.instance
-          .collection("doctors")
-          .doc(user!.uid)
-          .update({'image': imageUrl});
-    }
   }
 
   @override
@@ -135,23 +96,7 @@ class _ImageProfileState extends State<ImageProfile> {
           Positioned(
             bottom: 0,
             right: 0,
-            child: Container(
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 2,
-                  ),
-                  color: Colors.blue),
-              child: IconButton(
-                onPressed: () {
-                  getImage();
-                },
-                icon: const Center(child: Icon(Icons.add_a_photo)),
-                color: Colors.white,
-              ),
-            ),
+            child: Container(),
           )
         ],
       ),

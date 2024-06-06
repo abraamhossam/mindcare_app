@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/view/Doctors/views/basic_info.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/initial/widgets/custom_text_field.dart';
 import 'package:mindcare_app/view/initial/widgets/sign_image_body.dart';
@@ -97,7 +98,8 @@ class _SignUpDoctorViewBodyState extends State<SignUpDoctorViewBody> {
                             FireAuthRooms.createDoctor(
                                 name: namecontroller.text.trim(),
                                 email: emailcontroller.text.trim());
-                            Get.toNamed(SignInDoctorView.id);
+                            //Get.toNamed(SignInDoctorView.id);
+                            Get.toNamed(BasicInfo.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               snackbar(context, 'password is weak');

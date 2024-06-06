@@ -153,10 +153,10 @@ class BasicInfo extends StatelessWidget {
                             child: TextButtonSaveData(
                               text: "Go next ",
                               onPressed: () {
-                                if (controller.imageFile == null) {
+                                /*  if (controller.imageFile == null) {
                                   return snackbar(
                                       context, 'Please Pick Up an Image');
-                                }
+                                } */
                                 if (formKey.currentState!.validate()) {
                                   Get.toNamed(ProfileInfo.id);
                                 }

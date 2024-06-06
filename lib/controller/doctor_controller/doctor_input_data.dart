@@ -10,6 +10,7 @@ import 'package:mindcare_app/model/doctor_data.dart';
 class DoctorInputData extends GetxController {
   final User? user = FirebaseAuth.instance.currentUser;
   String? id;
+  String email = '';
   String name = '';
   String surname = '';
   String gender = '';

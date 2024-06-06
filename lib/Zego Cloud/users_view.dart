@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/Zego%20Cloud/constants.dart';
 
 import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
+import 'package:mindcare_app/view/clients/doctor%20profile/doctor_profile3.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 class UsersPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   final VideoCallController controller = Get.put(VideoCallController());
 
-  List<QueryDocumentSnapshot> users = [];
+  List<QueryDocumentSnapshot> doctors = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +35,10 @@ class _UsersPageState extends State<UsersPage> {
             padding: const EdgeInsets.all(8.0),
             child: MaterialButton(
               onPressed: () async {
-                users = await controller.getUserData();
+                doctors = await controller.getUserData();
                 setState(() {});
 
-                print(users);
+                print(doctors);
               },
               color: Colors.blue,
               child: const Text("getData"),
@@ -46,14 +47,19 @@ class _UsersPageState extends State<UsersPage> {
         ],
       ),
       body: ListView.builder(
-          itemCount: users.length,
+          itemCount: doctors.length,
           itemBuilder: (itemBuilder, index) {
-            final QueryDocumentSnapshot<Object?> user = users[index];
-            if (user['name'] !=
+            final QueryDocumentSnapshot<Object?> doctor = doctors[index];
+            if (doctor['name'] !=
                 FirebaseAuth.instance.currentUser!.displayName) {
               return ListTile(
-                  title: Text('${user["name"]}'),
-                  subtitle: Text('${user['email']}'),
+                  onTap: () {
+                    Get.to(ProfileDoctor(
+                      doctor: doctor,
+                    ));
+                  },
+                  title: Text('${doctor["name"]}'),
+                  subtitle: Text('${doctor['phone']}'),
                   trailing: ZegoSendCallInvitationButton(
                     iconSize: const Size.fromRadius(20),
                     isVideoCall: false,
@@ -61,8 +67,8 @@ class _UsersPageState extends State<UsersPage> {
                         resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
                     invitees: [
                       ZegoUIKitUser(
-                        id: user["id"],
-                        name: user["name"],
+                        id: doctor["id"],
+                        name: doctor["name"],
                       ),
                     ],
                   ));

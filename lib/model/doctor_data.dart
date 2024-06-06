@@ -1,5 +1,7 @@
 class DoctorsData {
+  String? type;
   final String? id;
+  final String email;
   final String name;
   final String surname;
   final String gender;
@@ -24,8 +26,7 @@ class DoctorsData {
   final String urlImage;
 
   DoctorsData(
-      {
-        required this.id,
+      {required this.id,
       required this.name,
       required this.surname,
       required this.gender,
@@ -48,11 +49,12 @@ class DoctorsData {
       required this.expiryBoard,
       required this.expiryCurrent,
       required this.urlImage,
-      
-      });
+      required this.email,
+      this.type});
   toJson() {
     return {
       'id': id,
+      'email': email,
       'name': name,
       'surname': surname,
       'gender': gender,
@@ -74,8 +76,8 @@ class DoctorsData {
       'specialisty': specialisty,
       'expiryBoard': expiryBoard,
       'expiryCurrent': expiryCurrent,
-      'urlImage':urlImage,
-
+      'urlImage': urlImage,
+      'type': type,
     };
   }
 }

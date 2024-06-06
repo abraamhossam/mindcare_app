@@ -13,7 +13,7 @@ class VideoCallController extends GetxController {
   Future<List<QueryDocumentSnapshot>> getUserData() async {
     users.clear();
     QuerySnapshot data =
-        await FirebaseFirestore.instance.collection("users").get();
+        await FirebaseFirestore.instance.collection("doctors_data").get();
     users.addAll(data.docs);
     return users;
   }

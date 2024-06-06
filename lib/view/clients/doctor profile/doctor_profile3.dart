@@ -1,51 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:mindcare_app/view/Doctors/widgets/image_profile_doc.dart';
+import 'package:mindcare_app/view/clients/doctor%20profile/iamge_profile2.dart';
+import 'package:mindcare_app/view/clients/doctor%20profile/make_appointment2.dart';
 import 'package:mindcare_app/view/initial/widgets/title_text.dart';
 
-class ProfilePagedoctor extends StatefulWidget {
-  const ProfilePagedoctor({super.key});
-  static String id = "/ProfilDoctorepage";
+class ProfileDoctor extends StatefulWidget {
+  QueryDocumentSnapshot? doctor;
+  ProfileDoctor({super.key, this.doctor});
+  static String id = "/doctorData";
 
   @override
-  State<ProfilePagedoctor> createState() => _ProfilePagedoctorState();
+  State<ProfileDoctor> createState() => _ProfileDoctor();
 }
 
-class _ProfilePagedoctorState extends State<ProfilePagedoctor> {
-  final User? user = FirebaseAuth.instance.currentUser;
-  String name = "";
-  String email = "";
-  String phone = '';
+class _ProfileDoctor extends State<ProfileDoctor> {
   //late DocumentSnapshot doctordata;
+
   @override
   void initState() {
     super.initState();
-    getdata();
-  }
-
-  void getdata() async {
-    try {
-      final DocumentSnapshot doctordata = await FirebaseFirestore.instance
-          .collection("doctors_data")
-          .doc(user!.uid)
-          .get();
-
-      if (doctordata == null) {
-        return;
-      } else {
-        setState(() {
-          email = doctordata.get("email");
-          name = doctordata.get("surname");
-          phone = doctordata.get("phone");
-
-          //print(name);
-        });
-        // print("**********done***");
-      }
-    } catch (e) {
-      // print("Error in Getting Data $e");
-    }
+    //getdata();
   }
 
   @override
@@ -68,7 +46,7 @@ class _ProfilePagedoctorState extends State<ProfilePagedoctor> {
               const SizedBox(
                 height: 30,
               ),
-              const ImageProfile(),
+              ImageProfile2(doctor: widget.doctor),
               const SizedBox(
                 height: 30,
               ),
@@ -79,7 +57,7 @@ class _ProfilePagedoctorState extends State<ProfilePagedoctor> {
                   color: Colors.blue,
                 ),
                 title: "Name",
-                subtitle: name,
+                subtitle: widget.doctor!["name"],
               ),
               // SizedBox(
               //   height: 1,
@@ -91,7 +69,7 @@ class _ProfilePagedoctorState extends State<ProfilePagedoctor> {
                   color: Colors.blue,
                 ),
                 title: "Email",
-                subtitle: user!.email!,
+                subtitle: widget.doctor!["email"],
               ),
               ListTitleWdiget(
                 leading: const Icon(
@@ -100,7 +78,23 @@ class _ProfilePagedoctorState extends State<ProfilePagedoctor> {
                   color: Colors.blue,
                 ),
                 title: "Phone",
-                subtitle: phone,
+                subtitle: widget.doctor!["phone"],
+              ),
+              const SizedBox(
+                height: 60,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 150),
+                child: MaterialButton(
+                  onPressed: () {
+                    Get.to(MakeAppointment2(
+                      doctor: widget.doctor,
+                    ));
+                  },
+                  color: Colors.blue,
+                  child: const Text("Book"),
+                ),
               ),
             ],
           )),
