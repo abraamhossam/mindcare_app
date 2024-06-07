@@ -8,7 +8,6 @@ import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
-import 'package:mindcare_app/view/clients/views/client_home_view.dart';
 import 'package:mindcare_app/view/clients/views/make_appointment.dart';
 
 // ignore: must_be_immutable
@@ -344,17 +343,10 @@ class DoctorProfile extends StatelessWidget {
                                 recieverId: reciever.docs.first.id,
                               );
                               controller.indexUser.value = 3;
-                              Get.offNamed(ClientHomeView.id);
-                              FireAuthRooms.sendMessage(
-                                recieverid: reciever.docs.first.id,
-                                message: "hello doctor",
-                                roomId: members,
-                              );
-                              FireAuthRooms.sendNotification(
-                                recieveId: reciever.docs.first.id,
-                                msg: "hello doctor",
-                                collectionName: "doctors",
-                              );
+                              Get.back();
+                              Get.back();
+                              Get.back();
+                              Get.back();
                             },
                           ),
                           ElevatedButton(

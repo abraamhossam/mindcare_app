@@ -41,7 +41,7 @@ class FinishedBookingsBody extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(
                           bottom: 8,
-                          left: 30,
+                          left: 26,
                         ),
                         child: SizedBox(
                           height: SizeConfig.height! * 0.2,
@@ -49,7 +49,7 @@ class FinishedBookingsBody extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: SizeConfig.width! * 0.26,
+                                width: SizeConfig.width! * 0.24,
                                 child: Column(
                                   children: [
                                     BubbleDate(
@@ -88,7 +88,7 @@ class FinishedBookingsBody extends StatelessWidget {
                                   ),
                                 ),
                                 child: Container(
-                                  width: SizeConfig.width! * 0.6,
+                                  width: SizeConfig.width! * 0.64,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
@@ -139,7 +139,7 @@ class FinishedBookingsBody extends StatelessWidget {
                                           Text(
                                             listIteams[index].userName!,
                                             style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                             ),

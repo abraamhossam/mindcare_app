@@ -5,7 +5,6 @@ import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/booking_model.dart';
 import 'package:mindcare_app/view/Doctors/widgets/bubble_date_doctor.dart';
-import 'package:mindcare_app/view/Doctors/widgets/custom_profile_image.dart';
 
 class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
   const DoctorHomeViewAppointmentsIteam({
@@ -111,25 +110,13 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        CustomProfileImage(
-                                          image: "assets/images/user_img.png",
-                                          width: SizeConfig.width! * 0.1,
-                                          height: SizeConfig.height! * 0.05,
-                                        ),
-                                        SizedBox(
-                                          width: SizeConfig.width! * 0.02,
-                                        ),
-                                        Text(
-                                          listIteams[index].userName!,
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )
-                                      ],
+                                    Text(
+                                      listIteams[index].userName!,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ],
                                 ),

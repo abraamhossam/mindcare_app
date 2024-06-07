@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FireAuthBooking {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
-  static String myUid = FirebaseAuth.instance.currentUser!.uid;
+
   static Future createBooking({
     String? day,
     String? hour,
@@ -15,10 +15,15 @@ class FireAuthBooking {
         .collection('doctors')
         .where('name', isEqualTo: doctorName)
         .get();
-    QuerySnapshot user =
-        await firestore.collection('users').where('id', isEqualTo: myUid).get();
+    QuerySnapshot user = await firestore
+        .collection('users')
+        .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
 
-    List members = [myUid, doctor.docs.first.id];
+    List members = [
+      FirebaseAuth.instance.currentUser!.uid,
+      doctor.docs.first.id
+    ];
     await firestore.collection('bookings').doc(members.toString()).set({
       'created_at': DateTime.now().toString(),
       'id': members.toString(),
@@ -42,7 +47,7 @@ class FireAuthBooking {
         .collection('users')
         .where('name', isEqualTo: userName)
         .get();
-    List members = [user.docs.first.id, myUid];
+    List members = [user.docs.first.id, FirebaseAuth.instance.currentUser!.uid];
     await firestore.collection('bookings').doc(members.toString()).update({
       'reply': reply,
     });
@@ -56,7 +61,10 @@ class FireAuthBooking {
         .collection('doctors')
         .where('name', isEqualTo: doctorName)
         .get();
-    List members = [myUid, doctor.docs.first.id];
+    List members = [
+      FirebaseAuth.instance.currentUser!.uid,
+      doctor.docs.first.id
+    ];
     DocumentSnapshot<Map<String, dynamic>> document =
         await firestore.collection('bookings').doc(members.toString()).get();
     return document.data()?['reply'] == null ? "" : document.data()!['reply'];

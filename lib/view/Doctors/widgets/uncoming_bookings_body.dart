@@ -51,7 +51,7 @@ class UncomingBookingsBody extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: SizeConfig.width! * 0.3,
+                                width: SizeConfig.width! * 0.26,
                                 child: BubbleDate(
                                   color1: Colors.white,
                                   color2: kPrimaryColor,
@@ -68,7 +68,7 @@ class UncomingBookingsBody extends StatelessWidget {
                                   ),
                                 ),
                                 child: Container(
-                                  width: SizeConfig.width! * 0.6,
+                                  width: SizeConfig.width! * 0.65,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
@@ -177,7 +177,7 @@ class UncomingBookingsBody extends StatelessWidget {
                                           Text(
                                             listIteams[index].userName!,
                                             style: const TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                             ),
