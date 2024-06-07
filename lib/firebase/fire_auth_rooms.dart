@@ -8,15 +8,17 @@ import 'package:http/http.dart' as http;
 
 class FireAuthRooms {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
-  static String myUid = FirebaseAuth.instance.currentUser!.uid;
   static final GetDetailscontroller controller = Get.find();
   static String myName = controller.dataModel.value.name!;
   static Future createUser({
     required String name,
     required String email,
   }) async {
-    await firestore.collection('users').doc(myUid).set({
-      'id': myUid,
+    await firestore
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      'id': FirebaseAuth.instance.currentUser!.uid,
       'name': name,
       'email': email,
       'type': 'User',
@@ -27,8 +29,11 @@ class FireAuthRooms {
 
   static Future createDoctor(
       {required String name, required String email}) async {
-    await firestore.collection('doctors').doc(myUid).set({
-      'id': myUid,
+    await firestore
+        .collection('doctors')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
+      'id': FirebaseAuth.instance.currentUser!.uid,
       'name': name,
       'email': email,
       'type': 'Doctor',
@@ -44,7 +49,7 @@ class FireAuthRooms {
         .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
 
-    List members = [myUid, recieverId];
+    List members = [FirebaseAuth.instance.currentUser!.uid, recieverId];
 
     await firestore.collection('rooms').doc(members.toString()).set({
       'id': members.toString(),
@@ -76,7 +81,7 @@ class FireAuthRooms {
         .set({
       'id': msgId,
       'toid': recieverid,
-      'fromid': myUid,
+      'fromid': FirebaseAuth.instance.currentUser!.uid,
       'created_at': DateTime.now().toString(),
       'message': message,
       'type': type ?? 'text',
@@ -85,11 +90,11 @@ class FireAuthRooms {
     firestore.collection('rooms').doc(roomId.toString()).update({
       'last_message_time': DateTime.now().millisecondsSinceEpoch.toString(),
     });
-    if (roomId[0] == myUid) {
+    if (roomId[0] == FirebaseAuth.instance.currentUser!.uid) {
       firestore.collection('rooms').doc(roomId.toString()).update({
         'read': "1",
       });
-    } else if (roomId[1] == myUid) {
+    } else if (roomId[1] == FirebaseAuth.instance.currentUser!.uid) {
       firestore.collection('rooms').doc(roomId.toString()).update({
         'read': "2",
       });
@@ -103,7 +108,7 @@ class FireAuthRooms {
         .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
 
-    List members = [myUid, recieverId];
+    List members = [FirebaseAuth.instance.currentUser!.uid, recieverId];
 
     await firestore.collection('adminRooms').doc(members.toString()).set({
       'id': members.toString(),
@@ -133,7 +138,7 @@ class FireAuthRooms {
         .set({
       'id': msgId,
       'toid': recieverid,
-      'fromid': myUid,
+      'fromid': FirebaseAuth.instance.currentUser!.uid,
       'created_at': DateTime.now().toString(),
       'message': message,
       'type': type ?? 'text',

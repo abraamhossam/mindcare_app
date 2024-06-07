@@ -13,7 +13,7 @@ class MyBindings implements Bindings {
     Get.put(BottomNavigationBarController());
     Get.put(MoodsController());
     Get.put(VideoMoodController());
-    Get.put(GetDetailscontroller(), permanent: true);
+    Get.put(GetDetailscontroller());
     Get.put(DoctorInputData());
   }
 }

@@ -99,6 +99,7 @@ class _SignUpClientViewBodyState extends State<SignUpClientViewBody> {
                               password: passwordcontroller.text.trim(),
                             );
 
+                            // ignore: use_build_context_synchronously
                             snackbar(context, 'Success');
                             FireAuthRooms.createUser(
                                 name: namecontroller.text.trim(),
@@ -106,11 +107,14 @@ class _SignUpClientViewBodyState extends State<SignUpClientViewBody> {
                             Get.offNamed(SignInClientView.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
+                              // ignore: use_build_context_synchronously
                               snackbar(context, 'password is weak');
                             } else if (e.code == 'email-already-in-use') {
+                              // ignore: use_build_context_synchronously
                               snackbar(context, 'The account already exists');
                             }
                           } catch (e) {
+                            // ignore: use_build_context_synchronously
                             snackbar(context,
                                 "There is an error in the data entered");
                           }

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
+import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/text_button_data.dart';
-
 import '../../../controller/doctor_controller/doctor_input_data.dart';
 import '../../../model/doctor_data.dart';
 import '../widgets/container_info_save_data.dart';
@@ -167,7 +166,7 @@ class MedicalInfo extends StatelessWidget {
                           child: TextButtonSaveData(
                             text: "Do it later ",
                             onPressed: () {
-                              Get.offAllNamed(DoctorHomeView.id);
+                              Get.offAllNamed(SignInDoctorView.id);
                             },
                             decorationcolor: Colors.white,
                             textcolor: kPrimaryColor,
@@ -208,7 +207,7 @@ class MedicalInfo extends StatelessWidget {
                                       : controller.imageUrl!,
                                 ),
                               );
-                              Get.offAllNamed(DoctorHomeView.id);
+                              Get.offAllNamed(SignInDoctorView.id);
                             },
                             decorationcolor: Colors.blue,
                             textcolor: Colors.white,

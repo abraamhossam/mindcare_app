@@ -112,6 +112,7 @@ class _SignInClientViewBodyState extends State<SignInClientViewBody> {
                             } else {
                               // ignore: use_build_context_synchronously
                               snackbar(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 'The email or Password is incorrect',
                               );
@@ -119,7 +120,9 @@ class _SignInClientViewBodyState extends State<SignInClientViewBody> {
                           } catch (e) {
                             // ignore: use_build_context_synchronously
                             snackbar(
-                                context, 'The email or Password is incorrect');
+                                // ignore: use_build_context_synchronously
+                                context,
+                                'The email or Password is incorrect');
                           }
                           isloading = false;
                           setState(() {});
