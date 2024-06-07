@@ -2,6 +2,7 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/controller/doctor_controller/doctor_input_data.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
@@ -27,7 +28,7 @@ class _SignUpDoctorViewBodyState extends State<SignUpDoctorViewBody> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController namecontroller = TextEditingController();
-
+  DoctorInputData doctorController = Get.find();
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -94,19 +95,26 @@ class _SignUpDoctorViewBodyState extends State<SignUpDoctorViewBody> {
                               password: passwordcontroller.text.trim(),
                             );
 
+                            // ignore: use_build_context_synchronously
                             snackbar(context, 'Success');
                             FireAuthRooms.createDoctor(
                                 name: namecontroller.text.trim(),
                                 email: emailcontroller.text.trim());
+                            doctorController.name = namecontroller.text.trim();
+                            doctorController.email =
+                                emailcontroller.text.trim();
                             //Get.toNamed(SignInDoctorView.id);
                             Get.toNamed(BasicInfo.id);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
+                              // ignore: use_build_context_synchronously
                               snackbar(context, 'password is weak');
                             } else if (e.code == 'email-already-in-use') {
+                              // ignore: use_build_context_synchronously
                               snackbar(context, 'The account already exists');
                             }
                           } catch (e) {
+                            // ignore: use_build_context_synchronously
                             snackbar(context,
                                 "There is an error in the data entered");
                           }

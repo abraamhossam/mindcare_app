@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:easy_date_timeline/easy_date_timeline.dart';
-import 'package:mindcare_app/view/make_appointment.dart';
+
 import 'package:mindcare_app/view/widgets/custom_doctor_card2.dart';
 
 import 'package:mindcare_app/Langauge/language_controller.dart';
@@ -52,17 +52,6 @@ class doctorProfile extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: CustomDoctorCard(
-                doctor: doctor!,
-                tap: () {
-                  Get.to(MakeAppointment(
-                    doctor: doctor!,
-                  ));
-                },
               ),
             ),
             Padding(

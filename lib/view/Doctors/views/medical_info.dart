@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -174,15 +175,14 @@ class MedicalInfo extends StatelessWidget {
                         ),
                         Expanded(
                           child: TextButtonSaveData(
-                            text: "Go next ",
+                            text: "Go next",
                             onPressed: () {
                               controller.creatdoctordata(
                                 DoctorsData(
                                   type: "doctor",
-                                  id: controller.user!.uid,
-                                  email: controller.user!.email!,
+                                  id: FirebaseAuth.instance.currentUser!.uid,
+                                  email: controller.email,
                                   name: controller.name,
-                                  surname: controller.surname,
                                   gender:
                                       controller.selectitemsgender.toString(),
                                   birth: controller.birth,

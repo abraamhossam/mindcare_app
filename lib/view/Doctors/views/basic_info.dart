@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/view/Doctors/widgets/appbar_widget.dart';
 import 'package:mindcare_app/view/Doctors/widgets/phone_text_field.dart';
 import '../../../controller/doctor_controller/doctor_input_data.dart';
@@ -47,31 +46,6 @@ class BasicInfo extends StatelessWidget {
                       ),
                       const ImageProfileDoctor(),
                       const SizedBox(
-                        height: 1,
-                      ),
-                      TextFiledData(
-                        onChanged: (data) {
-                          controller.name = data;
-                        },
-                        validator: (data) {
-                          if (data!.isEmpty) {
-                            return "field is required";
-                          }
-                        },
-                        labelText: "Name",
-                      ),
-                      TextFiledData(
-                        onChanged: (data) {
-                          controller.surname = data;
-                        },
-                        validator: (data) {
-                          if (data!.isEmpty) {
-                            return "field is required";
-                          }
-                        },
-                        labelText: "Surname",
-                      ),
-                      const SizedBox(
                         height: 6,
                       ),
                       const DropdownButtonn(
@@ -98,6 +72,11 @@ class BasicInfo extends StatelessWidget {
                       TextFiledData(
                         onChanged: (data) {
                           controller.medicalTitle = data;
+                        },
+                        validator: (data) {
+                          if (data!.isEmpty) {
+                            return "field is required";
+                          }
                         },
                         labelText: "Medical Specialty",
                       ),

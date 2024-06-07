@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/botton_time_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_booking.dart';
-import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
@@ -14,11 +13,11 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class MakeAppointment extends StatefulWidget {
   const MakeAppointment({
     super.key,
-    this.doctor,
+    this.doctorData,
   });
   static String id = "/make_appointment";
 
-  final Map<String, dynamic>? doctor;
+  final dynamic doctorData;
 
   @override
   State<MakeAppointment> createState() => _MakeAppointmentState();
@@ -76,7 +75,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                   width: size.width * 0.16,
                 ),
                 Text(
-                  widget.doctor!['Doctors_Names'],
+                  widget.doctorData!['name'],
                   style: const TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w600,
@@ -159,10 +158,10 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                   isLoading = true;
                   setState(() {});
                   String check = await FireAuthBooking.checkbooking(
-                    doctorName: "doctor1",
+                    doctorName: widget.doctorData!['name'],
                   );
                   bool checkTime = await FireAuthBooking.checkbookingTime(
-                      doctorName: "doctor1",
+                      doctorName: widget.doctorData!['name'],
                       day: day,
                       month: month.toString(),
                       hour: hour.toString());
@@ -203,18 +202,18 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                                       month: month,
                                       day: day,
                                       hour: hour,
-                                      doctorName: "doctor1",
+                                      doctorName: widget.doctorData!['name'],
                                     );
                                     Get.back();
                                     snackbar(
                                       context,
                                       "Booked session successfully and waiting for reply from therapist",
                                     );
-                                    FireAuthRooms.sendNotificationBooking(
-                                      msg: "he wants to book a therapy session",
-                                      type: "Doctor",
-                                      recieverName: "DoctorName",
-                                    );
+                                    // FireAuthRooms.sendNotificationBooking(
+                                    //   msg: "he wants to book a therapy session",
+                                    //   type: "Doctor",
+                                    //   recieverName: "DoctorName",
+                                    // );
                                   },
                                 ),
                                 ElevatedButton(
@@ -263,23 +262,9 @@ class _MakeAppointmentState extends State<MakeAppointment> {
             ),
             FeeCard(
               size: size,
-              title: 'Messeging'.tr,
-              subTitle: "Can messege with therapist.".tr,
-              icon: Icons.chat_bubble_outline,
-              price: 3,
-            ),
-            FeeCard(
-              size: size,
-              title: "Voice Call".tr,
-              subTitle: "Can make a voice call with therapist.".tr,
-              icon: Icons.call_outlined,
-              price: 3,
-            ),
-            FeeCard(
-              size: size,
-              title: "Video Call".tr,
-              subTitle: "Can make a video call with therapist.".tr,
-              icon: Icons.video_call_outlined,
+              title: 'Online Session'.tr,
+              subTitle: "Can make therapy session with therapist online.".tr,
+              icon: Icons.interpreter_mode,
               price: 3,
             ),
           ],

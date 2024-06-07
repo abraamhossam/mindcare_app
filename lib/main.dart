@@ -6,8 +6,7 @@ import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
 import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
 import 'package:mindcare_app/Langauge/language.dart';
 import 'package:mindcare_app/Langauge/language_controller.dart';
-import 'package:mindcare_app/Zego%20Cloud/users_view.dart';
-import 'package:mindcare_app/chatbot/chatbot.dart';
+import 'package:mindcare_app/chatbot/chatbot_view.dart';
 import 'package:mindcare_app/helper/mybindings.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
@@ -18,21 +17,19 @@ import 'package:mindcare_app/view/Doctors/views/reset_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/test_view.dart';
-import 'package:mindcare_app/view/Doctors/widgets/profile_doc_page.dart';
+import 'package:mindcare_app/view/Doctors/views/profile_doctor_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/video_recommendations_view.dart';
-import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
-import 'package:mindcare_app/view/clients/doctor%20profile/doctor_profile3.dart';
-import 'package:mindcare_app/view/clients/doctor%20profile/doctors_view.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
+import 'package:mindcare_app/view/clients/views/doctors_view.dart';
+import 'package:mindcare_app/view/clients/views/make_appointment.dart';
 import 'package:mindcare_app/view/clients/views/reset_view_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_up_client_view.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/initial/views/init_view.dart';
 import 'package:mindcare_app/view/initial/views/splash_view.dart';
-import 'package:mindcare_app/view/make_appointment.dart';
-import 'package:mindcare_app/view/profile_page.dart';
+import 'package:mindcare_app/view/clients/views/profile_user_View.dart';
 import 'package:mindcare_app/view/test_page.dart';
 import 'package:mindcare_app/view/tests/views/adhd_test_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
@@ -104,8 +101,8 @@ class MindCareApp extends StatelessWidget {
             : SplashView.id,
         getPages: [
           GetPage(
-            name: UsersPage.id,
-            page: () => UsersPage(),
+            name: MakeAppointment.id,
+            page: () => const MakeAppointment(),
           ),
           GetPage(
             name: SplashView.id,
@@ -175,26 +172,23 @@ class MindCareApp extends StatelessWidget {
             name: ResetDoctorView.id,
             page: () => const ResetDoctorView(),
           ),
-          GetPage(
-            name: SignInAdminView.id,
-            page: () => const SignInAdminView(),
-          ),
+
           GetPage(
             name: PayView.id,
             page: () => const PayView(),
           ),
           GetPage(
-            name: ProfilePage.id,
-            page: () => const ProfilePage(),
+            name: ProfileUserView.id,
+            page: () => ProfileUserView(),
           ),
           GetPage(
-            name: ProfilePagedoctor.id,
-            page: () => const ProfilePagedoctor(),
+            name: ProfileDoctorView.id,
+            page: () => ProfileDoctorView(),
           ),
           // ............سكرينات السنوسي.. ............
           GetPage(
             name: ClientHomeView.id,
-            page: () => ClientHomeView(),
+            page: () => const ClientHomeView(),
           ),
           GetPage(
             name: mentalTests.id,
@@ -205,10 +199,7 @@ class MindCareApp extends StatelessWidget {
             name: doctorProfile.id,
             page: () => doctorProfile(),
           ),
-          GetPage(
-            name: MakeAppointment.id,
-            page: () => MakeAppointment(),
-          ),
+
           //test
           GetPage(
             name: TestHomeView.id,
@@ -282,7 +273,7 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: MedicalInfo.id,
-            page: () => MedicalInfo(),
+            page: () => const MedicalInfo(),
           ),
           GetPage(
             name: ProfileInfo.id,
@@ -290,7 +281,7 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: VerificationPage.id,
-            page: () => VerificationPage(),
+            page: () => const VerificationPage(),
           ),
           GetPage(
             name: MentalIllnessHistoryPage.id,
@@ -303,7 +294,7 @@ class MindCareApp extends StatelessWidget {
           ),
           GetPage(
             name: VideoRecommendationsView.id,
-            page: () => VideoRecommendationsView(),
+            page: () => const VideoRecommendationsView(),
           ),
           GetPage(
             name: MoodRecommendationsView.id,
@@ -313,13 +304,10 @@ class MindCareApp extends StatelessWidget {
             name: DoctorSearch.id,
             page: () => DoctorSearch(),
           ),
-          GetPage(
-            name: ProfileDoctor.id,
-            page: () => ProfileDoctor(),
-          ),
+
           GetPage(
             name: DoctorsView.id,
-            page: () => DoctorsView(),
+            page: () => const DoctorsView(),
           ),
         ],
       ),

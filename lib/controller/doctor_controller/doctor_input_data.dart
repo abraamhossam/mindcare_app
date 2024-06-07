@@ -12,7 +12,6 @@ class DoctorInputData extends GetxController {
   String? id;
   String email = '';
   String name = '';
-  String surname = '';
   String gender = '';
   String birth = '';
   String medicalTitle = '';
@@ -56,7 +55,7 @@ class DoctorInputData extends GetxController {
   creatdoctordata(DoctorsData doctor) async {
     await db
         .collection('doctors_data')
-        .doc(user!.uid)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .set(doctor.toJson())
         // ignore: avoid_print
         .then((value) => print("Added doctor************"))

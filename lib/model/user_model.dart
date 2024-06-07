@@ -15,11 +15,12 @@ class UserModel {
   });
   factory UserModel.fromjson(dynamic data) {
     return UserModel(
-        name: data['name'],
-        email: data['email'],
-        id: data['id'],
-        image: data['image'],
-        type: data['type'],
-        token: data['token']);
+      name: data['name'],
+      email: data['email'],
+      id: data['id'],
+      image: data['image'],
+      type: data['type'],
+      token: data['token'],
+    );
   }
 }

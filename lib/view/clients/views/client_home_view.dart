@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/Doctor_recommendation/doctor_search.dart';
-import 'package:mindcare_app/Zego%20Cloud/users_view.dart';
 import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
-
-import 'package:mindcare_app/chatbot/chatbot.dart';
+import 'package:mindcare_app/chatbot/chatbot_view.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
@@ -18,15 +16,14 @@ import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
-import 'package:mindcare_app/view/clients/doctor%20profile/doctors_view.dart';
+import 'package:mindcare_app/view/clients/views/doctors_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_test_body.dart';
-
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
-import 'package:mindcare_app/view/profile_page.dart';
+import 'package:mindcare_app/view/clients/views/profile_user_View.dart';
 import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:mindcare_app/view/widgets/custom_tile.dart';
 
@@ -329,7 +326,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                     name: "Profile".tr,
                     icon: Icons.person,
                     tap: () {
-                      Get.toNamed(ProfilePage.id);
+                      Get.toNamed(ProfileUserView.id);
                     }),
                 Tile(
                   name: "History".tr,
@@ -346,10 +343,17 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                   },
                 ),
                 Tile(
-                  name: "Search for doctors".tr,
+                  name: "Search For Doctors".tr,
                   icon: Icons.person_search,
                   tap: () {
                     Get.toNamed(DoctorSearch.id);
+                  },
+                ),
+                Tile(
+                  name: "Registered Doctors",
+                  icon: Icons.how_to_reg,
+                  tap: () {
+                    Get.toNamed(DoctorsView.id);
                   },
                 ),
                 Tile(
@@ -428,13 +432,6 @@ class _ClientHomeViewState extends State<ClientHomeView> {
                   icon: Icons.chat,
                   tap: () {
                     Get.toNamed(ChatBotScreen.id);
-                  },
-                ),
-                Tile(
-                  name: "Video Call",
-                  icon: Icons.video_call,
-                  tap: () {
-                    Get.toNamed(DoctorsView.id);
                   },
                 ),
                 Tile(

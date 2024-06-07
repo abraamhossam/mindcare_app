@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
-import 'package:mindcare_app/view/admins/views/sign_in_admin_view.dart';
 import 'package:mindcare_app/view/clients/views/sign_in_client_view.dart';
 
 class DropDownViewBody extends StatefulWidget {
@@ -15,7 +14,7 @@ class DropDownViewBody extends StatefulWidget {
 
 class _DropDownViewBodyState extends State<DropDownViewBody> {
   String? selected;
-  List<String> listData = ["client", "tharepist", "admin"];
+  List<String> listData = ["client", "tharepist"];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -94,8 +93,6 @@ class _DropDownViewBodyState extends State<DropDownViewBody> {
               Get.toNamed(SignInDoctorView.id);
             } else if (selected.toString() == "client") {
               Get.toNamed(SignInClientView.id);
-            } else if (selected.toString() == "admin") {
-              Get.toNamed(SignInAdminView.id);
             }
           });
         },

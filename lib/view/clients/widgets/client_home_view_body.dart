@@ -1,25 +1,21 @@
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
-import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
-import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
-import 'package:mindcare_app/model/room_model.dart';
-import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
+import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
 import 'package:mindcare_app/view/tests/views/aniexty_test_vew.dart';
 import 'package:mindcare_app/view/tests/views/dass_test_view.dart';
 import 'package:mindcare_app/view/tests/views/depression_test_view.dart';
 import 'package:mindcare_app/view/tests/views/post_traumatic_stress_test_view.dart';
+import 'package:mindcare_app/view/tests/views/test_home_view.dart';
 import 'package:mindcare_app/view/widgets/custom_button%20copy.dart';
 import 'package:mindcare_app/view/widgets/custom_card.dart';
 
 class ClientHomeViewBody extends StatelessWidget {
   ClientHomeViewBody({super.key});
   final TestController controller = Get.find();
-  final BottomNavigationBarController controllerIndex = Get.find();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,16 +28,26 @@ class ClientHomeViewBody extends StatelessWidget {
               size: size,
               backColor: kPrimaryColor,
               imageName: const AssetImage("assets/images/meditation/7.png"),
-              title: "Meditation Sessions".tr,
-              subTitle: "Stay relaxed".tr,
+              title: "Out Tests".tr,
+              subTitle: "quick mental tests".tr,
               textColor: Colors.white,
+              ontap: () {
+                Get.toNamed(
+                  TestHomeView.id,
+                );
+              },
             ),
             CustomCard(
               size: size,
               backColor: Colors.white,
               imageName: const AssetImage("assets/images/meditation/6.png"),
-              title: "Meditation Sessions".tr,
-              subTitle: "Stay relaxed".tr,
+              title: "Moods".tr,
+              subTitle: "tell us your mood".tr,
+              ontap: () {
+                Get.toNamed(
+                  MoodRecommendationsView.id,
+                );
+              },
             ),
           ],
         ),
@@ -64,93 +70,6 @@ class ClientHomeViewBody extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              Button(
-                title: "Create Chat",
-                onPressed: () async {
-                  QuerySnapshot reciever = await FirebaseFirestore.instance
-                      .collection('doctors')
-                      .where('name', isEqualTo: "doctor1")
-                      .get();
-                  String recieverId = reciever.docs.first.id;
-
-                  List members = [
-                    FirebaseAuth.instance.currentUser!.uid,
-                    recieverId,
-                  ];
-
-                  DocumentSnapshot<Map<String, dynamic>> collection =
-                      await FirebaseFirestore.instance
-                          .collection("rooms")
-                          .doc(members.toString())
-                          .get();
-
-                  if (collection.exists == false) {
-                    // ignore: use_build_context_synchronously
-                    showDialog(
-                      // ignore: use_build_context_synchronously
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          contentTextStyle: const TextStyle(
-                              height: 1.5,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                          backgroundColor: const Color(0xff607D8B),
-                          content: const Text(
-                            "Are you sure to create chat with therapist ?",
-                          ),
-                          actions: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kPrimaryColor,
-                              ),
-                              child: const Text(
-                                "Ok",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              onPressed: () {
-                                FireAuthRooms.creatRoom(
-                                  recieverName: "doctor1",
-                                  recieverId: reciever.docs.first.id,
-                                );
-                                Get.back();
-                                controllerIndex.indexUser.value = 3;
-                                FireAuthRooms.sendMessage(
-                                  recieverid: reciever.docs.first.id,
-                                  message: "hello doctor",
-                                  roomId: members,
-                                );
-                              },
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kPrimaryColor,
-                              ),
-                              child: const Text(
-                                "Cancel",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              onPressed: () {
-                                Get.back();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } else {
-                    Get.toNamed(
-                      ChattingUsersView.id,
-                      arguments: RoomModel.fromjson(collection.data()),
-                    );
-                  }
-                },
-              ),
               Button(
                 title: "Depression",
                 onPressed: () {
@@ -189,7 +108,7 @@ class ClientHomeViewBody extends StatelessWidget {
             right: 20,
           ),
           child: Text(
-            "Our Doctors".tr,
+            "Famous Doctors".tr,
             style: const TextStyle(
               fontSize: 25,
               color: Color(0xff737373),

@@ -18,71 +18,75 @@ class ReportsBody extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 4,
-                    left: 8,
-                    right: 8,
-                  ),
-                  child: Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(16),
+          return snapshot.data!.docs.isEmpty
+              ? const Center(
+                  child: Text("There is no reports on someone yet"),
+                )
+              : ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4,
+                        left: 8,
+                        right: 8,
                       ),
-                      child: Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 28,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              radius: 24,
-                              backgroundImage: AssetImage(
-                                'assets/images/user_img.png',
+                      child: Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 28,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  radius: 24,
+                                  backgroundImage: AssetImage(
+                                    'assets/images/user_img.png',
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: SizeConfig.width! * 0.1,
-                          ),
-                          SizedBox(
-                            width: SizeConfig.width! * 0.6,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  snapshot.data!.docs[index]['from'],
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              SizedBox(
+                                width: SizeConfig.width! * 0.1,
+                              ),
+                              SizedBox(
+                                width: SizeConfig.width! * 0.6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      snapshot.data!.docs[index]['from'],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      snapshot.data!.docs[index]['report'],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  snapshot.data!.docs[index]['report'],
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              });
+                    );
+                  });
         } else if (snapshot.hasError) {
           return const Center(
             child: Text("OOps there is an error"),
