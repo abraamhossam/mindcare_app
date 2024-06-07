@@ -76,7 +76,7 @@ class GetDetailscontroller extends GetxController {
 
       await FirebaseFirestore.instance
           .collection("doctors_data")
-          .doc("et8WpSuBakcFbtu5eriNtrWvaL02")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
           .get()
           .then(
         (value) {
