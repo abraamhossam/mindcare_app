@@ -91,7 +91,7 @@ class UncomingBookingsBody extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Booking Session",
+                                              "Therapy Session",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 24,
@@ -106,7 +106,9 @@ class UncomingBookingsBody extends StatelessWidget {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           ElevatedButton(
-                                            style: ElevatedButton.styleFrom(),
+                                            style: ElevatedButton.styleFrom(
+                                              elevation: 10,
+                                            ),
                                             onPressed: () async {
                                               FireAuthBooking.booking(
                                                 userName:
@@ -117,7 +119,7 @@ class UncomingBookingsBody extends StatelessWidget {
                                               FireAuthRooms.sendNotificationBooking(
                                                   msg:
                                                       "Your appointment has been successfully booked. Thank you for choosing our service.",
-                                                  type: "User",
+                                                  collectionName: "users",
                                                   recieverName:
                                                       listIteams[index]
                                                           .userName!);
@@ -130,6 +132,9 @@ class UncomingBookingsBody extends StatelessWidget {
                                             ),
                                           ),
                                           ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              elevation: 10,
+                                            ),
                                             onPressed: () async {
                                               FireAuthBooking.booking(
                                                 userName:
@@ -140,7 +145,7 @@ class UncomingBookingsBody extends StatelessWidget {
                                               FireAuthRooms.sendNotificationBooking(
                                                   msg:
                                                       "Your appointment has been successfully cancelled. We're sorry to see you go.",
-                                                  type: "User",
+                                                  collectionName: "users",
                                                   recieverName:
                                                       listIteams[index]
                                                           .userName!);

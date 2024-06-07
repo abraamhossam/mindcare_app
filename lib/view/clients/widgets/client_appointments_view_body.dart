@@ -11,6 +11,7 @@ class ClientAppointmentsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection("bookings")

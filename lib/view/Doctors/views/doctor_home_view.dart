@@ -43,6 +43,8 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
 
   @override
   void initState() {
+    print("+++++++++++++++++++++++++++++++");
+    print(FirebaseAuth.instance.currentUser!.uid);
     controller.getDetails(type: 'Doctor');
     controller.checkChat(
       collectionName: "doctors",

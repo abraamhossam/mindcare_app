@@ -27,7 +27,6 @@ class ChattingUsersView extends StatelessWidget {
 
   final _scrollController = ScrollController();
   final RoomModel model = Get.arguments;
-  String myUid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class ChattingUsersView extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          title: model.members![0] == myUid
+          title: model.members![0] == FirebaseAuth.instance.currentUser!.uid
               ? Text(
                   "${model.toType}:  ${model.to}",
                   style: const TextStyle(
@@ -79,7 +78,7 @@ class ChattingUsersView extends StatelessWidget {
                 size: 20,
               ),
             ),
-            model.members![1] == myUid
+            model.members![1] == FirebaseAuth.instance.currentUser!.uid
                 ? IconButton(
                     onPressed: () {
                       showDialog(
@@ -263,7 +262,9 @@ class ChattingUsersView extends StatelessWidget {
                                             source: ImageSource.gallery,
                                           );
                                           if (image != null) {
-                                            if (model.members![0] == myUid) {
+                                            if (model.members![0] ==
+                                                FirebaseAuth.instance
+                                                    .currentUser!.uid) {
                                               FireStorage().sendImage(
                                                 file: File(image.path),
                                                 roomId: model.members!,
@@ -299,7 +300,9 @@ class ChattingUsersView extends StatelessWidget {
                                             source: ImageSource.camera,
                                           );
                                           if (image != null) {
-                                            if (model.members![0] == myUid) {
+                                            if (model.members![0] ==
+                                                FirebaseAuth.instance
+                                                    .currentUser!.uid) {
                                               FireStorage().sendImage(
                                                 file: File(image.path),
                                                 roomId: model.members!,
@@ -349,7 +352,9 @@ class ChattingUsersView extends StatelessWidget {
                               onPressed: () async {
                                 if (textcontroller!.text.isNotEmpty) {
                                   if (model.block == 'no') {
-                                    if (model.members![0] == myUid) {
+                                    if (model.members![0] ==
+                                        FirebaseAuth
+                                            .instance.currentUser!.uid) {
                                       FireAuthRooms.sendMessage(
                                         recieverid: model.members![1],
                                         message: textcontroller!.text,
@@ -358,9 +363,11 @@ class ChattingUsersView extends StatelessWidget {
                                       FireAuthRooms.sendNotification(
                                         recieveId: model.members![1],
                                         msg: textcontroller!.text,
-                                        type: "User",
+                                        collectionName: "doctors",
                                       );
-                                    } else {
+                                    } else if (model.members![1] ==
+                                        FirebaseAuth
+                                            .instance.currentUser!.uid) {
                                       FireAuthRooms.sendMessage(
                                         recieverid: model.members![0],
                                         message: textcontroller!.text,
@@ -369,7 +376,7 @@ class ChattingUsersView extends StatelessWidget {
                                       FireAuthRooms.sendNotification(
                                         recieveId: model.members![0],
                                         msg: textcontroller!.text,
-                                        type: "Doctor",
+                                        collectionName: "users",
                                       );
                                     }
                                   } else {

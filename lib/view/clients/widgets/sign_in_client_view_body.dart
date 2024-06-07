@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
+
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/view/clients/views/client_home_view.dart';
@@ -33,6 +35,9 @@ class _SignInClientViewBodyState extends State<SignInClientViewBody> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ModalProgressHUD(
+      progressIndicator: const CircularProgressIndicator(
+        color: kPrimaryColor,
+      ),
       inAsyncCall: isloading,
       child: Form(
         key: formKey,

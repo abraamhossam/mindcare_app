@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mindcare_app/view/widgets/choose.dart';
+import 'package:mindcare_app/constants.dart';
+import 'package:mindcare_app/helper/size_config.dart';
 
 class FeeCard extends StatelessWidget {
   const FeeCard({
@@ -10,6 +10,7 @@ class FeeCard extends StatelessWidget {
     required this.subTitle,
     required this.icon,
     required this.price,
+    this.ontap,
   });
 
   final Size size;
@@ -17,26 +18,25 @@ class FeeCard extends StatelessWidget {
   final String subTitle;
   final IconData icon;
   final double price;
-
+  final VoidCallback? ontap;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
       child: InkWell(
-        onTap: () {
-          Get.bottomSheet(
-            const ChooseMethodeToPayment(),
-            backgroundColor: Colors.white,
-          );
-        },
+        onTap: ontap,
         child: Card(
+            color: kPrimaryColor,
             elevation: 2.5,
             child: Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 12,
+                  ),
                   child: Container(
                     height: 70,
                     width: 50,
@@ -48,10 +48,7 @@ class FeeCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: size.width * 0.015,
-                ),
-                SizedBox(
-                  width: size.width * 0.5,
+                  width: size.width * 0.54,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -60,7 +57,10 @@ class FeeCard extends StatelessWidget {
                         child: Text(
                           title,
                           style: const TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w600),
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                       Padding(
@@ -68,24 +68,23 @@ class FeeCard extends StatelessWidget {
                         child: Text(
                           subTitle,
                           style: const TextStyle(
-                              color: Color.fromARGB(255, 99, 94, 94)),
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  width: size.width * 0.02,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "\$$price",
                     style: const TextStyle(
-                        //color: Color.fromARGB(255, 176, 162, 36),
-                        color: Color.fromARGB(255, 55, 126, 57),
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],

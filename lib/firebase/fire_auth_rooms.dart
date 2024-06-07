@@ -177,129 +177,55 @@ class FireAuthRooms {
 
   static Future sendNotification({
     required String recieveId,
+    required String collectionName,
     required String msg,
-    required String type,
   }) async {
-    if (type == 'User') {
-      QuerySnapshot user =
-          await firestore.collection("users").where(recieveId).get();
-      final header = {
-        "Content-Type": "application/json",
-        "Authorization":
-            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
-      };
-      final body = {
-        "to": user.docs.first['token'],
-        "notification": {
-          "title": myName,
-          "body": msg,
-        }
-      };
-      final request = await http.post(
-        Uri.parse("https://fcm.googleapis.com/fcm/send"),
-        body: jsonEncode(body),
-        headers: header,
-      );
-      print("================================================0");
-      print(request.statusCode);
-    } else if (type == "Doctor") {
-      QuerySnapshot user =
-          await firestore.collection("doctors").where(recieveId).get();
-      final header = {
-        "Content-Type": "application/json",
-        "Authorization":
-            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
-      };
-      final body = {
-        "to": user.docs.first['token'],
-        "notification": {
-          "title": myName,
-          "body": msg,
-        }
-      };
-      final request = await http.post(
-        Uri.parse("https://fcm.googleapis.com/fcm/send"),
-        body: jsonEncode(body),
-        headers: header,
-      );
-      print("================================================0");
-      print(request.statusCode);
-    } else {
-      final header = {
-        "Content-Type": "application/json",
-        "Authorization":
-            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
-      };
-      final body = {
-        "to":
-            "en5RY1bbTHe3QCuYeVVjV2:APA91bHYiVj9xP16poMLnzUll2LCbSsVTIc2uWmvEC-MMpq7mcXsMDw6nNaEkSrU5fcaimHp05jmnOhck-L8LNo6vuGhLfcws5ErQRT8j4h7BxLJVrknHCU9yXHVi_PwfXT6l-bQm0Lu",
-        "notification": {
-          "title": myName,
-          "body": msg,
-        }
-      };
-      final request = await http.post(
-        Uri.parse("https://fcm.googleapis.com/fcm/send"),
-        body: jsonEncode(body),
-        headers: header,
-      );
-      print(request.statusCode);
-    }
+    QuerySnapshot user =
+        await firestore.collection(collectionName).where(recieveId).get();
+    final header = {
+      "Content-Type": "application/json",
+      "Authorization":
+          "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+    };
+    final body = {
+      "to": user.docs.first['token'],
+      "notification": {
+        "title": myName,
+        "body": msg,
+      }
+    };
+    await http.post(
+      Uri.parse("https://fcm.googleapis.com/fcm/send"),
+      body: jsonEncode(body),
+      headers: header,
+    );
   }
 
   static Future sendNotificationBooking({
     required String msg,
-    required String type,
+    required String collectionName,
     required String recieverName,
   }) async {
-    if (type == 'User') {
-      QuerySnapshot user = await firestore
-          .collection('users')
-          .where('name', isEqualTo: recieverName)
-          .get();
-      final header = {
-        "Content-Type": "application/json",
-        "Authorization":
-            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
-      };
-      final body = {
-        "to": user.docs.first['token'],
-        "notification": {
-          "title": myName,
-          "body": msg,
-        }
-      };
-      final request = await http.post(
-        Uri.parse("https://fcm.googleapis.com/fcm/send"),
-        body: jsonEncode(body),
-        headers: header,
-      );
-      print("================================================0");
-      print(request.statusCode);
-    } else if (type == "Doctor") {
-      QuerySnapshot user = await firestore
-          .collection('doctors')
-          .where('name', isEqualTo: recieverName)
-          .get();
-      final header = {
-        "Content-Type": "application/json",
-        "Authorization":
-            "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
-      };
-      final body = {
-        "to": user.docs.first['token'],
-        "notification": {
-          "title": myName,
-          "body": msg,
-        }
-      };
-      final request = await http.post(
-        Uri.parse("https://fcm.googleapis.com/fcm/send"),
-        body: jsonEncode(body),
-        headers: header,
-      );
-      print("================================================0");
-      print(request.statusCode);
-    }
+    QuerySnapshot user = await firestore
+        .collection(collectionName)
+        .where('name', isEqualTo: recieverName)
+        .get();
+    final header = {
+      "Content-Type": "application/json",
+      "Authorization":
+          "key=AAAA8FGV3Fg:APA91bFgPrBTGPYqD6cprx0A9SvxT1v530h86c7MMPT5TgbQf1E_7KzVXsMxpiDxFbpoiYuXyid0phkNPrEw8N6jSHsMHrAGvxi8bJ3SRwS3Xe97LK__BUd5bPExlIbnHjqcIRk15qfZ",
+    };
+    final body = {
+      "to": user.docs.first['token'],
+      "notification": {
+        "title": myName,
+        "body": msg,
+      }
+    };
+    await http.post(
+      Uri.parse("https://fcm.googleapis.com/fcm/send"),
+      body: jsonEncode(body),
+      headers: header,
+    );
   }
 }

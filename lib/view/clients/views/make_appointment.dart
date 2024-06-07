@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/botton_time_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_booking.dart';
+import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
 import 'package:mindcare_app/helper/size_config.dart';
+import 'package:mindcare_app/view/widgets/choose.dart';
 import 'package:mindcare_app/view/widgets/custom_back_icon.dart';
 import 'package:mindcare_app/view/widgets/fee_card.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -56,6 +58,9 @@ class _MakeAppointmentState extends State<MakeAppointment> {
     String day = DateTime.now().day.toString();
     String month = months[DateTime.now().month - 1];
     return ModalProgressHUD(
+      progressIndicator: const CircularProgressIndicator(
+        color: kPrimaryColor,
+      ),
       inAsyncCall: isLoading,
       child: Scaffold(
         body: ListView(
@@ -151,8 +156,10 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor,
-                  minimumSize:
-                      Size(SizeConfig.width!, SizeConfig.height! * 0.06),
+                  minimumSize: Size(
+                    SizeConfig.width!,
+                    SizeConfig.height! * 0.06,
+                  ),
                 ),
                 onPressed: () async {
                   isLoading = true;
@@ -184,7 +191,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                                   fontSize: 18),
                               backgroundColor: const Color(0xff607D8B),
                               content: const Text(
-                                "Are you sure to booking session ? ",
+                                "Are you sure to booking session ?",
                               ),
                               actions: [
                                 ElevatedButton(
@@ -209,11 +216,11 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                                       context,
                                       "Booked session successfully and waiting for reply from therapist",
                                     );
-                                    // FireAuthRooms.sendNotificationBooking(
-                                    //   msg: "he wants to book a therapy session",
-                                    //   type: "Doctor",
-                                    //   recieverName: "DoctorName",
-                                    // );
+                                    FireAuthRooms.sendNotificationBooking(
+                                      msg: "he wants to book a therapy session",
+                                      collectionName: "doctors",
+                                      recieverName: widget.doctorData!['name'],
+                                    );
                                   },
                                 ),
                                 ElevatedButton(
@@ -251,7 +258,10 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 24,
+              ),
               child: Text(
                 "Fee Details".tr,
                 style: const TextStyle(
@@ -261,6 +271,25 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               ),
             ),
             FeeCard(
+              ontap: () {
+                Get.bottomSheet(
+                  const ChooseMethodeToPayment(),
+                  backgroundColor: Colors.white,
+                );
+              },
+              size: size,
+              title: 'Offline Session'.tr,
+              subTitle: "Can make therapy session with therapist offline.".tr,
+              icon: Icons.interpreter_mode,
+              price: 3,
+            ),
+            FeeCard(
+              ontap: () {
+                Get.bottomSheet(
+                  const ChooseMethodeToPayment(),
+                  backgroundColor: Colors.white,
+                );
+              },
               size: size,
               title: 'Online Session'.tr,
               subTitle: "Can make therapy session with therapist online.".tr,

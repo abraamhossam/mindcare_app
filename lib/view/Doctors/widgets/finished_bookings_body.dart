@@ -111,7 +111,7 @@ class FinishedBookingsBody extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Booking Session",
+                                              "Therapy Session",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 24,

@@ -2,6 +2,7 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/doctor_input_data.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/helper/show_snakbar.dart';
@@ -34,6 +35,9 @@ class _SignUpDoctorViewBodyState extends State<SignUpDoctorViewBody> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return ModalProgressHUD(
+      progressIndicator: const CircularProgressIndicator(
+        color: kPrimaryColor,
+      ),
       inAsyncCall: isloading,
       child: Form(
         key: formKey,

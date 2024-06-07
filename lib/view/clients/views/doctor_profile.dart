@@ -56,6 +56,10 @@ class DoctorProfile extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
+                          border: Border.all(
+                            color: kPrimaryColor,
+                            width: 4,
+                          ),
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: NetworkImage(
@@ -113,7 +117,7 @@ class DoctorProfile extends StatelessWidget {
               horizontal: 16,
             ),
             child: Text(
-              "${doctor!['profile']} \n\nField of Study : ${doctor!['fieldOfStude']} \nUniversity : ${doctor!['universty']}",
+              "${doctor!['profile']}",
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -121,79 +125,133 @@ class DoctorProfile extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            child: Text(
-              "Speciality".tr,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
+          SizedBox(
+            height: SizeConfig.height! * 0.2,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: SizeConfig.width! * 0.48,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          "Universty".tr,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Text(
+                          doctor!['universty'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 101, 101, 101),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          "specialisty".tr,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Text(
+                          doctor!['specialisty'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 101, 101, 101),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: SizeConfig.width! * 0.48,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          "Address".tr,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Text(
+                          doctor!['officeAddress'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 101, 101, 101),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          "Date of Birth".tr,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        child: Text(
+                          doctor!['birth'],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 101, 101, 101),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: Text(
-              doctor!['specialisty'],
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 101, 101, 101),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            child: Text(
-              "Address".tr,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: Text(
-              doctor!['officeAddress'],
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 101, 101, 101),
-              ),
-            ),
-          ),
-          /* Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: Text(
-              "Price".tr,
-              style: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: Text(
-              doctor!['Price'].toString(),
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 101, 101, 101),
-              ),
-            ),
-          ), */
           SizedBox(
             height: SizeConfig.height! * 0.02,
           ),
@@ -202,9 +260,9 @@ class DoctorProfile extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize:
-                    Size(SizeConfig.width! * 0.8, SizeConfig.height! * 0.05),
+                    Size(SizeConfig.width! * 0.9, SizeConfig.height! * 0.05),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 backgroundColor: kPrimaryColor,
               ),
@@ -229,9 +287,9 @@ class DoctorProfile extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize:
-                    Size(SizeConfig.width! * 0.8, SizeConfig.height! * 0.05),
+                    Size(SizeConfig.width! * 0.9, SizeConfig.height! * 0.05),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 backgroundColor: kPrimaryColor,
               ),
@@ -291,6 +349,11 @@ class DoctorProfile extends StatelessWidget {
                                 recieverid: reciever.docs.first.id,
                                 message: "hello doctor",
                                 roomId: members,
+                              );
+                              FireAuthRooms.sendNotification(
+                                recieveId: reciever.docs.first.id,
+                                msg: "hello doctor",
+                                collectionName: "doctors",
                               );
                             },
                           ),
