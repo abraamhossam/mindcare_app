@@ -275,12 +275,30 @@ class ChattingAdminView extends StatelessWidget {
                                       message: textcontroller!.text,
                                       roomId: model.members.toString(),
                                     );
+                                    FireAuthRooms.sendNotification(
+                                      recieveId: model.members![1],
+                                      msg: textcontroller!.text,
+                                      collectionName: "admins",
+                                    );
                                   } else {
                                     FireAuthRooms.sendMessageAdmin(
                                       recieverid: model.members![0].toString(),
                                       message: textcontroller!.text,
                                       roomId: model.members.toString(),
                                     );
+                                    if (model.fromType == "Doctor") {
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![0],
+                                        msg: textcontroller!.text,
+                                        collectionName: "doctors",
+                                      );
+                                    } else if (model.fromType == "User") {
+                                      FireAuthRooms.sendNotification(
+                                        recieveId: model.members![0],
+                                        msg: textcontroller!.text,
+                                        collectionName: "users",
+                                      );
+                                    }
                                   }
                                 }
                                 textcontroller!.clear();

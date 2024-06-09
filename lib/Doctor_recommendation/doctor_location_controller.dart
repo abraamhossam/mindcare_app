@@ -55,7 +55,7 @@ Marker CustomMarker(Map<String, dynamic> doctor) {
     infoWindow: InfoWindow(
       title: doctor["Doctors_Names"],
       onTap: () {
-        Get.to(doctorProfile(
+        Get.to(DoctorProfile(
           doctor: doctor,
         ));
       },

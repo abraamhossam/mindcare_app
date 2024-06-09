@@ -20,7 +20,7 @@ import 'package:mindcare_app/view/clients/views/doctors_view.dart';
 import 'package:mindcare_app/view/clients/widgets/client_appointments_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_home_view_body.dart';
 import 'package:mindcare_app/view/clients/widgets/client_messages_body.dart';
-import 'package:mindcare_app/view/clients/widgets/client_test_body.dart';
+import 'package:mindcare_app/view/clients/widgets/registered_doctors_view.dart';
 import 'package:mindcare_app/view/initial/views/drop_down_view.dart';
 import 'package:mindcare_app/view/mental_illness_history.dart';
 import 'package:mindcare_app/view/clients/views/profile_user_View.dart';
@@ -41,7 +41,7 @@ class _ClientHomeViewState extends State<ClientHomeView> {
 
   final List pages = [
     ClientHomeViewBody(),
-    ClientTestBody(),
+    RegisteredDoctorsView(),
     ClientAppointmentsBody(),
     ClientMessagesBody(),
   ];
@@ -53,9 +53,9 @@ class _ClientHomeViewState extends State<ClientHomeView> {
 
   @override
   void initState() {
-    print("+++++++++++++++++++++++++++++++");
-    print(FirebaseAuth.instance.currentUser!.uid);
-    videoCallController.onUserLogin(FirebaseAuth.instance.currentUser!);
+    videoCallController.onUserLogin(
+      FirebaseAuth.instance.currentUser!,
+    );
     controller.getDetails(type: 'User');
     controller.checkChat(
       collectionName: "users",

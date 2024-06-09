@@ -9,6 +9,7 @@ class FireAuthBooking {
     String? hour,
     String? month,
     String? date,
+    required String type,
     required String doctorName,
   }) async {
     QuerySnapshot doctor = await firestore
@@ -36,6 +37,7 @@ class FireAuthBooking {
       'reply': 'waiting',
       'read': '',
       "doctor_reply": "0",
+      "type": type,
     });
   }
 

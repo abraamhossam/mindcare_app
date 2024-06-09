@@ -50,6 +50,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
     "Dec",
   ];
   bool isLoading = false;
+  String? method;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -153,6 +154,76 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 12,
+                    ),
+                    child: Text(
+                      "Session Method : ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Radio(
+                              activeColor: kPrimaryColor,
+                              value: "offline",
+                              groupValue: method,
+                              onChanged: (val) {
+                                method = val;
+
+                                setState(() {});
+                              }),
+                          const Text(
+                            "offline",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                              activeColor: kPrimaryColor,
+                              value: "online",
+                              groupValue: method,
+                              onChanged: (val) {
+                                method = val;
+
+                                setState(() {});
+                              }),
+                          const Text(
+                            "online",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: SizeConfig.height! * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor,
@@ -205,12 +276,23 @@ class _MakeAppointmentState extends State<MakeAppointment> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   onPressed: () async {
-                                    FireAuthBooking.createBooking(
-                                      month: month,
-                                      day: day,
-                                      hour: hour,
-                                      doctorName: widget.doctorData!['name'],
-                                    );
+                                    if (method == "online") {
+                                      FireAuthBooking.createBooking(
+                                        type: "online",
+                                        month: month,
+                                        day: day,
+                                        hour: hour,
+                                        doctorName: widget.doctorData!['name'],
+                                      );
+                                    } else {
+                                      FireAuthBooking.createBooking(
+                                        type: "offline",
+                                        month: month,
+                                        day: day,
+                                        hour: hour,
+                                        doctorName: widget.doctorData!['name'],
+                                      );
+                                    }
                                     Get.back();
                                     snackbar(
                                       context,
@@ -259,7 +341,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 16,
+                vertical: 8,
                 horizontal: 24,
               ),
               child: Text(
@@ -281,7 +363,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               title: 'Offline Session'.tr,
               subTitle: "Can make therapy session with therapist offline.".tr,
               icon: Icons.interpreter_mode,
-              price: 3,
+              price: 20,
             ),
             FeeCard(
               ontap: () {
@@ -294,7 +376,7 @@ class _MakeAppointmentState extends State<MakeAppointment> {
               title: 'Online Session'.tr,
               subTitle: "Can make therapy session with therapist online.".tr,
               icon: Icons.interpreter_mode,
-              price: 3,
+              price: 25,
             ),
           ],
         ),

@@ -121,6 +121,19 @@ class FinishedBookingsBody extends StatelessWidget {
                                           ],
                                         ),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 8,
+                                        ),
+                                        child: Text(
+                                          "(${listIteams[index].type!})",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
                                       Row(
                                         children: [
                                           const CircleAvatar(

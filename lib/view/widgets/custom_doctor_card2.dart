@@ -28,7 +28,7 @@ class CustomDoctorCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(size.width * 0.09),
         child: InkWell(
           onTap: () {
-            Get.off(doctorProfile(doctor: doctor));
+            Get.off(DoctorProfile(doctor: doctor));
           },
           child: Card(
             elevation: 3,

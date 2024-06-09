@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mindcare_app/Zego%20Cloud/constants.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/firebase/fire_storage.dart';
@@ -14,6 +15,7 @@ import 'package:mindcare_app/helper/size_config.dart';
 import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/widgets/chat_bubble.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 // ignore: must_be_immutable
 class ChattingUsersView extends StatelessWidget {
@@ -62,14 +64,31 @@ class ChattingUsersView extends StatelessWidget {
                   ),
                 ),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                FontAwesomeIcons.video,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
+            model.members![0] == FirebaseAuth.instance.currentUser!.uid
+                ? ZegoSendCallInvitationButton(
+                    iconSize: const Size.fromRadius(20),
+                    isVideoCall: false,
+                    resourceID:
+                        resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+                    invitees: [
+                      ZegoUIKitUser(
+                        id: model.members![1],
+                        name: model.to!,
+                      ),
+                    ],
+                  )
+                : ZegoSendCallInvitationButton(
+                    iconSize: const Size.fromRadius(20),
+                    isVideoCall: false,
+                    resourceID:
+                        resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+                    invitees: [
+                      ZegoUIKitUser(
+                        id: model.members![0],
+                        name: model.from!,
+                      ),
+                    ],
+                  ),
             IconButton(
               onPressed: () {},
               icon: const Icon(
@@ -309,12 +328,22 @@ class ChattingUsersView extends StatelessWidget {
                                                 recieverId: model.members![1]
                                                     .toString(),
                                               );
+                                              FireAuthRooms.sendNotification(
+                                                recieveId: model.members![1],
+                                                msg: "Image",
+                                                collectionName: "doctors",
+                                              );
                                             } else {
                                               FireStorage().sendImage(
                                                 file: File(image.path),
                                                 roomId: model.members!,
                                                 recieverId: model.members![0]
                                                     .toString(),
+                                              );
+                                              FireAuthRooms.sendNotification(
+                                                recieveId: model.members![0],
+                                                msg: "Image",
+                                                collectionName: "users",
                                               );
                                             }
                                           }

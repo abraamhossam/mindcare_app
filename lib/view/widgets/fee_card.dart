@@ -81,7 +81,7 @@ class FeeCard extends StatelessWidget {
                   child: Text(
                     "\$$price",
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

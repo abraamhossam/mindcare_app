@@ -111,6 +111,14 @@ class DoctorHomeViewAppointmentsIteam extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
+                                      "(${listIteams[index].type!})",
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
                                       listIteams[index].userName!,
                                       style: const TextStyle(
                                         fontSize: 18,

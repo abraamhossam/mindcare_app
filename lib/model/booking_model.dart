@@ -10,6 +10,7 @@ class BookingModel {
   String? reply;
   String? read;
   String? doctorReply;
+  String? type;
 
   BookingModel({
     this.createdAt,
@@ -23,6 +24,7 @@ class BookingModel {
     this.reply,
     this.read,
     this.doctorReply,
+    this.type,
   });
   factory BookingModel.fromjson(dynamic data) {
     return BookingModel(
@@ -37,6 +39,7 @@ class BookingModel {
       reply: data['reply'],
       read: data['read'],
       doctorReply: data["doctor_reply"],
+      type: data["type"],
     );
   }
 }

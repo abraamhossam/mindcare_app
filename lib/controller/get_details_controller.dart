@@ -56,7 +56,7 @@ class GetDetailscontroller extends GetxController {
             dataModel.value.token = value;
             FirebaseFirestore.instance
                 .collection("users")
-                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .doc(FirebaseAuth.instance.currentUser?.uid)
                 .update({
               'token': value,
             });
@@ -66,7 +66,7 @@ class GetDetailscontroller extends GetxController {
     } else if (type == "Doctor") {
       await FirebaseFirestore.instance
           .collection("doctors")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(FirebaseAuth.instance.currentUser?.uid)
           .get()
           .then(
             (value) => dataModel.value = UserModel.fromjson(
@@ -76,7 +76,7 @@ class GetDetailscontroller extends GetxController {
 
       await FirebaseFirestore.instance
           .collection("doctors_data")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(FirebaseAuth.instance.currentUser?.uid)
           .get()
           .then(
         (value) {
@@ -92,7 +92,7 @@ class GetDetailscontroller extends GetxController {
             dataModel.value.token = value;
             FirebaseFirestore.instance
                 .collection("doctors")
-                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .doc(FirebaseAuth.instance.currentUser?.uid)
                 .update({
               'token': value,
             });
@@ -105,7 +105,7 @@ class GetDetailscontroller extends GetxController {
   checkChat({required String collectionName}) async {
     QuerySnapshot user = await FirebaseFirestore.instance
         .collection(collectionName)
-        .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('id', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
         .get();
     List members = [
       user.docs.first.id,

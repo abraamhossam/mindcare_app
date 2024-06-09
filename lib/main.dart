@@ -12,7 +12,7 @@ import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_users_view.dart';
 import 'package:mindcare_app/view/Doctors/views/doctor_home_view.dart';
-import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
+import 'package:mindcare_app/view/Doctors/views/reports_view.dart';
 import 'package:mindcare_app/view/Doctors/views/reset_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_in_doctor_view.dart';
 import 'package:mindcare_app/view/Doctors/views/sign_up_doctor_view.dart';
@@ -135,8 +135,8 @@ class MindCareApp extends StatelessWidget {
             binding: MyBindings(),
           ),
           GetPage(
-            name: EnquiryDetailsView.id,
-            page: () => const EnquiryDetailsView(),
+            name: ReportsView.id,
+            page: () => const ReportsView(),
             binding: MyBindings(),
           ),
           GetPage(
@@ -196,8 +196,8 @@ class MindCareApp extends StatelessWidget {
           ),
 
           GetPage(
-            name: doctorProfile.id,
-            page: () => doctorProfile(),
+            name: DoctorProfile.id,
+            page: () => const DoctorProfile(),
           ),
 
           //test

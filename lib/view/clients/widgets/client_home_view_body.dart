@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Doctor_recommendation/doctor_profile2.dart';
+import 'package:mindcare_app/Doctor_recommendation/homepage_doctors.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/test_controller/test_controller.dart';
 import 'package:mindcare_app/view/Recommendations/views/mood_recommendations_view.dart';
@@ -119,16 +121,29 @@ class ClientHomeViewBody extends StatelessWidget {
         Row(
           children: [
             CustomCard(
+              ontap: () {
+                Get.to(
+                  DoctorProfile(
+                    doctor: homeDoctors["Amgad Khairy Kamel"],
+                  ),
+                );
+              },
               size: size,
               backColor: kPrimaryColor,
-              imageName: const NetworkImage(
-                "https://cdn-dr-images.vezeeta.com/Assets/Images/SelfServiceDoctors/ENT82187a/Profile/150/doctor-ghada-khalil--dietitian-and-nutrition_20230418093508805.jpg",
-              ),
-              title: "Ghada Khalel",
-              subTitle: "01062234831",
+              imageName: MemoryImage(base64Decode(
+                  "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")),
+              title: "Amgad Khairy Kamel",
+              subTitle: "01001582686",
               textColor: Colors.white,
             ),
             CustomCard(
+              ontap: () {
+                Get.to(
+                  DoctorProfile(
+                    doctor: homeDoctors["Shereen El dardery"],
+                  ),
+                );
+              },
               size: size,
               backColor: kPrimaryColor,
               imageName: MemoryImage(base64Decode(
@@ -142,6 +157,13 @@ class ClientHomeViewBody extends StatelessWidget {
         Row(
           children: [
             CustomCard(
+              ontap: () {
+                Get.to(
+                  DoctorProfile(
+                    doctor: homeDoctors["Mohamed Roshdy"],
+                  ),
+                );
+              },
               size: size,
               backColor: kPrimaryColor,
               imageName: MemoryImage(
@@ -154,6 +176,13 @@ class ClientHomeViewBody extends StatelessWidget {
               textColor: Colors.white,
             ),
             CustomCard(
+              ontap: () {
+                Get.to(
+                  DoctorProfile(
+                    doctor: homeDoctors["Remon Qanas"],
+                  ),
+                );
+              },
               size: size,
               backColor: kPrimaryColor,
               imageName: MemoryImage(base64Decode(

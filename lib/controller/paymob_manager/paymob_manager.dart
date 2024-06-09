@@ -18,7 +18,6 @@ class PaymobManager {
       );
       return paymentKey;
     } catch (e) {
-      print("Exc==========================================");
       print(e.toString());
       throw Exception();
     }

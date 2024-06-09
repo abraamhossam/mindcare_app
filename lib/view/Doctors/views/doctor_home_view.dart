@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
 import 'package:mindcare_app/constants.dart';
 import 'package:mindcare_app/controller/doctor_controller/bottom_navigator_bar_controller.dart';
 import 'package:mindcare_app/controller/get_details_controller.dart';
@@ -12,7 +13,7 @@ import 'package:mindcare_app/model/message_model.dart';
 import 'package:mindcare_app/model/room_model.dart';
 import 'package:mindcare_app/view/Doctors/views/appointments_view.dart';
 import 'package:mindcare_app/view/Doctors/views/chatting_admin_view.dart';
-import 'package:mindcare_app/view/Doctors/views/enquiry_details_view.dart';
+import 'package:mindcare_app/view/Doctors/views/reports_view.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_home_view_body.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mindcare_app/view/Doctors/widgets/doctor_messages_body.dart';
@@ -29,9 +30,11 @@ class DoctorHomeView extends StatefulWidget {
 }
 
 class _DoctorHomeViewState extends State<DoctorHomeView> {
+  VideoCallController videoCallController = VideoCallController();
+
   final List pages = [
     DoctorHomeViewBody(),
-    EnquiryDetailsView(),
+    ReportsView(),
     AppointmentsView(),
     DoctorMessagesBody(),
   ];
@@ -43,13 +46,14 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
 
   @override
   void initState() {
-    print("+++++++++++++++++++++++++++++++");
-    print(FirebaseAuth.instance.currentUser!.uid);
     controller.getDetails(type: 'Doctor');
     controller.checkChat(
       collectionName: "doctors",
     );
     sharedPrefs!.setString("type", "Doctor");
+    videoCallController.onUserLogin(
+      FirebaseAuth.instance.currentUser!,
+    );
 
     super.initState();
   }
@@ -423,6 +427,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
                                     await FirebaseAuth.instance.signOut();
                                     Get.offAllNamed(DropDownView.id);
                                     sharedPrefs!.setString("type", "");
+                                    videoCallController.onUserLogout();
                                   },
                                 ),
                                 ElevatedButton(
