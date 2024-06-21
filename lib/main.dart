@@ -92,7 +92,7 @@ class MindCareApp extends StatelessWidget {
         locale: language.initLang,
         translations: Language(),
         initialBinding: MyBindings(),
-        initialRoute: sharedPrefs!.getString("frist_time") == "true"
+        initialRoute: sharedPrefs!.getString("frist_Reg") == "true"
             ? sharedPrefs!.getString("type") == "User"
                 ? ClientHomeView.id
                 : sharedPrefs!.getString("type") == "Doctor"

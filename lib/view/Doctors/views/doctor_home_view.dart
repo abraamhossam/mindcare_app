@@ -30,7 +30,8 @@ class DoctorHomeView extends StatefulWidget {
 }
 
 class _DoctorHomeViewState extends State<DoctorHomeView> {
-  VideoCallController videoCallController = VideoCallController();
+  final VideoCallController videoCallController =
+      Get.put(VideoCallController());
 
   final List pages = [
     DoctorHomeViewBody(),
@@ -40,6 +41,7 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
   ];
   final GetDetailscontroller controller = Get.find();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final GetDetailscontroller dataController = Get.find();
   void _openDrawer() {
     _scaffoldKey.currentState?.openDrawer();
   }
@@ -51,9 +53,6 @@ class _DoctorHomeViewState extends State<DoctorHomeView> {
       collectionName: "doctors",
     );
     sharedPrefs!.setString("type", "Doctor");
-    videoCallController.onUserLogin(
-      FirebaseAuth.instance.currentUser!,
-    );
 
     super.initState();
   }

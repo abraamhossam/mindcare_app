@@ -32,6 +32,7 @@ class ChattingUsersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -66,6 +67,10 @@ class ChattingUsersView extends StatelessWidget {
           actions: [
             model.members![0] == FirebaseAuth.instance.currentUser!.uid
                 ? ZegoSendCallInvitationButton(
+                    buttonSize: Size(
+                      SizeConfig.width! * 0.1,
+                      SizeConfig.height! * 0.1,
+                    ),
                     iconSize: const Size.fromRadius(20),
                     isVideoCall: false,
                     resourceID:
@@ -78,6 +83,10 @@ class ChattingUsersView extends StatelessWidget {
                     ],
                   )
                 : ZegoSendCallInvitationButton(
+                    buttonSize: Size(
+                      SizeConfig.width! * 0.1,
+                      SizeConfig.height! * 0.1,
+                    ),
                     iconSize: const Size.fromRadius(20),
                     isVideoCall: false,
                     resourceID:
@@ -89,14 +98,39 @@ class ChattingUsersView extends StatelessWidget {
                       ),
                     ],
                   ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                FontAwesomeIcons.phoneAlt,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
+            model.members![0] == FirebaseAuth.instance.currentUser!.uid
+                ? ZegoSendCallInvitationButton(
+                    buttonSize: Size(
+                      SizeConfig.width! * 0.1,
+                      SizeConfig.height! * 0.1,
+                    ),
+                    iconSize: const Size.fromRadius(20),
+                    isVideoCall: true,
+                    resourceID:
+                        resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+                    invitees: [
+                      ZegoUIKitUser(
+                        id: model.members![1],
+                        name: model.to!,
+                      ),
+                    ],
+                  )
+                : ZegoSendCallInvitationButton(
+                    buttonSize: Size(
+                      SizeConfig.width! * 0.1,
+                      SizeConfig.height! * 0.1,
+                    ),
+                    iconSize: const Size.fromRadius(20),
+                    isVideoCall: true,
+                    resourceID:
+                        resourceID, //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+                    invitees: [
+                      ZegoUIKitUser(
+                        id: model.members![0],
+                        name: model.from!,
+                      ),
+                    ],
+                  ),
             model.members![1] == FirebaseAuth.instance.currentUser!.uid
                 ? IconButton(
                     onPressed: () {

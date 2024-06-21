@@ -39,7 +39,7 @@ class ChatController extends GetxController {
 
   Future<void> getChatbotResponse(String message) async {
     final response = await http.post(
-      Uri.parse('http://192.168.1.3:8080/get'),
+      Uri.parse('http://172.10.28.49:8080/get'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'msg': message}),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_checkout/flutter_paypal_checkout.dart';
+import 'package:mindcare_app/helper/show_snakbar.dart';
 
 import '../../constants.dart';
 import '../../view/widgets/choose_payment.dart';
-
 
 class PaypalWay extends StatefulWidget {
   const PaypalWay({super.key});
@@ -58,10 +58,12 @@ class _PaypalWayState extends State<PaypalWay> {
               ],
               note: "Contact us for any questions on your order.",
               onSuccess: (Map params) async {
+                snackbar(context, "The payment was completed successfully ");
                 print("onSuccess: $params");
               },
               onError: (error) {
                 print("onError: $error");
+                snackbar(context, "payment failed");
                 Navigator.pop(context);
               },
               onCancel: () {

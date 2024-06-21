@@ -60,7 +60,7 @@ class _InitViewBodyState extends State<InitViewBody> {
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.easeIn);
               } else if (pageController.page == 2) {
-                sharedPrefs!.setString("frist_time", "true");
+                sharedPrefs!.setString("frist_Reg", "true");
                 Get.offAll(
                   () => const DropDownView(),
                   transition: Transition.rightToLeft,

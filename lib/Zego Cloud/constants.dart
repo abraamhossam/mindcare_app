@@ -1,4 +1,4 @@
-const int appID = 925516788;
+const int appID = 740658492;
 const String appSign =
-    "e4fec43bc61fb3ade6bc949b811ce18404bc9a5e48802cfe425dd86d5d10de12";
+    "881e7309dbba10b7c7d4ff62c5974dba43dbeab559c0cc69210d36d579001c19";
 const String resourceID = "Zego_MindCare";

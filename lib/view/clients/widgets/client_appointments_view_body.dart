@@ -169,7 +169,7 @@ class ClientAppointmentsBody extends StatelessWidget {
                                         Text(
                                           listIteams[index].doctorName!,
                                           style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 16,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),

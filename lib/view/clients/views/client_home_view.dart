@@ -53,9 +53,6 @@ class _ClientHomeViewState extends State<ClientHomeView> {
 
   @override
   void initState() {
-    videoCallController.onUserLogin(
-      FirebaseAuth.instance.currentUser!,
-    );
     controller.getDetails(type: 'User');
     controller.checkChat(
       collectionName: "users",

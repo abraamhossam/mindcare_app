@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
+import 'package:mindcare_app/Zego%20Cloud/videoCall_controller.dart';
 import 'package:mindcare_app/firebase/fire_auth_rooms.dart';
 import 'package:mindcare_app/model/doctor_data.dart';
 import 'package:mindcare_app/model/user_model.dart';
@@ -40,7 +41,10 @@ class GetDetailscontroller extends GetxController {
     urlImage: "",
     email: "",
   ).obs;
+
   getDetails({required String type}) async {
+    final VideoCallController videoCallController =
+        Get.put(VideoCallController());
     if (type == "User") {
       await FirebaseFirestore.instance
           .collection("users")
@@ -100,6 +104,11 @@ class GetDetailscontroller extends GetxController {
         },
       );
     }
+
+    videoCallController.onUserLogin(
+      FirebaseAuth.instance.currentUser!,
+      dataModel.value.name!,
+    );
   }
 
   checkChat({required String collectionName}) async {

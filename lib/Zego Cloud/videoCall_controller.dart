@@ -1,6 +1,6 @@
+// ignore: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:get/get.dart';
 import 'package:mindcare_app/Zego%20Cloud/constants.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
@@ -19,7 +19,7 @@ class VideoCallController extends GetxController {
   }
 
   /// on App's user login
-  void onUserLogin(User user) {
+  void onUserLogin(User user, String name) async {
     /// 1.2.1. initialized ZegoUIKitPrebuiltCallInvitationService
     /// when app's user is logged in or re-logged in
     /// We recommend calling this method as soon as the user logs in to your app.
@@ -27,7 +27,7 @@ class VideoCallController extends GetxController {
       appID: appID /*input your AppID*/,
       appSign: appSign /*input your AppSign*/,
       userID: user.uid,
-      userName: user.email!,
+      userName: name,
       plugins: [ZegoUIKitSignalingPlugin()],
       /* requireConfig: (ZegoCallInvitationData data) {
         var config = (data.invitees.length > 1)
