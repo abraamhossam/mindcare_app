@@ -1,4 +1,4 @@
-MindCare
+#MindCare
 Introduction
 Welcome to the Mental Health Empowerment Application! This application is dedicated to supporting mental health through a combination of artificial intelligence and human expertise. Our goal is to provide users with accessible, reliable, and comprehensive mental health resources.
 
