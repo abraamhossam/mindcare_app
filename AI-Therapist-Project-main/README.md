@@ -1,4 +1,3 @@
-To effectively showcase your use of large language models (LLMs) in your CV, you should emphasize the practical application, the technologies involved, and the impact of your work. Here’s a structured approach to highlighting this experience:
 
 ### 1. **Project Title and Description**
 Provide a clear title and a brief description of the project where you used LLMs.
