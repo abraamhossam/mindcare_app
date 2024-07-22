@@ -61,7 +61,7 @@ Include relevant keywords and skills related to LLMs in your skills section or p
 
 **AI Therapist Chatbot**
 *Developer*  
-*January 2024 – June 2024*
+*January 2024 – July 2024*
 
 - **Description:** Developed a chatbot application combining a custom Keras model with OpenAI’s GPT-3.5-turbo LLM to provide mental health support through natural language processing and advanced conversational capabilities.
 - **Technologies:** Python, Keras, TensorFlow, OpenAI GPT-3.5-turbo, NLTK, Flask, Google Cloud Platform
@@ -73,4 +73,3 @@ Include relevant keywords and skills related to LLMs in your skills section or p
   - Increased response accuracy by 30% and user satisfaction by 25%.
   - Successfully handled API rate limits and performance optimization.
 
-By following this structure, you can clearly communicate your experience with LLMs and the impact of your work on your CV.
